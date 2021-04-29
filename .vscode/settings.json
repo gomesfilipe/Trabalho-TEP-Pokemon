@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "blastoise.h": "c",
+        "pokemon.h": "c",
+        "mew.h": "c",
+        "pikachu.h": "c",
+        "venusaur.h": "c",
+        "steelix.h": "c",
+        "charizard.h": "c"
+    }
+}

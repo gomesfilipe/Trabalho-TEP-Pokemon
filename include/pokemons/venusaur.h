@@ -11,4 +11,25 @@
  **/
 Pokemon* criaVenusaur();
 
+/**
+ * @brief Aplica o ataque Pó de Sono.
+ * @param atacante Pokemon que aplica o ataque.
+ * @param defensor Pokemon que sofre o ataque.
+ **/
+void poDeSono(Pokemon *venusaur, Pokemon *defensor);
+
+/**
+ * @brief Aplica o ataque Bomba de Semente.
+ * @param atacante Pokemon que aplica o ataque.
+ * @param defensor Pokemon que sofre o ataque.
+ **/
+void bombaDeSemente(Pokemon *venusaur, Pokemon *defensor);
+
+/**
+ * @brief Aplica o ataque Dois Gumes.
+ * @param atacante Pokemon que aplica o ataque.
+ * @param defensor Pokemon que sofre o ataque.
+ **/
+void doisGumes(Pokemon *venusaur, Pokemon *defensor);
+
 #endif

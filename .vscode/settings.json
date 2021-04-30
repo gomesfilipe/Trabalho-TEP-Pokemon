@@ -6,6 +6,7 @@
         "pikachu.h": "c",
         "venusaur.h": "c",
         "steelix.h": "c",
-        "charizard.h": "c"
+        "charizard.h": "c",
+        "jogo.h": "c"
     }
 }

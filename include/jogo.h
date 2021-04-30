@@ -26,4 +26,22 @@ void iniciaTabelaCriacaoPokemons();
  **/
 Pokemon* escolhePokemon(char code);
 
+/**
+ * @brief Inicializa a matriz que indica o valor de "relacaoTipo" numa batalha entre pokemons.
+ * @param m Matriz que relaciona o pokemon atacante vs o pokemon defensor para descobrir o valor de "relacaoTipo".
+ **/
+void inicializaMatrizRelacaoTipos(float m[QTDTIPOS][QTDTIPOS]);
+
+/**
+ * @brief Calcula o dano de um ataque de um pokemon com base em seus parâmetros.
+ * @param A Ataque base do pokemon.
+ * @param D Defesa base do pokemon.
+ * @param poder Poder do ataque.
+ * @param critico Valor que indica se o dano dobrará ou não.
+ * @param MT Valor que relaciona um determinado ataque com o tipo do pokemón que o usa.
+ * @param relacaoTipo Valor que indica a "força" de um pokemon sobre o outro.
+ * @return Dano causado ao pokemon defensor por um ataque.
+ **/
+float calculaDano(float A, float D, float poder, float critico, float MT, float relacaoTipo);
+
 #endif

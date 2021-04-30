@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../pokemon.h"
+#include "../jogo.h"
 
 /**
  * @brief Chama a função criaPokemon e inicializa com os atributos do Venusaur.

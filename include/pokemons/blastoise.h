@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../pokemon.h"
+#include "../jogo.h"
 
 /**
  * @brief Chama a função criaPokemon e inicializa com os atributos do Blastoise.
@@ -30,6 +31,6 @@ void proteger(Pokemon *blastoise, Pokemon *defensor);
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
  **/
-void bater(Pokemon *blastoise, Pokemon *defensor);
+void baterBlastoise(Pokemon *blastoise, Pokemon *defensor);
 
 #endif

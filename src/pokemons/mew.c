@@ -1,8 +1,12 @@
 #include "../../include/pokemons/mew.h"
 
 Pokemon* criaMew(){
-    Pokemon *mew = criaPokemon("Mew", 320, 200, 200, PSIQUICO);
-    return mew;
+    fptrAtaque atk1 = metronomo;
+    fptrAtaque atk2 = baterMew;
+    fptrAtaque atk3 = autoDestruir;
+    
+    Pokemon *mew = criaPokemon("Mew", 320, 200, 200, PSIQUICO, atk1, atk2, atk3);
+    return mew; 
 }
 
 void metronomo(Pokemon *mew, Pokemon *defensor){
@@ -11,7 +15,7 @@ void metronomo(Pokemon *mew, Pokemon *defensor){
     ataqueMew(mew, defensor);   
 }
 
-void bater(Pokemon *mew, Pokemon *defensor){
+void baterMew(Pokemon *mew, Pokemon *defensor){
     float matriz[QTDTIPOS][QTDTIPOS];
     inicializaMatrizRelacaoTipos(matriz);
     float A = getAtaque(mew);
@@ -67,9 +71,9 @@ void autoDestruir(Pokemon *mew, Pokemon *defensor){
 void inicializaVetorComTodosAtaques(){
     todosAtaques[0]  = choqueDoTrovao;
     todosAtaques[1]  = ondaDeChoque;
-    todosAtaques[2]  = bater;
+    todosAtaques[2]  = baterMew;
     todosAtaques[3]  = lancaChamas;
-    todosAtaques[4]  = dormir;
+    todosAtaques[4]  = dormirSteelix;
     todosAtaques[5]  = armaDeAgua;
     todosAtaques[6]  = proteger;
     todosAtaques[7]  = poDeSono;

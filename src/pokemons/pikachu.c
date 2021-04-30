@@ -1,7 +1,10 @@
 #include "../../include/pokemons/pikachu.h"
 
 Pokemon* criaPikachu(){
-    Pokemon *pikachu = criaPokemon("Pikachu", 200, 110, 100,  ELETRICO);
+    fptrAtaque atk1 = choqueDoTrovao;
+    fptrAtaque atk2 = ondaDeChoque;
+    fptrAtaque atk3 = baterPikachu;
+    Pokemon *pikachu = criaPokemon("Pikachu", 200, 110, 100,  ELETRICO, atk1, atk2, atk3);
     return pikachu;
 }
 
@@ -46,7 +49,7 @@ void ondaDeChoque(Pokemon *pikachu, Pokemon *defensor){
     defensor = setTurnosSemJogar(defensor, 1);
 }
 
-void bater(Pokemon *pikachu, Pokemon *defensor){
+void baterPikachu(Pokemon *pikachu, Pokemon *defensor){
     float matriz[QTDTIPOS][QTDTIPOS];
     inicializaMatrizRelacaoTipos(matriz);
     

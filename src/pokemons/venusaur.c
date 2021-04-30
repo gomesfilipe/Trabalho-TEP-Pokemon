@@ -1,7 +1,11 @@
 #include "../../include/pokemons/venusaur.h"
 
 Pokemon* criaVenusaur(){
-    Pokemon *venusaur = criaPokemon("Venusaur", 300, 160, 160,  PLANTA);
+    fptrAtaque atk1 = poDeSono;
+    fptrAtaque atk2 = bombaDeSemente;
+    fptrAtaque atk3 = doisGumes;
+    
+    Pokemon *venusaur = criaPokemon("Venusaur", 300, 160, 160,  PLANTA, atk1, atk2, atk3);
     return venusaur;
 }
 

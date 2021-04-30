@@ -7,6 +7,7 @@
 
 #define QTDTIPOS 6
 #define QTDESTADOS 7
+#define QTDATAQUESPOKEMON 3
 
 // int normal;
 // int paralisado;
@@ -38,8 +39,7 @@ typedef void (*fptrAtaque) (Pokemon*, Pokemon*);
  * @param atk3 Ponteiro para função do ataque 3 do pokemon. 
  * @return Retorna um pokemon genérico.
 **/
-//Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int estado, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3);
-Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int tipo);
+Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3);
 
 //! funcao para testes, excluir depois
 void imprimePokemon(Pokemon *p);
@@ -107,11 +107,12 @@ float getDefesa(Pokemon *p);
 int getTipo(Pokemon *p);
 
 /**
- * @brief Captura o valor do campo "p->estado" de um dado pokemon.
- * @param p Pokemon que terá seu valor de estado capturado.
+ * @brief Captura o valor de uma posição do vetor de estados de um pokemon.
+ * @param p Pokemon que terá um dos seus valores de estado capturado.
+ * @param posVetor Posicao do vetor que terá seu valor capturado.
  * @return Valor de "p->estado".
  **/
-int getEstado(Pokemon *p);
+int getEstado(Pokemon *p, int posVetor);
 
 /**
  * @brief Libera um pokemon da memória.

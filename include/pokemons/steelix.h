@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../pokemon.h"
+#include "../jogo.h"
 
 /**
  * @brief Chama a função criaPokemon e inicializa com os atributos do Steelix.
@@ -23,7 +24,7 @@ void raboDeFerro(Pokemon *steelix, Pokemon *defensor);
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
  **/
-void dormir(Pokemon *steelix, Pokemon *defensor);
+void dormirSteelix(Pokemon *steelix, Pokemon *defensor);
 
 /**
  * @brief Aplica o ataque Cavar.

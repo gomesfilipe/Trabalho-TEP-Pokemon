@@ -4,33 +4,31 @@
 #include <time.h>
 
 int main(){
-    srand(time(NULL));
+    //srand(time(NULL));
     iniciaTabelaCriacaoPokemons();
     Pokemon *b = escolhePokemon('B');
-    // Pokemon *c = escolhePokemon('C');
-    // Pokemon *m = escolhePokemon('M');
+    Pokemon *c = escolhePokemon('C');
+    Pokemon *m = escolhePokemon('M');
     Pokemon *p = escolhePokemon('P');
-    // Pokemon *s = escolhePokemon('S');
-    // Pokemon *v = escolhePokemon('V');
-    imprimePokemon(b);
-    imprimePokemon(p);
-
-    choqueDoTrovao(p, b);
-
-    // imprimePokemon(c);
-    // imprimePokemon(m);
-    // imprimePokemon(s);
-    // imprimePokemon(v);
+    Pokemon *s = escolhePokemon('S');
+    Pokemon *v = escolhePokemon('V');
     
+
+    //hoqueDoTrovao(p, b);
+
     imprimePokemon(b);
-
-
+    imprimePokemon(c);
+    imprimePokemon(m);
+    imprimePokemon(p);
+    imprimePokemon(s);
+    imprimePokemon(v);
+    
     destroiPokemon(b);
-    // destroiPokemon(c);
-    // destroiPokemon(m);
+    destroiPokemon(c);
+    destroiPokemon(m);
     destroiPokemon(p);
-    // destroiPokemon(s);
-    // destroiPokemon(v);
+    destroiPokemon(s);
+    destroiPokemon(v);
 
     // float matriz[QTDTIPOS][QTDTIPOS];
     // inicializaMatrizRelacaoTipos(matriz);

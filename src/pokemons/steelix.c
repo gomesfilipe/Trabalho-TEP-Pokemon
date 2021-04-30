@@ -1,7 +1,11 @@
 #include "../../include/pokemons/steelix.h"
 
 Pokemon* criaSteelix(){
-    Pokemon *steelix = criaPokemon("Steelix", 280, 170, 400,  METAL);
+    fptrAtaque atk1 = raboDeFerro;
+    fptrAtaque atk2 = dormirSteelix;
+    fptrAtaque atk3 = cavar;
+    
+    Pokemon *steelix = criaPokemon("Steelix", 280, 170, 400,  METAL, atk1, atk2, atk3);
     return steelix;
 }
 
@@ -32,7 +36,7 @@ void raboDeFerro(Pokemon *steelix, Pokemon *defensor){
     defensor = setHPAtual(defensor, novoHP);
 }
 
-void dormir(Pokemon *steelix, Pokemon *defensor){
+void dormirSteelix(Pokemon *steelix, Pokemon *defensor){
     steelix = setEstado(steelix, DORMIR, 1);
     steelix = setEstado(steelix, NORMAL, 0);
     steelix = setEstado(steelix, FULLHP, 1);
@@ -40,8 +44,8 @@ void dormir(Pokemon *steelix, Pokemon *defensor){
 }
 
 void cavar(Pokemon *steelix, Pokemon *defensor){ 
-    int estado = getEstado(steelix);
-    if(estado == ESCONDER){
+    int estado = getEstado(steelix, ESCONDER);
+    if(estado == 1){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
         

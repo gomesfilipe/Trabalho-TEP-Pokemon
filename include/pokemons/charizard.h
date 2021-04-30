@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../pokemon.h"
+#include "../jogo.h"
 
 /**
  * @brief Chama a função criaPokemon e inicializa com os atributos do Charizard.
@@ -23,13 +24,13 @@ void lancaChamas(Pokemon *charizard, Pokemon *defensor);
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
  **/
-void dormir(Pokemon* charizard, Pokemon* defensor);
+void dormirCharizard(Pokemon* charizard, Pokemon* defensor);
 
 /**
  * @brief Aplica o ataque Bater.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
  **/
-void bater(Pokemon *charizard, Pokemon *defensor);
+void baterCharizard(Pokemon *charizard, Pokemon *defensor);
 
 #endif

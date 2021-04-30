@@ -1,7 +1,11 @@
 #include "../../include/pokemons/blastoise.h"
 
 Pokemon* criaBlastoise(){
-    Pokemon *blastoise = criaPokemon("Blastoise", 280, 180, 200, AGUA);
+    fptrAtaque atk1 = armaDeAgua;
+    fptrAtaque atk2 = proteger;
+    fptrAtaque atk3 = baterBlastoise;
+    
+    Pokemon *blastoise = criaPokemon("Blastoise", 280, 180, 200, AGUA, atk1, atk2, atk3);
     return blastoise;
 }
 
@@ -36,7 +40,7 @@ void proteger(Pokemon *blastoise, Pokemon *defensor){
     blastoise = setEstado(blastoise, NORMAL, 0);
 }
 
-void bater(Pokemon *blastoise, Pokemon *defensor){
+void baterBlastoise(Pokemon *blastoise, Pokemon *defensor){
     float matriz[QTDTIPOS][QTDTIPOS];
     inicializaMatrizRelacaoTipos(matriz);
     float A = getAtaque(blastoise);

@@ -9,6 +9,7 @@
 #include "pikachu.h"
 #include "steelix.h"
 #include "venusaur.h"
+#include "../jogo.h"
 
 fptrAtaque todosAtaques[13];
 
@@ -30,7 +31,7 @@ void metronomo(Pokemon *mew, Pokemon *defensor);
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
  **/
-void bater(Pokemon *mew, Pokemon *defensor);
+void baterMew(Pokemon *mew, Pokemon *defensor);
 
 /**
  * @brief Aplica o ataque Auto-Destruir.

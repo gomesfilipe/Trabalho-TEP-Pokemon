@@ -1,7 +1,11 @@
 #include "../../include/pokemons/charizard.h"
 
 Pokemon* criaCharizard(){
-    Pokemon *charizard = criaPokemon("Charizard", 260, 160, 150, FOGO);
+    fptrAtaque atk1 = lancaChamas;
+    fptrAtaque atk2 = dormirCharizard;
+    fptrAtaque atk3 = baterCharizard;
+    
+    Pokemon *charizard = criaPokemon("Charizard", 260, 160, 150, FOGO, atk1, atk2, atk3);
     return charizard;
 }
 
@@ -39,14 +43,14 @@ void lancaChamas(Pokemon *charizard, Pokemon *defensor){
 }
 
 //Full HP é um estado parecido com o de paralizar, mas a diferença é que ao final recupera todo o HP.
-void dormir(Pokemon *charizard, Pokemon *defensor){
+void dormirCharizard(Pokemon *charizard, Pokemon *defensor){
     charizard = setEstado(charizard, NORMAL, 0); 
     charizard = setEstado(charizard, FULLHP, 1); 
     charizard = setEstado(charizard, DORMIR, 1);
     charizard = setTurnosSemJogar(charizard, 2);
 }
 
-void bater(Pokemon *charizard, Pokemon *defensor){
+void baterCharizard(Pokemon *charizard, Pokemon *defensor){
     float matriz[QTDTIPOS][QTDTIPOS];
     inicializaMatrizRelacaoTipos(matriz);
     float A = getAtaque(charizard);

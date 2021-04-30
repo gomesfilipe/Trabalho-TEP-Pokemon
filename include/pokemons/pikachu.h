@@ -31,6 +31,6 @@ void ondaDeChoque(Pokemon *pikachu, Pokemon *defensor);
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
  **/
-void bater(Pokemon *atacante, Pokemon *defensor);
+void baterPikachu(Pokemon *atacante, Pokemon *defensor);
 
 #endif

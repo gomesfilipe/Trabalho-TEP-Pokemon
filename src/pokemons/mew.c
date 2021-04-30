@@ -41,7 +41,7 @@ void autoDestruir(Pokemon *mew, Pokemon *defensor){
     float A = getAtaque(mew);
     float D = getDefesa(defensor);
     float poder = 200;  
-    float MT = 1.5;
+    float MT = 1;
     int tipoPokemonAtk = getTipo(mew);
     int tipoPokemonDef = getTipo(defensor);
     float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];

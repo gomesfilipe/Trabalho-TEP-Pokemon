@@ -11,7 +11,7 @@
 enum tipos {ELETRICO = 0, FOGO, AGUA, PLANTA, METAL, PSIQUICO};
 
 // Convencionando possíveis estados do pokemon durante uma batalha.
-enum estados {NORMAL = 0, DORMIR, QUEIMAR, PARALISAR, PROTEGIDO};
+enum estados {NORMAL = 0, DORMIR, QUEIMAR, PARALISAR, PROTEGIDO, ESCONDER, FULLHP};
 
 typedef struct pokemon Pokemon;
 
@@ -52,6 +52,14 @@ Pokemon* setHPAtual(Pokemon* p, float hpAtual);
  * @return Pokemon com o campo "estado" atualizado.
  **/
 Pokemon* setEstado(Pokemon *p, int estado);
+
+/**
+ * @brief Atualiza o campo "turnosSemJogar" de um dado pokemon.
+ * @param p Pokemon que terá o campo atualizado.
+ * @param turnosSemJogar Novo valor do campo p->turnosSemJogar.
+ * @return Pokemon com o campo "turnosSemJogar" atualizado.
+ **/
+Pokemon* setTurnosSemJogar(Pokemon *p, int turnosSemJogar);
 
 /**
  * @brief Captura o valor do campo "p->ataque" de um dado pokemon.

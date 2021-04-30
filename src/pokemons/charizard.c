@@ -66,3 +66,8 @@ void bater(Pokemon *charizard, Pokemon *defensor){
     
     defensor = setHPAtual(defensor, novoHP);
 }
+
+
+
+
+

@@ -8,6 +8,7 @@ struct pokemon{
     float defesa;
     int estado;
     int tipo;
+    int turnosSemJogar;
     //fptrAtaque ataques[3]; // Vetor para ponteiros de funções de ataque do pokemon
 };
 // Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int estado, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3)
@@ -19,7 +20,8 @@ Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int es
     p->ataque = ataque;
     p->defesa = defesa;
     p->tipo = tipo;
-    p->estado = estado;
+    p->estado = estado;   
+    p->turnosSemJogar = 0;
     //p->ataques[0] = atk1;
     //p->ataques[1] = atk2;
     //p->ataques[2] = atk3;
@@ -46,6 +48,11 @@ Pokemon* setEstado(Pokemon *p, int estado){
     return p;
 }
 
+Pokemon* setTurnosSemJogar(Pokemon *p, int turnosSemJogar){
+    p->turnosSemJogar = turnosSemJogar;
+    return p;
+}
+
 float getHPAtual(Pokemon* p){
     return p->hpAtual;
 }
@@ -66,3 +73,5 @@ void destroiPokemon(Pokemon *p){
     free(p->nome);
     free(p);
 }
+
+

@@ -33,12 +33,14 @@ void lancaChamas(Pokemon *charizard, Pokemon *defensor){
 
     aleatorio = rand() % 10;
     if(aleatorio == 0 && tipoPokemonDef != FOGO){
-        defensor = setEstado(defensor, QUEIMAR);
+     //   defensor = setEstado(defensor, QUEIMAR); //o estado de queimar n serve mais pra nada
+        defensor = setQueimando(defensor, 1);
     }
 }
-
+//Full HP é um estado parecido com o de paralizar, mas a diferença é que ao final recupera todo o HP.
 void dormir(Pokemon *charizard, Pokemon *defensor){
-    setEstado(defensor, DORMIR);
+    defensor = setEstado(defensor, FULLHP); 
+    defensor = setTurnosSemJogar(defensor, 2);
 }
 
 void bater(Pokemon *charizard, Pokemon *defensor){

@@ -6,7 +6,9 @@ Pokemon* criaMew(){
 }
 
 void metronomo(Pokemon *mew, Pokemon *defensor){
-
+    int aleatorio = rand() % 13;
+    fptrAtaque ataqueMew = todosAtaques[aleatorio];
+    ataqueMew(mew, defensor);   
 }
 
 void bater(Pokemon *mew, Pokemon *defensor){
@@ -61,3 +63,20 @@ void autoDestruir(Pokemon *mew, Pokemon *defensor){
     defensor = setHPAtual(defensor, novoHP);
     mew = setHPAtual(mew, 0);
 }
+
+void inicializaVetorComTodosAtaques(){
+    todosAtaques[0]  = choqueDoTrovao;
+    todosAtaques[1]  = ondaDeChoque;
+    todosAtaques[2]  = bater;
+    todosAtaques[3]  = lancaChamas;
+    todosAtaques[4]  = dormir;
+    todosAtaques[5]  = armaDeAgua;
+    todosAtaques[6]  = proteger;
+    todosAtaques[7]  = poDeSono;
+    todosAtaques[8]  = bombaDeSemente;
+    todosAtaques[9]  = doisGumes;
+    todosAtaques[10] = raboDeFerro;
+    todosAtaques[11] = cavar;
+    todosAtaques[12] = autoDestruir;
+}
+

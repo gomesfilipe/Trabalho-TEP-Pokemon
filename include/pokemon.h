@@ -7,6 +7,14 @@
 
 #define QTDTIPOS 6
 
+// int normal;
+// int paralisado;
+// int dormindo;
+// int queimando;
+// int protegido;
+// int escondido;
+// int restauraHP;
+
 // Convencionando tipos de pokemons.
 enum tipos {ELETRICO = 0, FOGO, AGUA, PLANTA, METAL, PSIQUICO};
 
@@ -62,6 +70,14 @@ Pokemon* setEstado(Pokemon *p, int estado);
 Pokemon* setTurnosSemJogar(Pokemon *p, int turnosSemJogar);
 
 /**
+ * @brief Atualiza o campo "queimando" de um dado pokemon.
+ * @param p Pokemon que terá o campo atualizado.
+ * @param queimando Novo valor do campo p->queimando.
+ * @return Pokemon com o campo "queimando" atualizado.
+ **/
+Pokemon* setQueimando(Pokemon *p, int queimando);
+
+/**
  * @brief Captura o valor do campo "p->ataque" de um dado pokemon.
  * @param p Pokemon que terá seu valor de ataque capturado.
  * @return Valor de "p->ataque".
@@ -88,6 +104,13 @@ float getDefesa(Pokemon *p);
  * @return Valor de "p->tipo".
  **/
 int getTipo(Pokemon *p);
+
+/**
+ * @brief Captura o valor do campo "p->estado" de um dado pokemon.
+ * @param p Pokemon que terá seu valor de estado capturado.
+ * @return Valor de "p->estado".
+ **/
+int getEstado(Pokemon *p);
 
 /**
  * @brief Libera um pokemon da memória.

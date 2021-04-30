@@ -4,6 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../pokemon.h"
+#include "blastoise.h"
+#include "charizard.h"
+#include "pikachu.h"
+#include "steelix.h"
+#include "venusaur.h"
+
+fptrAtaque todosAtaques[13];
 
 /**
  * @brief Chama a função criaPokemon e inicializa com os atributos do Mew.
@@ -31,5 +38,7 @@ void bater(Pokemon *mew, Pokemon *defensor);
  * @param defensor Pokemon que sofre o ataque.
  **/
 void autoDestruir(Pokemon *mew, Pokemon *defensor);
+
+void inicializaVetorComTodosAtaques();
 
 #endif

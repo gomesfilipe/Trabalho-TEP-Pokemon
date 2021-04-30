@@ -6,7 +6,9 @@ Pokemon* criaVenusaur(){
 }
 
 void poDeSono(Pokemon *venusaur, Pokemon *defensor){
+    int turnosDormindo = rand() % 3;
     defensor = setEstado(defensor, DORMIR);
+    defensor = setTurnosSemJogar(defensor, turnosDormindo + 1);
 }
 
 void bombaDeSemente(Pokemon *venusaur, Pokemon *defensor){

@@ -1,16 +1,17 @@
 #include "../include/pokemon.h"
 
-struct pokemon{
+struct pokemon{   
     char *nome;
     float hpMax;
     float hpAtual;
     float ataque;
     float defesa;
-    int estado;
+    int estados;
     int tipo;
     int turnosSemJogar;
     //fptrAtaque ataques[3]; // Vetor para ponteiros de funções de ataque do pokemon
 };
+
 // Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int estado, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3)
 Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int estado, int tipo){
     Pokemon *p = (Pokemon*) malloc(sizeof(Pokemon));
@@ -22,6 +23,7 @@ Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int es
     p->tipo = tipo;
     p->estado = estado;   
     p->turnosSemJogar = 0;
+    //p->queimando = 0;
     //p->ataques[0] = atk1;
     //p->ataques[1] = atk2;
     //p->ataques[2] = atk3;
@@ -34,8 +36,9 @@ void imprimePokemon(Pokemon *p){
     printf("hp Atual [%.2f]\n", p->hpAtual);
     printf("ataque [%.2f]\n", p->ataque);
     printf("defesa [%.2f]\n", p->defesa);
-    printf("estado [%d]\n", p->estado);
     printf("tipo [%d]\n\n", p->tipo);
+    printf("estado [%d]\n", p->estado);
+    printf("turnos sem jogar [%d]\n", p->turnosSemJogar);
 }
 
 Pokemon* setHPAtual(Pokemon* p, float hpAtual){
@@ -53,6 +56,11 @@ Pokemon* setTurnosSemJogar(Pokemon *p, int turnosSemJogar){
     return p;
 }
 
+Pokemon* setQueimando(Pokemon *p, int queimando){
+    p->queimando = queimando;
+    return p;
+}
+
 float getHPAtual(Pokemon* p){
     return p->hpAtual;
 }
@@ -65,6 +73,10 @@ float getDefesa(Pokemon *p){
     return p->defesa;
 }
 
+int getEstado(Pokemon *p){
+    return p->estado;
+}
+
 int getTipo(Pokemon *p){
     return p->tipo;
 }
@@ -72,6 +84,10 @@ int getTipo(Pokemon *p){
 void destroiPokemon(Pokemon *p){
     free(p->nome);
     free(p);
+}
+
+void ataque(char code, Pokemon *atacante, Pokemon *defensor){
+    
 }
 
 

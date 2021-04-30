@@ -32,7 +32,7 @@ void armaDeAgua(Pokemon *blastoise, Pokemon *defensor){
 }
 
 void proteger(Pokemon *blastoise, Pokemon *defensor){
-    blastoise = setEstado(blastoise, PROTEGIDO);
+    blastoise = setEstado(blastoise, PROTEGIDO);    
 }
 
 void bater(Pokemon *blastoise, Pokemon *defensor){

@@ -37,30 +37,37 @@ void dormir(Pokemon *steelix, Pokemon *defensor){
 }
 
 void cavar(Pokemon *steelix, Pokemon *defensor){ //tem q ver coisa do turno, causa dano no segundo turno
-    float matriz[QTDTIPOS][QTDTIPOS];
-    inicializaMatrizRelacaoTipos(matriz);
-    
-    float A = getAtaque(steelix);
-    float D = getDefesa(defensor);
-    float poder = 80;  
-    float MT = 1;
-    int tipoPokemonAtk = getTipo(steelix);
-    int tipoPokemonDef = getTipo(defensor);
-    float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
+    int estado = getEstado(steelix);
+    if(estado == ESCONDER){
+        float matriz[QTDTIPOS][QTDTIPOS];
+        inicializaMatrizRelacaoTipos(matriz);
+        
+        float A = getAtaque(steelix);
+        float D = getDefesa(defensor);
+        float poder = 80;  
+        float MT = 1;
+        int tipoPokemonAtk = getTipo(steelix);
+        int tipoPokemonDef = getTipo(defensor);
+        float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
 
-    float critico;
-    int aleatorio = rand() % 24;
-    if(aleatorio == 2){
-        critico = 2;
+        float critico;
+        int aleatorio = rand() % 24;
+        if(aleatorio == 2){
+            critico = 2;
+        } else{
+            critico = 1;
+        }
+
+        float dano = calculaDano(A, D, poder, critico, MT, relacaoTipo);
+        float hpAtualDefensor = getHPAtual(defensor);
+        float novoHP = hpAtualDefensor - dano;
+        
+        defensor = setHPAtual(defensor, novoHP);
+        steelix = setEstado(steelix, NORMAL);
+    
     } else{
-        critico = 1;
+        steelix = setEstado(steelix, ESCONDER);
     }
-
-    float dano = calculaDano(A, D, poder, critico, MT, relacaoTipo);
-    float hpAtualDefensor = getHPAtual(defensor);
-    float novoHP = hpAtualDefensor - dano;
-    
-    defensor = setHPAtual(defensor, novoHP);
 }
 
 

@@ -6,6 +6,7 @@
 #include <string.h>
 
 #define QTDTIPOS 6
+#define QTDESTADOS 7
 
 // int normal;
 // int paralisado;
@@ -31,7 +32,6 @@ typedef void (*fptrAtaque) (Pokemon*, Pokemon*);
  * @param hpMax Máximo de HP do pokemon.
  * @param ataque Força de ataque do pokemon.
  * @param defesa Resistência de defesa do pokémon.
- * @param estado Estado atual do pokémon durante a batalha.
  * @param tipo Tipo do pokemon.
  * @param atk1 Ponteiro para função do ataque 1 do pokemon. 
  * @param atk2 Ponteiro para função do ataque 2 do pokemon. 
@@ -39,7 +39,7 @@ typedef void (*fptrAtaque) (Pokemon*, Pokemon*);
  * @return Retorna um pokemon genérico.
 **/
 //Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int estado, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3);
-Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int estado, int tipo);
+Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int tipo);
 
 //! funcao para testes, excluir depois
 void imprimePokemon(Pokemon *p);
@@ -54,12 +54,13 @@ Pokemon* setHPAtual(Pokemon* p, float hpAtual);
 
 
 /**
- * @brief Atualiza o campo "estado" de um dado pokemon.
+ * @brief Atualiza uma das posições do vetor "estado" de um dado pokemon.
  * @param p Pokemon que terá o campo atualizado.
- * @param estado Novo valor do campo p->estado.
- * @return Pokemon com o campo "estado" atualizado.
+ * @param posVetor Posição do vetor de estados que será atualizado.
+ * @param valor Valor que será inserido (pode ser 0 ou 1). 
+ * @return Pokemon com o campo "p->estados[posVetor]" atualizado.
  **/
-Pokemon* setEstado(Pokemon *p, int estado);
+Pokemon* setEstado(Pokemon *p, int posVetor, int valor);
 
 /**
  * @brief Atualiza o campo "turnosSemJogar" de um dado pokemon.

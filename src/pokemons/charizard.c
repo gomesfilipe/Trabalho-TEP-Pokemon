@@ -1,7 +1,7 @@
 #include "../../include/pokemons/charizard.h"
 
 Pokemon* criaCharizard(){
-    Pokemon *charizard = criaPokemon("Charizard", 260, 160, 150, NORMAL, FOGO);
+    Pokemon *charizard = criaPokemon("Charizard", 260, 160, 150, FOGO);
     return charizard;
 }
 
@@ -33,14 +33,17 @@ void lancaChamas(Pokemon *charizard, Pokemon *defensor){
 
     aleatorio = rand() % 10;
     if(aleatorio == 0 && tipoPokemonDef != FOGO){
-     //   defensor = setEstado(defensor, QUEIMAR); //o estado de queimar n serve mais pra nada
-        defensor = setQueimando(defensor, 1);
+        defensor = setEstado(defensor, NORMAL, 0);
+        defensor = setEstado(defensor, QUEIMAR, 1);
     }
 }
+
 //Full HP é um estado parecido com o de paralizar, mas a diferença é que ao final recupera todo o HP.
 void dormir(Pokemon *charizard, Pokemon *defensor){
-    defensor = setEstado(defensor, FULLHP); 
-    defensor = setTurnosSemJogar(defensor, 2);
+    charizard = setEstado(charizard, NORMAL, 0); 
+    charizard = setEstado(charizard, FULLHP, 1); 
+    charizard = setEstado(charizard, DORMIR, 1);
+    charizard = setTurnosSemJogar(charizard, 2);
 }
 
 void bater(Pokemon *charizard, Pokemon *defensor){

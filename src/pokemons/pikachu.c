@@ -1,7 +1,7 @@
 #include "../../include/pokemons/pikachu.h"
 
 Pokemon* criaPikachu(){
-    Pokemon *pikachu = criaPokemon("Pikachu", 200, 110, 100, NORMAL, ELETRICO);
+    Pokemon *pikachu = criaPokemon("Pikachu", 200, 110, 100,  ELETRICO);
     return pikachu;
 }
 
@@ -34,13 +34,15 @@ void choqueDoTrovao(Pokemon *pikachu, Pokemon *defensor){
 
     aleatorio = rand() % 10;
     if(aleatorio == 0){
-        defensor = setEstado(defensor, PARALISAR);
+        defensor = setEstado(defensor, PARALISAR, 1);
+        defensor = setEstado(defensor, NORMAL, 0);
         defensor = setTurnosSemJogar(defensor, 1);
     }
 }
 
 void ondaDeChoque(Pokemon *pikachu, Pokemon *defensor){
-    defensor = setEstado(defensor, PARALISAR);
+    defensor = setEstado(defensor, PARALISAR, 1);
+    defensor = setEstado(defensor, NORMAL, 0);
     defensor = setTurnosSemJogar(defensor, 1);
 }
 

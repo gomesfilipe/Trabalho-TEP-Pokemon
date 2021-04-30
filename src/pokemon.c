@@ -6,14 +6,15 @@ struct pokemon{
     float hpAtual;
     float ataque;
     float defesa;
-    int estados;
+    int estados[QTDESTADOS];
     int tipo;
     int turnosSemJogar;
+    
     //fptrAtaque ataques[3]; // Vetor para ponteiros de funções de ataque do pokemon
 };
 
 // Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int estado, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3)
-Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int estado, int tipo){
+Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int tipo){
     Pokemon *p = (Pokemon*) malloc(sizeof(Pokemon));
     p->nome = strdup(nome);
     p->hpMax = hpMax;
@@ -21,9 +22,15 @@ Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int es
     p->ataque = ataque;
     p->defesa = defesa;
     p->tipo = tipo;
-    p->estado = estado;   
     p->turnosSemJogar = 0;
-    //p->queimando = 0;
+    
+    for(int i = 0; i < QTDESTADOS; i++){
+        if(i == NORMAL) 
+            p->estados[NORMAL] = 1;
+        else 
+            p->estados[i] = 0;
+    }  
+    
     //p->ataques[0] = atk1;
     //p->ataques[1] = atk2;
     //p->ataques[2] = atk3;
@@ -37,8 +44,10 @@ void imprimePokemon(Pokemon *p){
     printf("ataque [%.2f]\n", p->ataque);
     printf("defesa [%.2f]\n", p->defesa);
     printf("tipo [%d]\n\n", p->tipo);
-    printf("estado [%d]\n", p->estado);
     printf("turnos sem jogar [%d]\n", p->turnosSemJogar);
+    for(int i = 0; i < QTDESTADOS; i++){
+        printf("estado [%d]\n", p->estados[i]);
+    }
 }
 
 Pokemon* setHPAtual(Pokemon* p, float hpAtual){
@@ -46,8 +55,8 @@ Pokemon* setHPAtual(Pokemon* p, float hpAtual){
     return p;
 }
 
-Pokemon* setEstado(Pokemon *p, int estado){
-    p->estado = estado;
+Pokemon* setEstado(Pokemon *p, int posVetor, int valor){ //passar .h  filipe n gostou do nome
+    p->estados[posVetor] = valor;
     return p;
 }
 
@@ -56,10 +65,10 @@ Pokemon* setTurnosSemJogar(Pokemon *p, int turnosSemJogar){
     return p;
 }
 
-Pokemon* setQueimando(Pokemon *p, int queimando){
-    p->queimando = queimando;
-    return p;
-}
+// Pokemon* setQueimando(Pokemon *p, int queimando){
+//     p->queimando = queimando;
+//     return p;
+// }
 
 float getHPAtual(Pokemon* p){
     return p->hpAtual;
@@ -73,9 +82,9 @@ float getDefesa(Pokemon *p){
     return p->defesa;
 }
 
-int getEstado(Pokemon *p){
-    return p->estado;
-}
+// int getEstado(Pokemon *p){
+//     return p->estado;
+// }
 
 int getTipo(Pokemon *p){
     return p->tipo;

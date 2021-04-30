@@ -1,13 +1,14 @@
 #include "../../include/pokemons/venusaur.h"
 
 Pokemon* criaVenusaur(){
-    Pokemon *venusaur = criaPokemon("Venusaur", 300, 160, 160, NORMAL, PLANTA);
+    Pokemon *venusaur = criaPokemon("Venusaur", 300, 160, 160,  PLANTA);
     return venusaur;
 }
 
 void poDeSono(Pokemon *venusaur, Pokemon *defensor){
     int turnosDormindo = rand() % 3;
-    defensor = setEstado(defensor, DORMIR);
+    defensor = setEstado(defensor, DORMIR, 1);
+    defensor = setEstado(defensor, NORMAL, 0);
     defensor = setTurnosSemJogar(defensor, turnosDormindo + 1);
 }
 

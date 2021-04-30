@@ -1,7 +1,7 @@
 #include "../../include/pokemons/steelix.h"
 
 Pokemon* criaSteelix(){
-    Pokemon *steelix = criaPokemon("Steelix", 280, 170, 400, NORMAL, METAL);
+    Pokemon *steelix = criaPokemon("Steelix", 280, 170, 400,  METAL);
     return steelix;
 }
 
@@ -33,10 +33,13 @@ void raboDeFerro(Pokemon *steelix, Pokemon *defensor){
 }
 
 void dormir(Pokemon *steelix, Pokemon *defensor){
-    setEstado(defensor, DORMIR);
+    steelix = setEstado(steelix, DORMIR, 1);
+    steelix = setEstado(steelix, NORMAL, 0);
+    steelix = setEstado(steelix, FULLHP, 1);
+    steelix = setTurnosSemJogar(steelix, 2);
 }
 
-void cavar(Pokemon *steelix, Pokemon *defensor){ //tem q ver coisa do turno, causa dano no segundo turno
+void cavar(Pokemon *steelix, Pokemon *defensor){ 
     int estado = getEstado(steelix);
     if(estado == ESCONDER){
         float matriz[QTDTIPOS][QTDTIPOS];
@@ -63,10 +66,12 @@ void cavar(Pokemon *steelix, Pokemon *defensor){ //tem q ver coisa do turno, cau
         float novoHP = hpAtualDefensor - dano;
         
         defensor = setHPAtual(defensor, novoHP);
-        steelix = setEstado(steelix, NORMAL);
+        steelix = setEstado(steelix, NORMAL, 1);
+        steelix = setEstado(steelix, ESCONDER, 0);
     
     } else{
-        steelix = setEstado(steelix, ESCONDER);
+        steelix = setEstado(steelix, ESCONDER, 1);
+        steelix = setEstado(steelix, NORMAL, 0);
     }
 }
 

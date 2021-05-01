@@ -11,8 +11,13 @@
 #include "pokemons/steelix.h"
 #include "pokemons/venusaur.h"
 
-typedef Pokemon* (*fptrInic) ();
-fptrInic inicPokemons['V' + 1];
+#define QTDPOKEMONS 6
+
+typedef Pokemon* (*fptrInic) (); // Vetor de ponteiros de função com as funções de criação de pokemons.
+//fptrInic inicPokemons['V' + 1];
+fptrInic inicPokemons[QTDPOKEMONS];
+
+enum personagens{BLASTOISE = 0, CHARIZARD, MEW, PIKACHU, STEELIX, VENUSAUR};
 
 /**
  * @brief Inicializa o vetor de ponteiros de função para criação dos pokemons implementados.
@@ -43,5 +48,25 @@ void inicializaMatrizRelacaoTipos(float m[QTDTIPOS][QTDTIPOS]);
  * @return Dano causado ao pokemon defensor por um ataque.
  **/
 float calculaDano(float A, float D, float poder, float critico, float MT, float relacaoTipo);
+
+/**
+ * @brief Sorteia um pokemon dentre todos os disponíveis para o computador enfrentar o usuário numa batalha.
+ * @return Pokemon sorteado.
+ **/
+Pokemon* sorteiaPokemon();
+
+/**
+ * @brief Sorteia um dos ataques de um determinado pokemon para o computador jogar contra o usuário.
+ * @param p Pokemon que terá um de seus ataques sorteado.
+ * @return Ponteiro da função do ataque que será sorteado.
+ **/
+fptrAtaque sorteiaAtaque(Pokemon *p);
+
+/**
+ * @brief Aplica o dano de QUEIMAR caso o pokemon esteja neste estado.
+ * @param p Pokemon que sofrerá esse dano.
+ * @return Pokemon com seu hpAtual atualizado.
+ **/
+Pokemon* sofreQueimar(Pokemon *p);
 
 #endif

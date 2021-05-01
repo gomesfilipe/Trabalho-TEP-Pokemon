@@ -9,14 +9,6 @@
 #define QTDESTADOS 7
 #define QTDATAQUESPOKEMON 3
 
-// int normal;
-// int paralisado;
-// int dormindo;
-// int queimando;
-// int protegido;
-// int escondido;
-// int restauraHP;
-
 // Convencionando tipos de pokemons.
 enum tipos {ELETRICO = 0, FOGO, AGUA, PLANTA, METAL, PSIQUICO};
 
@@ -24,6 +16,8 @@ enum tipos {ELETRICO = 0, FOGO, AGUA, PLANTA, METAL, PSIQUICO};
 enum estados {NORMAL = 0, DORMIR, QUEIMAR, PARALISAR, PROTEGIDO, ESCONDER, FULLHP};
 
 typedef struct pokemon Pokemon;
+
+typedef struct listaPokemon Lista;
 
 typedef void (*fptrAtaque) (Pokemon*, Pokemon*);
 
@@ -93,6 +87,13 @@ float getAtaque(Pokemon *p);
 float getHPAtual(Pokemon* p);
 
 /**
+ * @brief Captura o valor do campo "p->hpMax" de um dado pokemon.
+ * @param p Pokemon que terá seu valor de hpMax capturado.
+ * @return Valor de "p->hpMax".
+ **/
+float getHPMaximo(Pokemon* p);
+
+/**
  * @brief Captura o valor do campo "p->defesa" de um dado pokemon.
  * @param p Pokemon que terá seu valor de defesa capturado.
  * @return Valor de "p->defesa".
@@ -115,12 +116,99 @@ int getTipo(Pokemon *p);
 int getEstado(Pokemon *p, int posVetor);
 
 /**
+ * @brief Captura o ponteiro da função de ataque de um pokemon na posição posVetor.
+ * @param p Pokemon que terá o ponteiro de ataque capturado.
+ * @param posVetor Posição do vetor de ataques que terá o ataque capturado.
+ * @return Ponteiro de ataque da respectiva função de ataque.
+ **/
+fptrAtaque getAtaquePokemon(Pokemon* p, int posVetor);
+
+/**
  * @brief Libera um pokemon da memória.
  * @param p Pokemon que será liberado da memória.
  **/
 void destroiPokemon(Pokemon *p);
 
+/**
+ * @brief Calcula o dano de um determinado ataque com base em diversos fatores.
+ * @param A Ataque base do pokemon atacante.
+ * @param D Defesa base do pokemon defensor.
+ * @param poder Poder do ataque do pokemon atacante.
+ * @param critico Valor que indica se o dano será dobrado ou não.
+ * @param MT Valor que fortalece o ataque do pokemon atacante caso ele seja do mesmo tipo que o pokemon.
+ * @param relacaoTipo Valor que indica a força de um pokemon sobre o outro com base em seus tipos.
+ * @return Dano causado pelo ataque.
+ **/
 float calculaDano(float A, float D, float poder, float critico, float MT, float relacaoTipo);
 
+/**
+ * @brief Inicializa uma lista encadeada de pokemons com 1 elemento.
+ * @param pokemon Conteudo da primeira celula.
+ * @return Lista de pokemons inicializada.
+ **/
+Lista* criaLista(Pokemon *pokemon);
+
+/**
+ * @brief Adiciona um pokemon no final de uma lista encadeada de pokemons.
+ * @param inicio Ponteiro para o primeiro elemento da lista.
+ * @param pokemon Pokemon que será inserido no final da lista.
+ * @return Ponteito para início da lista de pokemons atualizada.
+ **/
+Lista* adicicionaFinalLista(Lista *inicio, Pokemon* pokemon);
+
+/**
+ * @brief Remove um pokemon da primeira posição de uma lista encadeada de pokemons.
+ * @param inicio Ponteiro para o primeiro elemento da lista.
+ * @return Ponteiro para início da lista de pokemons atualizada.
+ **/
+Lista* removePrimeiroLista(Lista *inicio);
+
+/**
+ * @brief Imprime uma lista de pokemons.
+ * @param inicio É a primeira célula da lista.
+ **/
+void imprimeLista(Lista* inicio); //! talvez nao use
+
+/**
+ * @brief Libera da memória uma lista encadeada de pokemons.
+ * @param inicio Ponteiro para o início da lista de pokemons.
+ **/
+void destroiLista(Lista *inicio);
+
+/**
+ *@brief Retira da lista um pokemon que morreu.
+ *@param Ponteiro para o início da lista de pokemons de um determinado jogador.
+ *@return Lista sem o pokemon que morreu.
+**/
+Lista* morrePokemon(Lista* inicio);
+
+/**
+ * @brief Faz a captura de um pokemon, o adicionando na lista de pokemons e restaurando seu hpAtual para 100%.
+ * @param inicio Ponteiro para o início da lista de pokemons de um determinado jogador.
+ * @param p Pokemon que será capturado.
+ * @return Lista de pokemons atualizada. 
+ **/
+Lista* capturaPokemon(Lista *inicio, Pokemon *p);
+
+/**
+ * @brief Restaura 10 pontos de HP após uma batalha vencida. Caso essa quantia ultrapasse o HP máximo de um pokemon, o pokemon fica com HP máximo.
+ * @param p Pokemon que terá seu HP restaurado parcialmente.
+ * @return Pokemon com seu HP atual atualizado.
+ **/
+Pokemon* recuperaHPEntreBatalhas(Pokemon *p);
+
+/**
+ * @brief Calcula a porcentagem de vida de um pokemon.
+ * @param p Pokemon que terá seu percentual de vida calculado.
+ * @return Porcentagem do hpAtual em relação ao hpMax.
+ **/
+float porcentagemDeVida(Pokemon *p);
+
+/**
+ * @brief Restaura o campo HP de um pokemon após o mesmo ter dormido.
+ * @param p Pokemon que terá seu HP restaurado.
+ * @return Pokemon que teve seu HP restaurado.
+ **/
+Pokemon* restauraHPAposDormir(Pokemon* p);
 
 #endif

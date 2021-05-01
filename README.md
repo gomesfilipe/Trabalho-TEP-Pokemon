@@ -329,7 +329,7 @@ Requisitos que devem estar presentes no seu código:
 3. **Uso de estruturas encadeadas**
 
     Uma característica desse trabalho é que existem muitas informações com números indefinidos de componentes (a lista de pontuações, os pokemons disponíveis). Para guardar esses tipos de informação na memória, priorizem o uso de estruturas encadeadas!
-
+    
 Além desses requisitos, mantenham em mente as seguintes boas práticas:
 
 - Comente o código bem (o que é diferente de comentar muito!);

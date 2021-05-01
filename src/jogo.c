@@ -1,16 +1,16 @@
 #include "../include/jogo.h"
 
 void iniciaTabelaCriacaoPokemons(){
-    inicPokemons['B' - 'B'] = criaBlastoise;
-    inicPokemons['C' - 'B'] = criaCharizard;
-    inicPokemons['M' - 'B'] = criaMew;
-    inicPokemons['P' - 'B'] = criaPikachu;
-    inicPokemons['S' - 'B'] = criaSteelix;
-    inicPokemons['V' - 'B'] = criaVenusaur;
+    inicPokemons[BLASTOISE] = criaBlastoise;
+    inicPokemons[CHARIZARD] = criaCharizard;
+    inicPokemons[MEW] = criaMew;
+    inicPokemons[PIKACHU] = criaPikachu;
+    inicPokemons[STEELIX] = criaSteelix;
+    inicPokemons[VENUSAUR] = criaVenusaur;
 }
 
-Pokemon* escolhePokemon(char code){
-    fptrInic pokemonEscolhido = inicPokemons[code - 'B'];
+Pokemon* escolhePokemon(int code){
+    fptrInic pokemonEscolhido = inicPokemons[code];
     return pokemonEscolhido();
 }
 
@@ -63,3 +63,61 @@ float calculaDano(float A, float D, float poder, float critico, float MT, float 
     return ((14.0 * poder * A / D) / 50.0 + 2.0) * modificador;
 }
 
+//batalha
+//// funcao sorteia ataque (para o computador)
+// funcao que controla o contador de turnosSemJogar e controle os  queimando
+//// funcao que restaura 100% do HP do ataque dormirestados quando volta ao normal
+//// funcao que aplica o dano de queimar depois de todo turno, caso esteja
+
+//// funcao de ganhar pokebola, tem probabilidade nisso
+//// funcao de capturar pokemon (acrescenta um pokemon na lista)
+// funcao de fugir
+//// funcao que tira pokemon da lista de jogador do jogador quando morre 
+//// funcao que calcula porcentagem do hp atual em relacao ao hp maximo
+//// sortear proximo pokemon a ser enfrentado
+//// funcao de recuperar hp do pokemon entre batalhas
+
+// funcoes de imprimir os menus
+// implementar botoes como string e usar atoi quando conveniente
+
+Pokemon* sorteiaPokemon(){
+    int aleatorio = rand() % QTDPOKEMONS; // Escolhe um numero de 0 a 5.
+    Pokemon *p = escolhePokemon(aleatorio);
+    return p;
+}
+
+fptrAtaque sorteiaAtaque(Pokemon *p){
+     int aleatorio = rand() % QTDATAQUESPOKEMON; // Escolhe um numero de 0 a 2.
+     fptrAtaque atk = getAtaquePokemon(p , aleatorio);//vetor de ataques na posicao aleatoria
+     return atk;
+}
+
+Pokemon* sofreQueimar(Pokemon *p){
+    int queimando = getEstado(p, QUEIMAR);
+    if(queimando == 1){
+        float hpMax = getHPMaximo(p);
+        float dano = hpMax / 16.0;
+        float hpAtual = getHPAtual(p);
+        p = setHPAtual(p, hpAtual - dano);
+    }
+
+    return p;
+}
+
+// FUNCAO DE JOGADOR ATACA
+// tem que ver os estados que o pokemon esta
+/**
+ * normal, pode jogar
+ * dormir e turnos sem jogar != 0, nao pode jogar
+ * queimar pode jogar
+ * paralisar e turnos sem jogar != 0, nao pode jogar
+ * protegido pode jogar
+ * esconder nao pode jogar
+ * fullhp e turnos sem jogar = 0, hp vai pra 100%
+ **/
+//so pode tentar capturar o oponente se tiver pokebola e tbm fazer coisa da probabiblidade
+
+
+//enum estados {NORMAL = 0, DORMIR, QUEIMAR, PARALISAR, PROTEGIDO, ESCONDER, FULLHP};
+
+//no final chamar a função de capturar de capurar pokebola

@@ -1,6 +1,5 @@
 #include "../include/pokemon.h"
 
-
 struct pokemon{   
     char *nome;
     float hpMax;
@@ -9,8 +8,14 @@ struct pokemon{
     float defesa;
     int estados[QTDESTADOS];
     int tipo;
-    int turnosSemJogar;
+    //int turnosSemJogar;
+    int turnosNumEstado[QTDESTADOS];
     fptrAtaque ataques[QTDATAQUESPOKEMON]; // Vetor para ponteiros de funções de ataque do pokemon
+};
+
+struct listaPokemon{
+    Pokemon *pokemon;
+    struct listaPokemon *prox;
 };
 
 Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3){
@@ -21,13 +26,15 @@ Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int ti
     p->ataque = ataque;
     p->defesa = defesa;
     p->tipo = tipo;
-    p->turnosSemJogar = 0;
     
     for(int i = 0; i < QTDESTADOS; i++){
-        if(i == NORMAL) 
-            p->estados[NORMAL] = 1;
-        else 
+        if(i == NORMAL){
+            p->estados[i] = 1;
+            p->turnosNumEstado[i] = 0;
+        }else{ 
             p->estados[i] = 0;
+            p->turnosNumEstado[i] = 0;
+        }
     }  
     
     p->ataques[0] = atk1;
@@ -59,7 +66,7 @@ Pokemon* setHPAtual(Pokemon* p, float hpAtual){
     return p;
 }
 
-Pokemon* setEstado(Pokemon *p, int posVetor, int valor){ //passar .h  filipe n gostou do nome
+Pokemon* setEstado(Pokemon *p, int posVetor, int valor){ 
     p->estados[posVetor] = valor;
     return p;
 }
@@ -71,6 +78,9 @@ Pokemon* setTurnosSemJogar(Pokemon *p, int turnosSemJogar){
 
 float getHPAtual(Pokemon* p){
     return p->hpAtual;
+}
+float getHPMaximo(Pokemon* p){
+    return p->hpMax;
 }
 
 float getAtaque(Pokemon *p){
@@ -89,13 +99,93 @@ int getTipo(Pokemon *p){
     return p->tipo;
 }
 
+fptrAtaque getAtaquePokemon(Pokemon* p , int posVetor){
+    fptrAtaque atk = p->ataques[posVetor];
+    return atk;
+}
+
 void destroiPokemon(Pokemon *p){
     free(p->nome);
     free(p);
 }
 
-// void ataque(char code, Pokemon *atacante, Pokemon *defensor){
+void ataque(char code, Pokemon *atacante, Pokemon *defensor){
+    fptrAtaque ataque  =  atacante->ataques[code - 1];
+    ataque(atacante, defensor);
+}
+
+Lista* criaLista(Pokemon *pokemon){
+    Lista *inicio = (Lista*) malloc(sizeof(Lista));
+    inicio->pokemon = pokemon;
+    inicio->prox = NULL;
+    return inicio;
+}
+
+Lista* adicicionaFinalLista(Lista *inicio, Pokemon* pokemon){
+    Lista* aux;
+    Lista* final = criaLista(pokemon);
+    for(aux= inicio; aux->prox != NULL; aux= aux->prox){
+        continue;
+    }
+    aux->prox = final;
+    return inicio;
+}
+
+Lista* removePrimeiroLista(Lista *inicio){
+    Lista* aux = inicio;
+    inicio = inicio->prox;
+    destroiPokemon(aux->pokemon);
+    free(aux);
+    return inicio;
+}
+
+void imprimeLista(Lista* inicio){
+    Lista* aux;
+    for(aux=inicio; aux != NULL; aux= aux->prox){
+        imprimePokemon(aux->pokemon);
+    }
+}
+
+void destroiLista(Lista *inicio){
+    Lista* aux = inicio;
+    Lista* anterior;
+    if(aux != NULL){
+        anterior = aux;
+        aux = aux->prox;
+        destroiPokemon(anterior->pokemon);
+        free(anterior);
+        destroiLista(aux);
+    }
+}
+
+Lista* morrePokemon(Lista* inicio){
+    inicio = removePrimeiroLista(inicio);
+    return inicio;  
+}
+
+Lista* capturaPokemon(Lista *inicio, Pokemon *p){
+    p->hpAtual = p->hpMax;
+    inicio = adicicionaFinalLista(inicio, p);
+    return inicio;
+}
+
+Pokemon* recuperaHPEntreBatalhas(Pokemon *p){
+    if(p->hpAtual += 10 > p->hpMax){
+        p->hpAtual = p->hpMax;
     
-// }
+    } else{
+        p->hpAtual += 10;
+    }
 
+    return p;
+}
 
+float porcentagemDeVida(Pokemon *p){
+    return p->hpAtual / p->hpMax * 100.0;
+}
+
+Pokemon* restauraHPAposDormir(Pokemon* p){
+    float HPMax = getHPMaximo(p);
+    p = setHPAtual(p, HPMax); 
+    return p;
+}

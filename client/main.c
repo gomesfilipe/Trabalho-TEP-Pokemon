@@ -6,29 +6,40 @@
 int main(){
     //srand(time(NULL));
     iniciaTabelaCriacaoPokemons();
-    Pokemon *b = escolhePokemon('B');
-    Pokemon *c = escolhePokemon('C');
-    Pokemon *m = escolhePokemon('M');
-    Pokemon *p = escolhePokemon('P');
-    Pokemon *s = escolhePokemon('S');
-    Pokemon *v = escolhePokemon('V');
-    
+    Pokemon *b = escolhePokemon(BLASTOISE);
+    Pokemon *c = escolhePokemon(CHARIZARD);
+    Pokemon *m = escolhePokemon(MEW);
+    Pokemon *p = escolhePokemon(PIKACHU);
+    Pokemon *s = escolhePokemon(STEELIX);
+    Pokemon *v = escolhePokemon(VENUSAUR);
 
-    //hoqueDoTrovao(p, b);
+    Lista* l = criaLista(b);
+    l = adicicionaFinalLista(l, c);
+    l = adicicionaFinalLista(l, m);
+    l = adicicionaFinalLista(l, p);
+    l = adicicionaFinalLista(l, s);
+    l = adicicionaFinalLista(l, v);
 
-    imprimePokemon(b);
-    imprimePokemon(c);
-    imprimePokemon(m);
-    imprimePokemon(p);
-    imprimePokemon(s);
-    imprimePokemon(v);
+    //imprimeLista(l);
+
+    l = removePrimeiroLista(l);
+
+    imprimeLista(l);
     
-    destroiPokemon(b);
-    destroiPokemon(c);
-    destroiPokemon(m);
-    destroiPokemon(p);
-    destroiPokemon(s);
-    destroiPokemon(v);
+    destroiLista(l);
+    // imprimePokemon(b);
+    // imprimePokemon(c);
+    // imprimePokemon(m);
+    // imprimePokemon(p);
+    // imprimePokemon(s);
+    // imprimePokemon(v);
+    
+    // destroiPokemon(b);
+    // destroiPokemon(c);
+    // destroiPokemon(m);
+    // destroiPokemon(p);
+    // destroiPokemon(s);
+    // destroiPokemon(v);
 
     // float matriz[QTDTIPOS][QTDTIPOS];
     // inicializaMatrizRelacaoTipos(matriz);
@@ -40,6 +51,10 @@ int main(){
 
     //     printf("\n");
     // }
+
+
+    //testando a lista
+
 
     return 0;
 }

@@ -8,6 +8,29 @@ struct jogador{
     Lista *pokemons; //vetor de pokemons // usar lista encadeada nessa parte
 };
 
+Jogador* criaJogador(char *nome, Lista *pokemons){
+    Jogador *jogador = (Jogador*) malloc(sizeof(Jogador));
+    jogador->nome = strdup(nome);
+    jogador->qtdPokemons = QTDPOKEMONSINICIAIS;
+    jogador->qtdPokebolas = QTDPOKEBOLASINICIAIS;
+    jogador->qtdVitorias = 0;
+    jogador->pokemons = pokemons;
+}
+
+void destroiJogador(Jogador* jogador){
+    free(jogador->nome);
+    destroiLista(jogador->pokemons);
+    free(jogador);
+}
+
+void imprimeJogador(Jogador *jogador){
+    printf("nome [%s]\n", jogador->nome);
+    printf("qtdPokemons [%d]\n", jogador->qtdPokemons);
+    printf("qtdPokebolas [%d]\n", jogador->qtdPokebolas);
+    printf("qtdVitorias [%d]\n", jogador->qtdVitorias);
+    imprimeLista(jogador->pokemons);
+}
+
 Jogador* capturaPokebola(Jogador *jogador, int C){  //ver se ta certa, testar
     float probabilidade = C/12.0;
     float aleatorio = (float)rand()/(float)(RAND_MAX);

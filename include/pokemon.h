@@ -219,4 +219,6 @@ float porcentagemDeVida(Pokemon *p);
  **/
 Pokemon* restauraHPAposDormir(Pokemon* p);
 
+void ataque(int code, Pokemon *atacante, Pokemon *defensor);
+
 #endif

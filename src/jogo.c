@@ -80,19 +80,19 @@ float calculaDano(float A, float D, float poder, float critico, float MT, float 
 // funcoes de imprimir os menus
 // implementar botoes como string e usar atoi quando conveniente
 
-Pokemon* sorteiaPokemon(){
+Pokemon* sorteiaPokemon(){ 
     int aleatorio = rand() % QTDPOKEMONS; // Escolhe um numero de 0 a 5.
     Pokemon *p = escolhePokemon(aleatorio);
     return p;
 }
 
-fptrAtaque sorteiaAtaque(Pokemon *p){
+fptrAtaque sorteiaAtaque(Pokemon *p){ 
      int aleatorio = rand() % QTDATAQUESPOKEMON; // Escolhe um numero de 0 a 2.
      fptrAtaque atk = getAtaquePokemon(p , aleatorio);//vetor de ataques na posicao aleatoria
      return atk;
 }
 
-Pokemon* sofreQueimar(Pokemon *p){
+Pokemon* sofreQueimar(Pokemon *p){  
     int queimando = getEstado(p, QUEIMAR);
     if(queimando == 1){
         float hpMax = getHPMaximo(p);
@@ -104,7 +104,7 @@ Pokemon* sofreQueimar(Pokemon *p){
     return p;
 }
 
-int podeJogar(Pokemon *atacante){
+int podeJogar(Pokemon *atacante){  
     int estado[QTDESTADOS]; 
     estado[DORMIR] = getEstado(atacante, DORMIR);
     estado[PARALISAR] = getEstado(atacante, PARALISAR);
@@ -119,7 +119,7 @@ int podeJogar(Pokemon *atacante){
     return 0;
 }
 
-int vaiCapturarPokemonOuNao(Pokemon *p){
+int vaiCapturarPokemonOuNao(Pokemon *p){  
     float hpMax = getHPMaximo(p);
     float hpAtual = getHPAtual(p); 
     
@@ -153,7 +153,7 @@ void jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogad
     // }
 }   
     
-void transicaoEntreTurnos(Pokemon *p){
+void transicaoEntreTurnos(Pokemon *p){ 
     int estados[QTDESTADOS];
     int turnosNumEstado[QTDESTADOS];
     
@@ -171,7 +171,7 @@ void transicaoEntreTurnos(Pokemon *p){
     if(turnosNumEstado[ESCONDER] > 0) turnosNumEstado[ESCONDER]--;
     if(turnosNumEstado[FULLHP] > 0) turnosNumEstado[FULLHP]--;
 
-    // Pegando todos os estados de um pokemon.
+    // Pegando todos os estados de um pokemon. 
     estados[DORMIR] = getEstado(p, DORMIR);
     estados[PARALISAR] = getEstado(p, PARALISAR);
     estados[PROTEGIDO] = getEstado(p, PROTEGIDO);
@@ -198,6 +198,9 @@ void transicaoEntreTurnos(Pokemon *p){
     p = setEstado(p, PROTEGIDO, estados[PROTEGIDO]);
     p = setEstado(p, ESCONDER, estados[ESCONDER]);
     p = setEstado(p, FULLHP, estados[FULLHP]);
+
+    int k = getTurnosNumEstado(p, DORMIR);
+    //printf("aqui!!! [%d]", k); 
 }
 
 // FUNCAO DE JOGADOR ATACA

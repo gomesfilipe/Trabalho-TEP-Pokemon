@@ -32,7 +32,7 @@ Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int ti
             p->estados[i] = 1;
             p->turnosNumEstado[i] = 0;
         }else{ 
-            p->estados[i] = 0;
+            p->estados[i] = 0; 
             p->turnosNumEstado[i] = 0;
         }
     }  
@@ -79,9 +79,9 @@ Pokemon* setEstado(Pokemon *p, int posVetor, int valor){
 }
 
 Pokemon* setTurnosNumEstado(Pokemon *p, int posVetor, int turnosNumEstado){
-    if(turnosNumEstado > p->turnosNumEstado[posVetor]){
+    //if(turnosNumEstado > p->turnosNumEstado[posVetor]){
         p->turnosNumEstado[posVetor] = turnosNumEstado;
-    }
+    //}
     
     return p;
 }
@@ -89,6 +89,7 @@ Pokemon* setTurnosNumEstado(Pokemon *p, int posVetor, int turnosNumEstado){
 float getHPAtual(Pokemon* p){
     return p->hpAtual;
 }
+
 float getHPMaximo(Pokemon* p){
     return p->hpMax;
 }
@@ -123,7 +124,7 @@ void destroiPokemon(Pokemon *p){
     free(p);
 }
 
-void ataque(char code, Pokemon *atacante, Pokemon *defensor){
+void ataque(int code, Pokemon *atacante, Pokemon *defensor){
     fptrAtaque ataque  =  atacante->ataques[code - 1];
     ataque(atacante, defensor);
 }
@@ -172,6 +173,7 @@ void destroiLista(Lista *inicio){
     }
 }
 
+
 Lista* morrePokemon(Lista* inicio){
     inicio = removePrimeiroLista(inicio);
     return inicio;  
@@ -181,13 +183,13 @@ Lista* morrePokemon(Lista* inicio){
 
 // }
 
-Lista* capturaPokemon(Lista *inicio, Pokemon *p){
+Lista* capturaPokemon(Lista *inicio, Pokemon *p){ //testar
     p->hpAtual = p->hpMax;
     inicio = adicicionaFinalLista(inicio, p);
     return inicio;
 }
 
-Pokemon* recuperaHPEntreBatalhas(Pokemon *p){
+Pokemon* recuperaHPEntreBatalhas(Pokemon *p){  //testar
     if(p->hpAtual += 10 > p->hpMax){
         p->hpAtual = p->hpMax;
     
@@ -198,11 +200,11 @@ Pokemon* recuperaHPEntreBatalhas(Pokemon *p){
     return p;
 }
 
-float porcentagemDeVida(Pokemon *p){
+float porcentagemDeVida(Pokemon *p){ //testar
     return p->hpAtual / p->hpMax * 100.0;
 }
 
-Pokemon* restauraHPAposDormir(Pokemon* p){
+Pokemon* restauraHPAposDormir(Pokemon* p){  //testar
     float HPMax = getHPMaximo(p);
     p = setHPAtual(p, HPMax); 
     return p;

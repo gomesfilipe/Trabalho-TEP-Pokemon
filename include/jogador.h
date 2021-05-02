@@ -5,7 +5,26 @@
 #include <stdlib.h>
 #include "pokemon.h"
 
+#define QTDPOKEBOLASINICIAIS 3
+#define QTDPOKEMONSINICIAIS 3
+
 typedef struct jogador Jogador;
+
+/**
+ * @brief Cria um jogador
+ * @param nome É o nome do jogador.
+ * @param pokemons É a lista de pokemons de um jogador.
+ * @return Retorna o jogador que foi criado.
+**/
+Jogador* criaJogador(char *nome, Lista *pokemons);
+
+/**
+ * @brief Libera um tipo Jogador da memória.
+ * @param jogador Jogador que será desalocado da memória.
+ **/
+void destroiJogador(Jogador* jogador);
+
+void imprimeJogador(Jogador *jogador); //! excluir depois, funcao apenas para ajudar a testar e debugar
 
 /**
  * @brief Nessa função o jogador tenta capturar uma pokebola. A tentativa possui uma chance C/12 de ser efetiva.

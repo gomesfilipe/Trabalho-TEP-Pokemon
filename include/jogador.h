@@ -16,4 +16,11 @@ typedef struct jogador Jogador;
 **/
 Jogador* capturaPokebola(Jogador* jogador, int C);
 
+/**
+ * @brief Captura a quantidade de pokebolas de um jogador.
+ * @param jogador Jogador que terá o campo "qtdPokebolas" capturado.
+ * @return Quantidade de pokebolas que o jogador possui.
+ **/
+int getQtdPokebolas(Jogador* jogador);
+
 #endif

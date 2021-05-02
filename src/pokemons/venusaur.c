@@ -13,7 +13,7 @@ void poDeSono(Pokemon *venusaur, Pokemon *defensor){
     int turnosDormindo = rand() % 3;
     defensor = setEstado(defensor, DORMIR, 1);
     defensor = setEstado(defensor, NORMAL, 0);
-    defensor = setTurnosSemJogar(defensor, turnosDormindo + 1);
+    defensor = turnosNumEstado(defensor, DORMIR, turnosDormindo + 1);
 }
 
 void bombaDeSemente(Pokemon *venusaur, Pokemon *defensor){

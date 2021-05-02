@@ -72,9 +72,11 @@ void cavar(Pokemon *steelix, Pokemon *defensor){
         defensor = setHPAtual(defensor, novoHP);
         steelix = setEstado(steelix, NORMAL, 1);
         steelix = setEstado(steelix, ESCONDER, 0);
+        steelix = turnoNumEstado(steelix, ESCONDER , 0);
     
     } else{
         steelix = setEstado(steelix, ESCONDER, 1);
+        steelix = turnoNumEstado(steelix, ESCONDER , 1);
         steelix = setEstado(steelix, NORMAL, 0);
     }
 }

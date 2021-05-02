@@ -50,10 +50,9 @@ void imprimePokemon(Pokemon *p){
     printf("ataque [%.2f]\n", p->ataque);
     printf("defesa [%.2f]\n", p->defesa);
     printf("tipo [%d]\n", p->tipo);
-    printf("turnos sem jogar [%d]\n", p->turnosSemJogar);
     
     for(int i = 0; i < QTDESTADOS; i++){
-        printf("estado [%d]\n", p->estados[i]);
+        printf("estado [%d]\nturnos num estado [%d]\n", p->estados[i], p->turnosNumEstado[i]);
     }
 
     printf("ponteiro de funcao atk1 [%p]\n", p->ataques[0]);
@@ -71,8 +70,11 @@ Pokemon* setEstado(Pokemon *p, int posVetor, int valor){
     return p;
 }
 
-Pokemon* setTurnosSemJogar(Pokemon *p, int turnosSemJogar){
-    p->turnosSemJogar = turnosSemJogar;
+Pokemon* setTurnosNumEstado(Pokemon *p, int posVetor, int turnosNumEstado){
+    if(turnosNumEstado > p->turnosNumEstado[posVetor]){
+        p->turnosNumEstado[posVetor] = turnosNumEstado;
+    }
+    
     return p;
 }
 
@@ -93,6 +95,10 @@ float getDefesa(Pokemon *p){
 
 int getEstado(Pokemon *p, int posVetor){
     return p->estados[posVetor];
+}
+
+int getTurnosNumEstado(Pokemon *p, int posVetor){
+    return p->turnosNumEstado[posVetor];
 }
 
 int getTipo(Pokemon *p){

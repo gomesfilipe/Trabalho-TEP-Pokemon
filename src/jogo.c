@@ -104,6 +104,82 @@ Pokemon* sofreQueimar(Pokemon *p){
     return p;
 }
 
+void jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogador* jogador){
+    int estado[QTDESTADOS]; 
+    estado[DORMIR] = getEstado(atacante, DORMIR);
+    estado[PARALISAR] = getEstado(atacante, PARALISAR);
+    estado[ESCONDER] = getEstado(atacante, ESCONDER);
+    estado[FULLHP] = getEstado(atacante, FULLHP);
+    estado[PROTEGIDO] = getEstado(atacante, PROTEGIDO);
+    
+   int qtdPokebolas = getQtdPokebolas(jogador);
+
+    //Verificando se o jogador pode atacar
+    if( estado[DORMIR] == 0 && estado[PARALISAR]== 0 && estado[ESCONDER] == 0 && estado[FULLHP]== 0 && estado[PROTEGIDO]==0){ 
+        if(escolheAtaque == 1 || escolheAtaque == 2 || escolheAtaque == 3 ){
+            fptrAtaque atk = getAtaquePokemon(atacante, escolheAtaque - 1);
+        }
+        else if(escolheAtaque == 4){
+            //chamar funcao de capturar pokemon
+            if(qtdPokebolas > 0) {
+                //capturaPokemon(Lista *inicio, Pokemon *p)
+            }
+        }
+        else if(escolheAtaque == 5){
+            //foge
+        }
+    
+    }
+
+
+
+void transicaoEntreTurnos(Pokemon *p){
+    int estados[QTDESTADOS];
+    int turnosNumEstado[QTDESTADOS];
+    
+    // Pegando os valores de turnos num estado.
+    turnosNumEstado[DORMIR] = getTurnosNumEstado(p, DORMIR);
+    turnosNumEstado[PARALISAR] = getTurnosNumEstado(p, PARALISAR);
+    turnosNumEstado[PROTEGIDO] = getTurnosNumEstado(p, PROTEGIDO);
+    turnosNumEstado[ESCONDER] = getTurnosNumEstado(p, ESCONDER);
+    turnosNumEstado[FULLHP] = getTurnosNumEstado(p, FULLHP);
+
+    // Decrementando eles pois passou um turno.
+    if(turnosNumEstado[DORMIR] > 0) turnosNumEstado[DORMIR]--;
+    if(turnosNumEstado[PARALISAR] > 0) turnosNumEstado[PARALISAR]--;
+    if(turnosNumEstado[PROTEGIDO] > 0) turnosNumEstado[PROTEGIDO]--;
+    if(turnosNumEstado[ESCONDER] > 0) turnosNumEstado[ESCONDER]--;
+    if(turnosNumEstado[FULLHP] > 0) turnosNumEstado[FULLHP]--;
+
+    // Pegando todos os estados de um pokemon.
+    estados[DORMIR] = getEstado(p, DORMIR);
+    estados[PARALISAR] = getEstado(p, PARALISAR);
+    estados[PROTEGIDO] = getEstado(p, PROTEGIDO);
+    estados[ESCONDER] = getEstado(p, ESCONDER);
+    estados[FULLHP] = getEstado(p, FULLHP);
+
+    // Se o contador de turnos num estado cair pra 0, esse determinado estado acabou.
+    if(turnosNumEstado[DORMIR] == 0) estados[DORMIR] = 0;
+    if(turnosNumEstado[PARALISAR] == 0) estados[PARALISAR] = 0;
+    if(turnosNumEstado[PROTEGIDO] == 0) estados[PROTEGIDO] = 0;
+    if(turnosNumEstado[ESCONDER] == 0) estados[ESCONDER] = 0;
+    if(turnosNumEstado[FULLHP] == 0) estados[FULLHP] = 0;
+
+    // Setando novos valores de turnos num estado.
+    p = setTurnosNumEstado(p, DORMIR, turnosNumEstado[DORMIR]);
+    p = setTurnosNumEstado(p, PARALISAR, turnosNumEstado[PARALISAR]);
+    p = setTurnosNumEstado(p, PROTEGIDO, turnosNumEstado[PROTEGIDO]);
+    p = setTurnosNumEstado(p, ESCONDER, turnosNumEstado[ESCONDER]);
+    p = setTurnosNumEstado(p, FULLHP, turnosNumEstado[FULLHP]);
+    
+    // Setando novos valores dos estados do pokemon.
+    p = setEstado(p, DORMIR, estados[DORMIR]);
+    p = setEstado(p, PARALISAR, estados[PARALISAR]);
+    p = setEstado(p, PROTEGIDO, estados[PROTEGIDO]);
+    p = setEstado(p, ESCONDER, estados[ESCONDER]);
+    p = setEstado(p, FULLHP, estados[FULLHP]);
+}
+
 // FUNCAO DE JOGADOR ATACA
 // tem que ver os estados que o pokemon esta
 /**
@@ -121,3 +197,6 @@ Pokemon* sofreQueimar(Pokemon *p){
 //enum estados {NORMAL = 0, DORMIR, QUEIMAR, PARALISAR, PROTEGIDO, ESCONDER, FULLHP};
 
 //no final chamar a função de capturar de capurar pokebola
+
+//OBS: nao fazer o controle de turnosNumEstado para o steelix, ja fizemos na funcao.
+

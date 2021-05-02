@@ -57,12 +57,12 @@ Pokemon* setHPAtual(Pokemon* p, float hpAtual);
 Pokemon* setEstado(Pokemon *p, int posVetor, int valor);
 
 /**
- * @brief Atualiza o campo "turnosSemJogar" de um dado pokemon.
+ * @brief Atualiza o campo "turnosNumEstado" na posição "posVetor" de um dado pokemon.
  * @param p Pokemon que terá o campo atualizado.
- * @param turnosSemJogar Novo valor do campo p->turnosSemJogar.
- * @return Pokemon com o campo "turnosSemJogar" atualizado.
+ * @param turnosNumEstado Novo valor do campo "p->turnosSemJogar[posVetor]".
+ * @return Pokemon com o campo "p->turnosSemJogar[posVetor]" atualizado.
  **/
-Pokemon* setTurnosSemJogar(Pokemon *p, int turnosSemJogar);
+Pokemon* setTurnosNumEstado(Pokemon *p, int posVetor, int turnosNumEstado);
 
 /**
  * @brief Atualiza o campo "queimando" de um dado pokemon.
@@ -114,6 +114,14 @@ int getTipo(Pokemon *p);
  * @return Valor de "p->estado".
  **/
 int getEstado(Pokemon *p, int posVetor);
+
+/**
+ * @brief Captura o valor de uma posição do vetor de "turnos num estado" de um pokemon.
+ * @param p Pokemon que terá um dos seus valores de "turnos num estado" capturado.
+ * @param posVetor Posicao do vetor que terá seu valor capturado.
+ * @return Valor de "p->turnosNumEstado[posVetor]".
+ **/
+int getTurnosNumEstado(Pokemon *p, int posVetor);
 
 /**
  * @brief Captura o ponteiro da função de ataque de um pokemon na posição posVetor.

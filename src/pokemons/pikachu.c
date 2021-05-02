@@ -39,14 +39,14 @@ void choqueDoTrovao(Pokemon *pikachu, Pokemon *defensor){
     if(aleatorio == 0){
         defensor = setEstado(defensor, PARALISAR, 1);
         defensor = setEstado(defensor, NORMAL, 0);
-        defensor = setTurnosSemJogar(defensor, 1);
+        defensor = setTurnosNumEstado(defensor, PARALISAR , 1);
     }
 }
 
 void ondaDeChoque(Pokemon *pikachu, Pokemon *defensor){
     defensor = setEstado(defensor, PARALISAR, 1);
     defensor = setEstado(defensor, NORMAL, 0);
-    defensor = setTurnosSemJogar(defensor, 1);
+    defensor = setTurnosNumEstado(defensor, PARALISAR , 1);
 }
 
 void baterPikachu(Pokemon *pikachu, Pokemon *defensor){

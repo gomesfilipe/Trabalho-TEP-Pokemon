@@ -10,6 +10,7 @@
 #include "pokemons/pikachu.h"
 #include "pokemons/steelix.h"
 #include "pokemons/venusaur.h"
+#include "jogador.h"
 
 #define QTDPOKEMONS 6
 
@@ -68,5 +69,15 @@ fptrAtaque sorteiaAtaque(Pokemon *p);
  * @return Pokemon com seu hpAtual atualizado.
  **/
 Pokemon* sofreQueimar(Pokemon *p);
+
+/**
+ * @brief Controla os estados dos pokemons entre os ataques, bem como o tempo em que eles ficam em cada estado.
+ * @param p Pokemon que terá seus estados e quantidade de turnos nesse estado atualizados.
+ **/
+void transicaoEntreTurnos(Pokemon *p);
+
+
+
+void jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogador* jogador);
 
 #endif

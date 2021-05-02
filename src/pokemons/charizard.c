@@ -47,7 +47,8 @@ void dormirCharizard(Pokemon *charizard, Pokemon *defensor){
     charizard = setEstado(charizard, NORMAL, 0); 
     charizard = setEstado(charizard, FULLHP, 1); 
     charizard = setEstado(charizard, DORMIR, 1);
-    charizard = setTurnosSemJogar(charizard, 2);
+    charizard = setTurnosNumEstado(charizard, DORMIR, 2);
+    charizard = setTurnosNumEstado(charizard, FULLHP, 2);
 }
 
 void baterCharizard(Pokemon *charizard, Pokemon *defensor){

@@ -59,7 +59,7 @@ void inicializaMatrizRelacaoTipos(float m[QTDTIPOS][QTDTIPOS]){
 }
 
 float calculaDano(float A, float D, float poder, float critico, float MT, float relacaoTipo){
-    int modificador = critico * MT * relacaoTipo;
+    float modificador = critico * MT * relacaoTipo;
     return ((14.0 * poder * A / D) / 50.0 + 2.0) * modificador;
 }
 
@@ -104,35 +104,55 @@ Pokemon* sofreQueimar(Pokemon *p){
     return p;
 }
 
-void jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogador* jogador){
+int podeJogar(Pokemon *atacante){
     int estado[QTDESTADOS]; 
     estado[DORMIR] = getEstado(atacante, DORMIR);
     estado[PARALISAR] = getEstado(atacante, PARALISAR);
     estado[ESCONDER] = getEstado(atacante, ESCONDER);
     estado[FULLHP] = getEstado(atacante, FULLHP);
     estado[PROTEGIDO] = getEstado(atacante, PROTEGIDO);
-    
-   int qtdPokebolas = getQtdPokebolas(jogador);
 
-    //Verificando se o jogador pode atacar
-    if( estado[DORMIR] == 0 && estado[PARALISAR]== 0 && estado[ESCONDER] == 0 && estado[FULLHP]== 0 && estado[PROTEGIDO]==0){ 
-        if(escolheAtaque == 1 || escolheAtaque == 2 || escolheAtaque == 3 ){
-            fptrAtaque atk = getAtaquePokemon(atacante, escolheAtaque - 1);
-        }
-        else if(escolheAtaque == 4){
-            //chamar funcao de capturar pokemon
-            if(qtdPokebolas > 0) {
-                //capturaPokemon(Lista *inicio, Pokemon *p)
-            }
-        }
-        else if(escolheAtaque == 5){
-            //foge
-        }
-    
+    if(estado[DORMIR] == 0 && estado[PARALISAR]== 0 && estado[ESCONDER] == 0 && estado[FULLHP]== 0 && estado[PROTEGIDO]==0){
+        return 1;
     }
 
+    return 0;
+}
 
+int vaiCapturarPokemonOuNao(Pokemon *p){
+    float hpMax = getHPMaximo(p);
+    float hpAtual = getHPAtual(p); 
+    
+    float probabilidade = (hpMax / hpAtual) / 20.0;
+    float aleatorio = (float)rand()/(float)(RAND_MAX);
 
+    if(aleatorio <= probabilidade) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+void jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogador* jogador){
+ 
+    if(escolheAtaque == 1 || escolheAtaque == 2 || escolheAtaque == 3){
+        fptrAtaque atk = getAtaquePokemon(atacante, escolheAtaque - 1);
+        atk(atacante, defensor);
+    
+    } else if(escolheAtaque == 4){
+        if(vaiCapturarPokemonOuNao(defensor) == 1){
+            Lista *aux = getListaPokemons(jogador);
+            aux = capturaPokemon(aux, defensor);
+            jogador = setListaPokemons(jogador, aux);         
+        }   
+    }
+             
+    
+    // } else if(escolheAtaque == 5){
+         //foge
+    // }
+}   
+    
 void transicaoEntreTurnos(Pokemon *p){
     int estados[QTDESTADOS];
     int turnosNumEstado[QTDESTADOS];
@@ -200,3 +220,21 @@ void transicaoEntreTurnos(Pokemon *p){
 
 //OBS: nao fazer o controle de turnosNumEstado para o steelix, ja fizemos na funcao.
 
+// void computadorAtaca(Pokemon *atacante, Pokemon *defensor){
+//     if(podeJogar(atacante)){
+//         fptrAtaque atk = sorteiaAtaque(atacante);
+//         atk(atacante, defensor);
+    
+//     } else{ // Se não pode atacar
+
+//     }
+// }
+
+
+
+
+
+
+    //int aleatorio = rand();  //sorteio entre 0 e RAND_MAX
+    //int aleatorio = rand()% 10 ;  //sorteio entre 0 e 9
+    //float aleatorio = (float)rand()/(float)(RAND_MAX); //calcula a probabilidade de sortear um  numero entre 0 e RAND_MAX

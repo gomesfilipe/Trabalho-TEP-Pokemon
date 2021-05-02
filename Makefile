@@ -1,5 +1,5 @@
 all:
-	gcc client/main.c src/*.c src/pokemons/*.c -o main
+	gcc src/pokemons/*.c src/*.c client/main.c -o main
 
 run:
-	valgrind ./main
+	./main

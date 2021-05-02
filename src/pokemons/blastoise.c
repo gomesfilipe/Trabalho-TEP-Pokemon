@@ -37,7 +37,7 @@ void armaDeAgua(Pokemon *blastoise, Pokemon *defensor){
 
 void proteger(Pokemon *blastoise, Pokemon *defensor){
     blastoise = setEstado(blastoise, PROTEGIDO, 1); 
-    blastoise = turnosNumEstado(blastoise, PROTEGIDO , 1);
+    blastoise = setTurnosNumEstado(blastoise, PROTEGIDO , 1);
     blastoise = setEstado(blastoise, NORMAL, 0);
 }
 
@@ -66,6 +66,3 @@ void baterBlastoise(Pokemon *blastoise, Pokemon *defensor){
     
     defensor = setHPAtual(defensor, novoHP);
 }
-
-
-

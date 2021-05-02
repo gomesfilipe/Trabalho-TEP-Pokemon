@@ -1,7 +1,5 @@
 #include "../include/jogador.h"
 
-
-
 struct jogador{
     char* nome;
     int qtdPokemons;
@@ -11,11 +9,11 @@ struct jogador{
 };
 
 Jogador* capturaPokebola(Jogador *jogador, int C){  //ver se ta certa, testar
-    float probabilidade = C/12;
-    float aleatorio = (float)rand()/(float)(12);
+    float probabilidade = C/12.0;
+    float aleatorio = (float)rand()/(float)(RAND_MAX);
 
     if(aleatorio <= probabilidade){
-      jogador->qtdPokebolas++;
+        jogador->qtdPokebolas++;
     }
 
     return jogador;
@@ -23,6 +21,15 @@ Jogador* capturaPokebola(Jogador *jogador, int C){  //ver se ta certa, testar
 
 int getQtdPokebolas(Jogador* jogador){
     return jogador->qtdPokebolas;
+}
+
+Lista* getListaPokemons(Jogador* jogador){
+    return jogador->pokemons;
+}
+
+Jogador* setListaPokemons(Jogador *jogador, Lista *listaPokemons){
+    jogador->pokemons = listaPokemons;
+    return jogador;
 }
 
 

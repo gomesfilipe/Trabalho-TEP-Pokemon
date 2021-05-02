@@ -16,9 +16,16 @@
 
 typedef Pokemon* (*fptrInic) (); // Vetor de ponteiros de função com as funções de criação de pokemons.
 //fptrInic inicPokemons['V' + 1];
-fptrInic inicPokemons[QTDPOKEMONS];
 
-enum personagens{BLASTOISE = 0, CHARIZARD, MEW, PIKACHU, STEELIX, VENUSAUR};
+//enum personagens{BLASTOISE = 0, CHARIZARD, MEW, PIKACHU, STEELIX, VENUSAUR};
+#define BLASTOISE 0
+#define CHARIZARD 1
+#define MEW 2
+#define PIKACHU 3
+#define STEELIX 4
+#define VENUSAUR 5
+
+fptrInic inicPokemons[QTDPOKEMONS];
 
 /**
  * @brief Inicializa o vetor de ponteiros de função para criação dos pokemons implementados.
@@ -30,7 +37,7 @@ void iniciaTabelaCriacaoPokemons();
  * @param code Caractere inicial do pokemon a ser escolhido. Por exemplo, se code == 'P', será escolhido o Pikachu.
  * @return Pokemon do determinado code criado e inicializado.
  **/
-Pokemon* escolhePokemon(char code);
+Pokemon* escolhePokemon(int code);
 
 /**
  * @brief Inicializa a matriz que indica o valor de "relacaoTipo" numa batalha entre pokemons.
@@ -76,8 +83,15 @@ Pokemon* sofreQueimar(Pokemon *p);
  **/
 void transicaoEntreTurnos(Pokemon *p);
 
-
+/**
+ * @brief Função que diz se o jogador pode ou não atacar, dependendo dos estados do pokemon atacante.
+ * @param atacante Pokemon que fará ou não seu ataque.
+ * @return 1, caso possa atacar e 0 caso contrário.
+ **/
+int podeJogar(Pokemon *atacante);
 
 void jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogador* jogador);
+
+int vaiCapturarPokemonOuNao(Pokemon *p);
 
 #endif

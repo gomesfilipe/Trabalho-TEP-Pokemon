@@ -40,7 +40,8 @@ void dormirSteelix(Pokemon *steelix, Pokemon *defensor){
     steelix = setEstado(steelix, DORMIR, 1);
     steelix = setEstado(steelix, NORMAL, 0);
     steelix = setEstado(steelix, FULLHP, 1);
-    steelix = setTurnosSemJogar(steelix, 2);
+    steelix = setTurnosNumEstado(steelix, DORMIR, 2);
+    steelix = setTurnosNumEstado(steelix, FULLHP, 2);
 }
 
 void cavar(Pokemon *steelix, Pokemon *defensor){ 
@@ -72,11 +73,11 @@ void cavar(Pokemon *steelix, Pokemon *defensor){
         defensor = setHPAtual(defensor, novoHP);
         steelix = setEstado(steelix, NORMAL, 1);
         steelix = setEstado(steelix, ESCONDER, 0);
-        steelix = turnoNumEstado(steelix, ESCONDER , 0);
+        steelix = setTurnosNumEstado(steelix, ESCONDER , 0);
     
     } else{
         steelix = setEstado(steelix, ESCONDER, 1);
-        steelix = turnoNumEstado(steelix, ESCONDER , 1);
+        steelix = setTurnosNumEstado(steelix, ESCONDER , 1);
         steelix = setEstado(steelix, NORMAL, 0);
     }
 }

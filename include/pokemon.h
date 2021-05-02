@@ -59,8 +59,8 @@ Pokemon* setEstado(Pokemon *p, int posVetor, int valor);
 /**
  * @brief Atualiza o campo "turnosNumEstado" na posição "posVetor" de um dado pokemon.
  * @param p Pokemon que terá o campo atualizado.
- * @param turnosNumEstado Novo valor do campo "p->turnosSemJogar[posVetor]".
- * @return Pokemon com o campo "p->turnosSemJogar[posVetor]" atualizado.
+ * @param turnosNumEstado Novo valor do campo "p->turnosNumEstado[posVetor]".
+ * @return Pokemon com o campo "p->turnosNumEstado[posVetor]" atualizado.
  **/
 Pokemon* setTurnosNumEstado(Pokemon *p, int posVetor, int turnosNumEstado);
 

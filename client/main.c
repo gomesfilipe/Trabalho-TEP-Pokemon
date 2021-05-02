@@ -9,28 +9,35 @@ int main(){
     inicializaVetorComTodosAtaques();
     // Pokemon *b = escolhePokemon(BLASTOISE);
     Pokemon *c = escolhePokemon(CHARIZARD);
-    Pokemon *m = escolhePokemon(MEW);
+    //Pokemon *m = escolhePokemon(MEW);
     Pokemon *p = escolhePokemon(PIKACHU);
-    // Pokemon *s = escolhePokemon(STEELIX);
+    //Pokemon *s = escolhePokemon(STEELIX);
     //Pokemon *v = escolhePokemon(VENUSAUR);
+
+    lancaChamas(c, p);
+    imprimePokemon(p);
     
-    Lista *listaElaine;
-    listaElaine = criaLista(p);
-    listaElaine = capturaPokemon(listaElaine, m);
-    listaElaine = capturaPokemon(listaElaine, c);
-    Jogador* elaine = criaJogador("Elaine", listaElaine);
-    imprimeJogador(elaine);
+    p = recuperaHPEntreBatalhas(p);
+    imprimePokemon(p);
+    
+    
 
-    //Lista* listaAux;
-    //listaAux= getListaPokemons(elaine);
-    //listaElaine
-    listaElaine = morrePokemon(listaElaine);  //mudar dps
 
-    imprimeJogador(elaine);
+    //float porcentagem =  porcentagemDeVida(p);
+    //printf("\nporentagem [%.2f]\n", porcentagem);
+    
+    // Lista *listaElaine = criaLista(c);
+    // listaElaine = adicicionaFinalLista(listaElaine, m);
+    // listaElaine = adicicionaFinalLista(listaElaine, p);
 
-    //capturaPokebola(Jogador *jogador, int C);
+    // Jogador* jogadorElaine = criaJogador("Elaine", listaElaine);
+    // jogadorElaine = capturaPokemon( jogadorElaine, s );
+    // jogadorElaine = morrePokemon( jogadorElaine);
 
-   
+    // imprimeJogador(jogadorElaine);
+
+
+    //capturaPokebola(Jogador *jogador, int C);   
     //imprimePokemon(v);
     //imprimePokemon(p);
     
@@ -43,10 +50,10 @@ int main(){
     // imprimePokemon(v);
     
     //destroiPokemon(b);
-    destroiPokemon(c);
-    destroiPokemon(m);
+    //destroiPokemon(c);
+    //destroiPokemon(m);
     //destroiPokemon(p);
-    // destroiPokemon(s);
+    //destroiPokemon(s);
     // destroiPokemon(v);
 
     

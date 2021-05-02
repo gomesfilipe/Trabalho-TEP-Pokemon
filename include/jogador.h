@@ -56,4 +56,26 @@ Lista* getListaPokemons(Jogador* jogador);
 **/
 Jogador* setListaPokemons(Jogador *jogador, Lista *listaPokemons);
 
+/**
+ * @brief Retira o pokemon que morreu da lista de pokemons do jogador.
+ * @param jogador Jogador que terá seu pokemon retirado da lista.
+ * @return Jogador com sua lista de pokemons atualizada.
+ **/
+Jogador* morrePokemon(Jogador* jogador);
+
+/**
+ * @brief Adiciona um pokemon capturado na lista de pokemons do jogador.
+ * @param jogador Jogador que terá o pokemon adicionado a sua lista.
+ * @param p Pokemon capturado.
+ * @return Jogador com sua lista de pokemons atualizada.
+ **/
+Jogador* capturaPokemon(Jogador* jogador, Pokemon *p);
+
+/**
+ * @brief Captura o primeiro pokemon da lista de pokemons de um jogador.
+ * @param jogador É o jogador que possui a lista da qual capturaremos o primeiro pokemon.
+ * @return Retorna o primeiro pokemon da lista de um jogador.
+**/
+Pokemon* getPrimeiroPokemonDoJogador(Jogador *jogador);
+
 #endif

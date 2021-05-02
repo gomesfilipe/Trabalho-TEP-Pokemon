@@ -133,24 +133,47 @@ int vaiCapturarPokemonOuNao(Pokemon *p){
     }
 }
 
-void jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogador* jogador){
- 
+ int jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogador* jogador){
+   //  // TODO ataque normal / atacar e matar o adversario / ataca, morre e matar o adversario / ataca e morre
+    
     if(escolheAtaque == 1 || escolheAtaque == 2 || escolheAtaque == 3){
         fptrAtaque atk = getAtaquePokemon(atacante, escolheAtaque - 1);
         atk(atacante, defensor);
-    
-    } else if(escolheAtaque == 4){
-        if(vaiCapturarPokemonOuNao(defensor) == 1){
-            Lista *aux = getListaPokemons(jogador);
-            aux = capturaPokemon(aux, defensor);
-            jogador = setListaPokemons(jogador, aux);         
+
+        float hpAtacante = getHPAtual(atacante);
+        float hpDefensor = getHPAtual(defensor);
+        
+        if(hpAtacante <= 0 && hpDefensor <= 0){
+            return ATKMATOUMORREU; 
+        
+        } else if(hpDefensor <= 0){
+            
+            return ATKMATOU;
+        
+        } else if(hpAtacante <= 0){
+            return ATKMORREU;
+        
+        } else{
+            return ATKNORMAL;
+        }
+
+    }else if(escolheAtaque == 4){
+        if(vaiCapturarPokemonOuNao(defensor) == 1){ // TODO capturar ou nao
+            jogador = capturaPokemon(jogador, defensor);  
+            return CAPTUROU;     
+        }
+        else{
+            return NAOCAPTUROU;
         }   
+    }else if(escolheAtaque == 5){
+        if(fogeOuNao() == 1){
+            return FUGIU;
+        
+        } else{
+            return NAOFUGIU;
+        }
     }
-             
-    
-    // } else if(escolheAtaque == 5){
-         //foge
-    // }
+
 }   
     
 void transicaoEntreTurnos(Pokemon *p){ 
@@ -241,3 +264,11 @@ void transicaoEntreTurnos(Pokemon *p){
     //int aleatorio = rand();  //sorteio entre 0 e RAND_MAX
     //int aleatorio = rand()% 10 ;  //sorteio entre 0 e 9
     //float aleatorio = (float)rand()/(float)(RAND_MAX); //calcula a probabilidade de sortear um  numero entre 0 e RAND_MAX
+
+    int fogeOuNao(){
+        int aleatorio = rand() % 16;
+        if(aleatorio == 1){ //Número arbitrário para fazer a comparação. Nesse caso, a probabilidade de sortear 1 é 1/16, que é a probabilidade desejada.
+            return 1;
+        }
+        return 0;
+    }

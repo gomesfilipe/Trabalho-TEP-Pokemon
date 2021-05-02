@@ -183,20 +183,6 @@ void imprimeLista(Lista* inicio); //! talvez nao use
  **/
 void destroiLista(Lista *inicio);
 
-/**
- *@brief Retira da lista um pokemon que morreu.
- *@param Ponteiro para o início da lista de pokemons de um determinado jogador.
- *@return Lista sem o pokemon que morreu.
-**/
-Lista* morrePokemon(Lista* inicio);
-
-/**
- * @brief Faz a captura de um pokemon, o adicionando na lista de pokemons e restaurando seu hpAtual para 100%.
- * @param inicio Ponteiro para o início da lista de pokemons de um determinado jogador.
- * @param p Pokemon que será capturado.
- * @return Lista de pokemons atualizada. 
- **/
-Lista* capturaPokemon(Lista *inicio, Pokemon *p);
 
 /**
  * @brief Restaura 10 pontos de HP após uma batalha vencida. Caso essa quantia ultrapasse o HP máximo de um pokemon, o pokemon fica com HP máximo.
@@ -219,6 +205,19 @@ float porcentagemDeVida(Pokemon *p);
  **/
 Pokemon* restauraHPAposDormir(Pokemon* p);
 
+/**
+ * @brief Função genérica que efetua o ataque de um pokemon atacante sobre um pokemon defensor.
+ * @param code Numero do ataque do pokemon. Por exemplo, o choque do trovão do pikachu seria 1, e assim por diante.
+ * @param atacante Pokemon que aplica o ataque.
+ * @param defensor Pokemon que sofre o ataque.
+ **/
 void ataque(int code, Pokemon *atacante, Pokemon *defensor);
+
+/**
+ * @brief Pega o primeiro pokemon de uma lista de pokemons.
+ * @param lista Ponteiro para o primeiro elemento de uma lista de pokemons.
+ * @return Primeiro pokemon dessa lista de pokemons.
+ **/
+Pokemon* getPrimeiroPokemon(Lista* lista);
 
 #endif

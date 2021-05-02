@@ -50,8 +50,25 @@ Lista* getListaPokemons(Jogador* jogador){
     return jogador->pokemons;
 }
 
+Pokemon* getPrimeiroPokemonDoJogador(Jogador *jogador){
+    Pokemon* p =  getPrimeiroPokemon(jogador->pokemons);
+    return p;
+}
+
 Jogador* setListaPokemons(Jogador *jogador, Lista *listaPokemons){
     jogador->pokemons = listaPokemons;
+    return jogador;
+}
+
+Jogador* morrePokemon(Jogador* jogador){ //passar para o .h 
+    jogador->pokemons = removePrimeiroLista(jogador-> pokemons);
+    return jogador;  
+}
+
+Jogador* capturaPokemon(Jogador* jogador, Pokemon *p){  //passar .h
+    float hpMax = getHPMaximo(p);//Quando captura um pokemom, seu HpAtual esta no máximo
+    p = setHPAtual(p, hpMax);
+    jogador->pokemons= adicicionaFinalLista(jogador->pokemons , p);
     return jogador;
 }
 

@@ -114,6 +114,11 @@ int getTipo(Pokemon *p){
     return p->tipo;
 }
 
+
+Pokemon* getPrimeiroPokemon(Lista* lista){
+    return lista->pokemon;
+}
+
 fptrAtaque getAtaquePokemon(Pokemon* p , int posVetor){
     fptrAtaque atk = p->ataques[posVetor];
     return atk;
@@ -174,23 +179,13 @@ void destroiLista(Lista *inicio){
 }
 
 
-Lista* morrePokemon(Lista* inicio){
-    inicio = removePrimeiroLista(inicio);
-    return inicio;  
-}
 
 // int sorteiaCaptura(int C){
 
 // }
 
-Lista* capturaPokemon(Lista *inicio, Pokemon *p){ //testar
-    p->hpAtual = p->hpMax;
-    inicio = adicicionaFinalLista(inicio, p);
-    return inicio;
-}
-
-Pokemon* recuperaHPEntreBatalhas(Pokemon *p){  //testar
-    if(p->hpAtual += 10 > p->hpMax){
+Pokemon* recuperaHPEntreBatalhas(Pokemon *p){  
+    if(p->hpAtual + 10 > p->hpMax){
         p->hpAtual = p->hpMax;
     
     } else{
@@ -200,11 +195,11 @@ Pokemon* recuperaHPEntreBatalhas(Pokemon *p){  //testar
     return p;
 }
 
-float porcentagemDeVida(Pokemon *p){ //testar
+float porcentagemDeVida(Pokemon *p){ 
     return p->hpAtual / p->hpMax * 100.0;
 }
 
-Pokemon* restauraHPAposDormir(Pokemon* p){  //testar
+Pokemon* restauraHPAposDormir(Pokemon* p){  
     float HPMax = getHPMaximo(p);
     p = setHPAtual(p, HPMax); 
     return p;

@@ -14,6 +14,17 @@
 
 #define QTDPOKEMONS 6
 
+enum possibilidadesAoAtacar{ATKNORMAL = 0, ATKMORREU, ATKMATOU, ATKMATOUMORREU, CAPTUROU, NAOCAPTUROU, FUGIU, NAOFUGIU};
+
+// #define ATKNORMAL 0
+// #define ATKMORREU 1
+// #define ATKMATOU 2
+// #define ATKMATOUMORREU 3
+// #define CAPTUROU 4
+// #define NAOCAPTUROU 5
+// #define FUGIU 6
+// #define NAOFUGIU 7
+
 typedef Pokemon* (*fptrInic) (); // Vetor de ponteiros de função com as funções de criação de pokemons.
 //fptrInic inicPokemons['V' + 1];
 
@@ -90,8 +101,14 @@ void transicaoEntreTurnos(Pokemon *p);
  **/
 int podeJogar(Pokemon *atacante);
 
-void jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogador* jogador);
+int jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogador* jogador);
 
 int vaiCapturarPokemonOuNao(Pokemon *p);
+
+/**
+ *@brief 
+**/
+ int fogeOuNao();
+
 
 #endif

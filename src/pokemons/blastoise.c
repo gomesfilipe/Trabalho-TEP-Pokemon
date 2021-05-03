@@ -5,7 +5,7 @@ Pokemon* criaBlastoise(){
     fptrAtaque atk2 = proteger;
     fptrAtaque atk3 = baterBlastoise;
     
-    Pokemon *blastoise = criaPokemon("Blastoise", 280, 180, 200, AGUA, atk1, atk2, atk3);
+    Pokemon *blastoise = criaPokemon("Blastoise", 280, 180, 200, AGUA, atk1, atk2, atk3, "Arma de agua", "Proteger", "Bater");
     return blastoise;
 }
 

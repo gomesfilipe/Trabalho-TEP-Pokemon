@@ -5,7 +5,7 @@ Pokemon* criaCharizard(){
     fptrAtaque atk2 = dormirCharizard;
     fptrAtaque atk3 = baterCharizard;
     
-    Pokemon *charizard = criaPokemon("Charizard", 260, 160, 150, FOGO, atk1, atk2, atk3);
+    Pokemon *charizard = criaPokemon("Charizard", 260, 160, 150, FOGO, atk1, atk2, atk3, "Lanca Chamas", "Dormir", "Bater");
     return charizard;
 }
 

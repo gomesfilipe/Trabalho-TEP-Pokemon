@@ -1,6 +1,13 @@
 #include "../../include/pokemons/venusaur.h"
 
-
+Pokemon* criaVenusaur(){
+    fptrAtaque atk1 = poDeSono;
+    fptrAtaque atk2 = bombaDeSemente;
+    fptrAtaque atk3 = doisGumes;
+    
+    Pokemon *venusaur = criaPokemon("Venusaur", 300, 160, 160,  PLANTA, atk1, atk2, atk3, "Po de sono", "Bomba de semente", "Dois gumes");
+    return venusaur;
+}
 
 void poDeSono(Pokemon *venusaur, Pokemon *defensor){
     int turnosDormindo = rand() % 3;
@@ -65,11 +72,4 @@ void doisGumes(Pokemon *venusaur, Pokemon *defensor){
     venusaur = setHPAtual(venusaur, novoHP);
 }
 
-Pokemon* criaVenusaur(){
-    fptrAtaque atk1 = poDeSono;
-    fptrAtaque atk2 = bombaDeSemente;
-    fptrAtaque atk3 = doisGumes;
-    
-    Pokemon *venusaur = criaPokemon("Venusaur", 300, 160, 160,  PLANTA, atk1, atk2, atk3);
-    return venusaur;
-}
+

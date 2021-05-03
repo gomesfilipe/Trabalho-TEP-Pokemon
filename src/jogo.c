@@ -131,7 +131,7 @@ int vaiCapturarPokemonOuNao(Pokemon *p){
     } else {
         return 0;
     }
-}
+} 
 
 int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
     Pokemon* atacante = getPrimeiroPokemonDoJogador(jogador); //! ficar atento aqui

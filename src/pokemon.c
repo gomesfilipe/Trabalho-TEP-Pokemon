@@ -11,6 +11,7 @@ struct pokemon{
     //int turnosSemJogar;
     int turnosNumEstado[QTDESTADOS];
     fptrAtaque ataques[QTDATAQUESPOKEMON]; // Vetor para ponteiros de funções de ataque do pokemon
+    char **nomeAtaques;
 };
 
 struct listaPokemon{
@@ -18,7 +19,7 @@ struct listaPokemon{
     struct listaPokemon *prox;
 };
 
-Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3){
+Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3, char *nomeAtk1, char *nomeAtk2, char *nomeAtk3){
     Pokemon *p = (Pokemon*) malloc(sizeof(Pokemon));
     p->nome = strdup(nome);
     p->hpMax = hpMax;
@@ -40,6 +41,11 @@ Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int ti
     p->ataques[0] = atk1;
     p->ataques[1] = atk2;
     p->ataques[2] = atk3;
+
+    p->nomeAtaques = (char**) malloc(sizeof(char*) * QTDATAQUESPOKEMON);
+    p->nomeAtaques[0] = strdup(nomeAtk1); 
+    p->nomeAtaques[1] = strdup(nomeAtk2);
+    p->nomeAtaques[2] = strdup(nomeAtk3);
     return p;
 }
 
@@ -58,6 +64,10 @@ void imprimePokemon(Pokemon *p){
     printf("protegido [%d] turnos num estado [%d]\n", p->estados[PROTEGIDO], p->turnosNumEstado[PROTEGIDO]);
     printf("esconder  [%d] turnos num estado [%d]\n", p->estados[ESCONDER], p->turnosNumEstado[ESCONDER]);
     printf("fullhp    [%d] turnos num estado [%d]\n", p->estados[FULLHP], p->turnosNumEstado[FULLHP]);
+
+    printf("%s\n", p->nomeAtaques[0]);
+    printf("%s\n", p->nomeAtaques[1]);
+    printf("%s\n", p->nomeAtaques[2]);
 
     // for(int i = 0; i < QTDESTADOS; i++){
     //     printf("estado [%d] turnos num estado [%d]\n", p->estados[i], p->turnosNumEstado[i]);
@@ -126,6 +136,10 @@ fptrAtaque getAtaquePokemon(Pokemon* p , int posVetor){
 
 void destroiPokemon(Pokemon *p){
     free(p->nome);
+    free(p->nomeAtaques[0]);
+    free(p->nomeAtaques[1]);
+    free(p->nomeAtaques[2]);
+    free(p->nomeAtaques);
     free(p);
 }
 

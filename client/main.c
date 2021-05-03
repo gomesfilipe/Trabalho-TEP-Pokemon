@@ -7,10 +7,10 @@ int main(){
     srand(time(NULL));
     iniciaTabelaCriacaoPokemons();
     inicializaVetorComTodosAtaques();
-    // Pokemon *b = escolhePokemon(BLASTOISE);
+    //Pokemon *b = escolhePokemon(BLASTOISE);
     Pokemon *c = escolhePokemon(CHARIZARD);
-    //Pokemon *m = escolhePokemon(MEW);
-    Pokemon *p = escolhePokemon(PIKACHU);
+    Pokemon *m = escolhePokemon(MEW);
+    //Pokemon *p = escolhePokemon(PIKACHU);
     Pokemon *s = escolhePokemon(STEELIX);
     //Pokemon *v = escolhePokemon(VENUSAUR);
 
@@ -20,7 +20,7 @@ int main(){
     // p = recuperaHPEntreBatalhas(p);
     // imprimePokemon(p);
 
-    Lista* listaFilipe = criaLista(p); //inicialmente so tem pikachu na lista
+    Lista* listaFilipe = criaLista(m); //inicialmente so tem pikachu na lista
     listaFilipe = adicicionaFinalLista(listaFilipe, s);
     listaFilipe = adicicionaFinalLista(listaFilipe, c);
     Jogador* filipe = criaJogador("filipe", listaFilipe);
@@ -34,8 +34,8 @@ int main(){
         
         aux = jogadorAtaca(c, aux1, filipe); //atacando o charizard
 
-        //imprimePokemon(p);
-        printf("\n");
+        imprimeJogador(filipe);
+        printf("---------\n");
         imprimePokemon(c);
         printf("\n");
         switch(aux){
@@ -71,19 +71,19 @@ int main(){
     //imprimePokemon(p);
     
 
-    // imprimePokemon(b);
-    // imprimePokemon(c);
-    // imprimePokemon(m);
-    // imprimePokemon(p);
-    // imprimePokemon(s);
-    // imprimePokemon(v);
+    //imprimePokemon(b);
+    //imprimePokemon(c);
+    //imprimePokemon(m);
+    //imprimePokemon(p);
+    //imprimePokemon(s);
+    //imprimePokemon(v);
     
     //destroiPokemon(b);
     //destroiPokemon(c);
     //destroiPokemon(m);
     //destroiPokemon(p);
     //destroiPokemon(s);
-    // destroiPokemon(v);
+    //destroiPokemon(v);
 
     
     return 0;

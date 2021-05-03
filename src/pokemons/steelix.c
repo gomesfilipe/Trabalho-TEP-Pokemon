@@ -5,7 +5,7 @@ Pokemon* criaSteelix(){
     fptrAtaque atk2 = dormirSteelix;
     fptrAtaque atk3 = cavar;
     
-    Pokemon *steelix = criaPokemon("Steelix", 280, 170, 400,  METAL, atk1, atk2, atk3);
+    Pokemon *steelix = criaPokemon("Steelix", 280, 170, 400,  METAL, atk1, atk2, atk3, "Rabo de Ferro", "Dormir", "Cavar");
     return steelix;
 }
 

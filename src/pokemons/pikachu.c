@@ -4,7 +4,7 @@ Pokemon* criaPikachu(){
     fptrAtaque atk1 = choqueDoTrovao;
     fptrAtaque atk2 = ondaDeChoque;
     fptrAtaque atk3 = baterPikachu;
-    Pokemon *pikachu = criaPokemon("Pikachu", 200, 110, 100,  ELETRICO, atk1, atk2, atk3);
+    Pokemon *pikachu = criaPokemon("Pikachu", 200, 110, 100,  ELETRICO, atk1, atk2, atk3, "Choque do Trovao", "Onda de Choque", "Bater");
     return pikachu;
 }
 

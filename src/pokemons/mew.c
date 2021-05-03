@@ -5,7 +5,7 @@ Pokemon* criaMew(){
     fptrAtaque atk2 = baterMew;
     fptrAtaque atk3 = autoDestruir;
     
-    Pokemon *mew = criaPokemon("Mew", 320, 200, 200, PSIQUICO, atk1, atk2, atk3);
+    Pokemon *mew = criaPokemon("Mew", 320, 200, 200, PSIQUICO, atk1, atk2, atk3, "Metronomo", "Bater", "Auto-destruir");
     return mew; 
 }
 

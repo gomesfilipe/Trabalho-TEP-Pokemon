@@ -31,9 +31,12 @@ typedef void (*fptrAtaque) (Pokemon*, Pokemon*);
  * @param atk1 Ponteiro para função do ataque 1 do pokemon. 
  * @param atk2 Ponteiro para função do ataque 2 do pokemon. 
  * @param atk3 Ponteiro para função do ataque 3 do pokemon. 
+ * @param nomeAtk1 Nome do primeiro ataque do pokemon.
+ * @param nomeAtk2 Nome do segundo ataque do pomemon.
+ * @param nomeAtk3 Nome do terceiro ataque do pokemon.
  * @return Retorna um pokemon genérico.
 **/
-Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3);
+Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3, char *nomeAtk1, char *nomeAtk2, char *nomeAtk3);
 
 //! funcao para testes, excluir depois
 void imprimePokemon(Pokemon *p);

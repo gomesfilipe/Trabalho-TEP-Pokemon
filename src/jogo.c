@@ -65,13 +65,13 @@ float calculaDano(float A, float D, float poder, float critico, float MT, float 
 
 //batalha
 //// funcao sorteia ataque (para o computador)
-// funcao que controla o contador de turnosSemJogar e controle os  queimando
+//// funcao que controla o contador de turnosSemJogar e controle os  queimando
 //// funcao que restaura 100% do HP do ataque dormirestados quando volta ao normal
 //// funcao que aplica o dano de queimar depois de todo turno, caso esteja
 
 //// funcao de ganhar pokebola, tem probabilidade nisso
 //// funcao de capturar pokemon (acrescenta um pokemon na lista)
-// funcao de fugir
+//// funcao de fugir
 //// funcao que tira pokemon da lista de jogador do jogador quando morre 
 //// funcao que calcula porcentagem do hp atual em relacao ao hp maximo
 //// sortear proximo pokemon a ser enfrentado
@@ -133,7 +133,7 @@ int vaiCapturarPokemonOuNao(Pokemon *p){
     }
 }
 
- int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
+int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
     Pokemon* atacante = getPrimeiroPokemonDoJogador(jogador); //! ficar atento aqui
 
     if(escolheAtaque == 1 || escolheAtaque == 2 || escolheAtaque == 3){
@@ -143,28 +143,38 @@ int vaiCapturarPokemonOuNao(Pokemon *p){
         float hpAtacante = getHPAtual(atacante);
         float hpDefensor = getHPAtual(defensor);
         
-        if(hpAtacante <= 0 && hpDefensor <= 0){
+        if(hpAtacante <= 0 && hpDefensor <= 0){ // Os dois morreram.
+            int qtdPokemons = getQtdPokemons(jogador);
+            qtdPokemons--;
+            jogador = setQtdPokemons(jogador, qtdPokemons);
             jogador = morrePokemon(jogador);
-            int qtdVitorias = getQtdVitorias(jogador);
-            qtdVitorias--;
-            jogador = setQtdVitorias(jogador, qtdVitorias);
+            
+            if(qtdPokemons > 0){
+                int qtdVitorias = getQtdVitorias(jogador);
+                qtdVitorias++;
+                jogador = setQtdVitorias(jogador, qtdVitorias);
+            }
             return ATKMATOUMORREU; 
         
-        } else if(hpDefensor <= 0){
+        } else if(hpDefensor <= 0){ // Pokemon do computador morreu.
             int qtdVitorias = getQtdVitorias(jogador);
-            qtdVitorias--;
+            qtdVitorias++;
             jogador = setQtdVitorias(jogador, qtdVitorias);
             return ATKMATOU;
         
-        } else if(hpAtacante <= 0){
+        } else if(hpAtacante <= 0){ // Pokemon do jogador morreu.
+            int qtdPokemons = getQtdPokemons(jogador);
+            qtdPokemons--;
+            jogador = setQtdPokemons(jogador, qtdPokemons);
             jogador = morrePokemon(jogador);
+            
             return ATKMORREU;
         
-        } else{
+        } else{ // Ninguém morreu.
             return ATKNORMAL;
         }
 
-    }else if(escolheAtaque == 4){
+    }else if(escolheAtaque == 4){ // Tentativa de capturar pokemon adversário.
         int qtdPokebolas = getQtdPokebolas(jogador);
         qtdPokebolas--;
         jogador = setQtdPokebolas(jogador, qtdPokebolas);
@@ -179,7 +189,7 @@ int vaiCapturarPokemonOuNao(Pokemon *p){
         else{
             return NAOCAPTUROU;
         }   
-    }else if(escolheAtaque == 5){
+    }else if(escolheAtaque == 5){ // Tentativa de fuga.
         if(fogeOuNao() == 1){
             return FUGIU;
         
@@ -239,6 +249,46 @@ void transicaoEntreTurnos(Pokemon *p){
     //printf("aqui!!! [%d]", k); 
 }
 
+int computadorAtaca(Pokemon *atacante, Jogador *jogador){
+    fptrAtaque atk = sorteiaAtaque(atacante);
+    Pokemon *defensor = getPrimeiroPokemonDoJogador(jogador);
+
+    atk(atacante, defensor);
+    
+    float hpAtacante = getHPAtual(atacante); 
+    float hpDefensor = getHPAtual(defensor);
+    
+    if(hpAtacante <= 0 && hpDefensor <= 0){ // Os dois morreram.
+        int qtdPokemons = getQtdPokemons(jogador);
+        qtdPokemons--;
+        jogador = setQtdPokemons(jogador, qtdPokemons);
+        jogador = morrePokemon(jogador);
+        
+        if( qtdPokemons > 0){
+            int qtdVitorias = getQtdVitorias(jogador);
+            qtdVitorias++;
+            jogador = setQtdVitorias(jogador, qtdVitorias);
+        }
+
+        return ATKMATOUMORREU; 
+    
+    } else if(hpDefensor <= 0){ // Pokemon do jogador morreu.
+        int qtdPokemons = getQtdPokemons(jogador);
+        qtdPokemons--;
+        jogador = setQtdPokemons(jogador, qtdPokemons);
+        jogador = morrePokemon(jogador);
+        return ATKMATOU;
+    
+    } else if(hpAtacante <= 0){ // Pokemon do computador morreu.
+        int qtdVitorias = getQtdVitorias(jogador);
+        qtdVitorias++;
+        jogador = setQtdVitorias(jogador, qtdVitorias);
+        return ATKMORREU;
+    
+    } else{ // Ninguém morreu.
+        return ATKNORMAL;
+    }
+}
 // FUNCAO DE JOGADOR ATACA
 // tem que ver os estados que o pokemon esta
 /**

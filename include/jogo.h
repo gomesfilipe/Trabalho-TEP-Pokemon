@@ -116,7 +116,12 @@ int vaiCapturarPokemonOuNao(Pokemon *p);
 
 /**
  * @brief Efetua o ataque do jogador. Caso algum dos pokemons morra nesse ataque, a função faz os devidos tratamentos,
- * como retirar o pokemon da lista do jogador caso ele morra, 
+ * como retirar o pokemon da lista do jogador caso ele morra, controlar a quantidade de pokemons e de pokebolas do jogador, etc.
+ * @param defensor Pokemon que sofrerá o ataque. Nessa função, é o pokemon do computador.
+ * @param escolheAtaque Número da opção que o usuário irá escolher para seu ataque (1,2,3,4 ou 5).
+ * @param jogador Jogador que irá comandar seu pokemon para atacar.
+ * @return Um número inteiro entre 0 e 7 que indica o que aconteceu após o ataque, como por exemplo se capturou um pokemon, se matou
+ * o pokemon inimigo, se seu pokemon morreu ou fugiu, etc. 
  **/
 int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador);
 

@@ -11,34 +11,63 @@ int main(){
     Pokemon *c = escolhePokemon(CHARIZARD);
     //Pokemon *m = escolhePokemon(MEW);
     Pokemon *p = escolhePokemon(PIKACHU);
-    //Pokemon *s = escolhePokemon(STEELIX);
+    Pokemon *s = escolhePokemon(STEELIX);
     //Pokemon *v = escolhePokemon(VENUSAUR);
 
-    lancaChamas(c, p);
-    imprimePokemon(p);
+    // lancaChamas(c, p);
+    // imprimePokemon(p);
     
-    p = recuperaHPEntreBatalhas(p);
-    imprimePokemon(p);
-    
-    
+    // p = recuperaHPEntreBatalhas(p);
+    // imprimePokemon(p);
 
+    Lista* listaFilipe = criaLista(p); //inicialmente so tem pikachu na lista
+    listaFilipe = adicicionaFinalLista(listaFilipe, s);
+    listaFilipe = adicicionaFinalLista(listaFilipe, c);
+    Jogador* filipe = criaJogador("filipe", listaFilipe);
+    int aux, aux1;
+    
+    while(1){
+        scanf("%d", &aux1);
+        if(aux1 == 6){
+            break;
+        }
+        
+        aux = jogadorAtaca(c, aux1, filipe); //atacando o charizard
+
+        //imprimePokemon(p);
+        printf("\n");
+        imprimePokemon(c);
+        printf("\n");
+        switch(aux){
+            case ATKNORMAL: printf("atk normal\n"); break;
+            case ATKMORREU: printf("atk e morreu\n"); break;
+            case ATKMATOUMORREU: printf("atk matou e morreu\n"); break;
+            case ATKMATOU: printf("atk matou\n"); break;
+            case CAPTUROU: printf("capturou\n"); break;
+            case NAOCAPTUROU: printf("nao capturou\n"); break;
+            case FUGIU: printf("fugiu\n"); break;
+            case NAOFUGIU: printf("nao fugiu\n"); break;
+        }
+        transicaoEntreTurnos(c); //!TESTAR MAIS BATALHAS
+    }
+    
+    //computadorAtaca(Pokemon *atacante, Jogador *jogador);
+
+
+    //imprimePokemon(v);
 
     //float porcentagem =  porcentagemDeVida(p);
     //printf("\nporentagem [%.2f]\n", porcentagem);
     
     // Lista *listaElaine = criaLista(c);
-    // listaElaine = adicicionaFinalLista(listaElaine, m);
-    // listaElaine = adicicionaFinalLista(listaElaine, p);
 
     // Jogador* jogadorElaine = criaJogador("Elaine", listaElaine);
-    // jogadorElaine = capturaPokemon( jogadorElaine, s );
     // jogadorElaine = morrePokemon( jogadorElaine);
 
     // imprimeJogador(jogadorElaine);
 
 
     //capturaPokebola(Jogador *jogador, int C);   
-    //imprimePokemon(v);
     //imprimePokemon(p);
     
 

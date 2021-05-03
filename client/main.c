@@ -10,7 +10,7 @@ int main(){
     //Pokemon *b = escolhePokemon(BLASTOISE);
     Pokemon *c = escolhePokemon(CHARIZARD);
     Pokemon *m = escolhePokemon(MEW);
-    //Pokemon *p = escolhePokemon(PIKACHU);
+    Pokemon *p = escolhePokemon(PIKACHU);
     Pokemon *s = escolhePokemon(STEELIX);
     //Pokemon *v = escolhePokemon(VENUSAUR);
 
@@ -20,23 +20,29 @@ int main(){
     // p = recuperaHPEntreBatalhas(p);
     // imprimePokemon(p);
 
-    Lista* listaFilipe = criaLista(m); //inicialmente so tem pikachu na lista
-    listaFilipe = adicicionaFinalLista(listaFilipe, s);
-    listaFilipe = adicicionaFinalLista(listaFilipe, c);
+    Lista* listaFilipe = criaLista(m); //inicialmente so o mew
+    //listaFilipe = adicicionaFinalLista(listaFilipe, s);
+    //listaFilipe = adicicionaFinalLista(listaFilipe, c);
     Jogador* filipe = criaJogador("filipe", listaFilipe);
     int aux, aux1;
+    int counter = 0;
     
+
     while(1){
-        scanf("%d", &aux1);
+        counter++;
+        printf("\nloop: [%d]\n", counter);
+        getchar();
+        getchar();
+        
         if(aux1 == 6){
             break;
         }
         
-        aux = jogadorAtaca(c, aux1, filipe); //atacando o charizard
+        aux = computadorAtaca(p, filipe); //pikachu atacando filipe (mew)
 
         imprimeJogador(filipe);
         printf("---------\n");
-        imprimePokemon(c);
+        //imprimePokemon(p);
         printf("\n");
         switch(aux){
             case ATKNORMAL: printf("atk normal\n"); break;
@@ -47,11 +53,11 @@ int main(){
             case NAOCAPTUROU: printf("nao capturou\n"); break;
             case FUGIU: printf("fugiu\n"); break;
             case NAOFUGIU: printf("nao fugiu\n"); break;
+            case GAMEOVER:printf("game over\n"); break;
         }
-        transicaoEntreTurnos(c); //!TESTAR MAIS BATALHAS
+        transicaoEntreTurnos(m); //!TESTAR MAIS BATALHAS
     }
     
-    //computadorAtaca(Pokemon *atacante, Jogador *jogador);
 
 
     //imprimePokemon(v);

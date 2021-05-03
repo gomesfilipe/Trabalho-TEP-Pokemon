@@ -148,18 +148,22 @@ int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
             qtdPokemons--;
             jogador = setQtdPokemons(jogador, qtdPokemons);
             jogador = morrePokemon(jogador);
+            destroiPokemon(defensor);
             
-            if(qtdPokemons > 0){
+            if(qtdPokemons > 0){ // Ainda não é o último pokemon.
                 int qtdVitorias = getQtdVitorias(jogador);
                 qtdVitorias++;
                 jogador = setQtdVitorias(jogador, qtdVitorias);
+                return ATKMATOUMORREU;
+            
+            } else if(qtdPokemons == 0){ // Chegou no último pokemon.
+                return GAMEOVER;
             }
-            return ATKMATOUMORREU; 
-        
         } else if(hpDefensor <= 0){ // Pokemon do computador morreu.
             int qtdVitorias = getQtdVitorias(jogador);
             qtdVitorias++;
             jogador = setQtdVitorias(jogador, qtdVitorias);
+            destroiPokemon(defensor);
             return ATKMATOU;
         
         } else if(hpAtacante <= 0){ // Pokemon do jogador morreu.
@@ -168,8 +172,15 @@ int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
             jogador = setQtdPokemons(jogador, qtdPokemons);
             jogador = morrePokemon(jogador);
             
-            return ATKMORREU;
-        
+                if(qtdPokemons > 0){ // Ainda não é o último pokemon.
+                    int qtdVitorias = getQtdVitorias(jogador);
+                    qtdVitorias++;
+                    jogador = setQtdVitorias(jogador, qtdVitorias);
+                    return ATKMORREU;
+                
+                } else if(qtdPokemons == 0){ // Chegou no último pokemon.
+                    return GAMEOVER;
+                }
         } else{ // Ninguém morreu.
             return ATKNORMAL;
         }
@@ -244,9 +255,6 @@ void transicaoEntreTurnos(Pokemon *p){
     p = setEstado(p, PROTEGIDO, estados[PROTEGIDO]);
     p = setEstado(p, ESCONDER, estados[ESCONDER]);
     p = setEstado(p, FULLHP, estados[FULLHP]);
-
-    int k = getTurnosNumEstado(p, DORMIR);
-    //printf("aqui!!! [%d]", k); 
 }
 
 int computadorAtaca(Pokemon *atacante, Jogador *jogador){
@@ -263,15 +271,18 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador){
         qtdPokemons--;
         jogador = setQtdPokemons(jogador, qtdPokemons);
         jogador = morrePokemon(jogador);
+        destroiPokemon(atacante);
         
-        if( qtdPokemons > 0){
+        if(qtdPokemons > 0){
             int qtdVitorias = getQtdVitorias(jogador);
             qtdVitorias++;
             jogador = setQtdVitorias(jogador, qtdVitorias);
+            return ATKMATOUMORREU; 
+        
+        } else if(qtdPokemons == 0){
+            return GAMEOVER;
         }
-
-        return ATKMATOUMORREU; 
-    
+         
     } else if(hpDefensor <= 0){ // Pokemon do jogador morreu.
         int qtdPokemons = getQtdPokemons(jogador);
         qtdPokemons--;
@@ -283,6 +294,7 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador){
         int qtdVitorias = getQtdVitorias(jogador);
         qtdVitorias++;
         jogador = setQtdVitorias(jogador, qtdVitorias);
+        destroiPokemon(atacante);
         return ATKMORREU;
     
     } else{ // Ninguém morreu.
@@ -330,4 +342,80 @@ int fogeOuNao(){
         return 1;
     }
     return 0;
+}  
+
+//TODO jogador atacando
+//// ATKNORMAL        chama funcao computadorataca 
+//// ATKMORREU (jogador continua vivo e na mesma batalha) chama computador ataca
+//// GAME OVER // chama funcao de gameover 
+// ATKMATOU         chama funcao de inicio nova batalha
+// ATKMATOUMORREU   (jogador continua vivo) // chama funcao de inicio nova batalha
+// CAPTUROU         chama funcao de inicia nova batalha //
+//// NAOCAPTUROU      chama funcao computadorataca
+// FUGIU            chama funcao de inicia nova batalha 
+//// NAOFUGIU         chama funcao computadorataca
+
+
+//TODO COMPUTADOR ATACANDO
+////ATKNORMAL         chama jogadorAtaca    
+////ATKMORREU         chama funcao de inicio nova batalha
+//// GAME OVER        chama funcao de GAMEOVER
+////ATKMATOU         chama jogadorAtaca
+//// ATKMATOUMORREU   chama funcao de inicio nova batalha
+
+//fazer funcao GAMEOVER
+//fazer funcao batalha
+//nao esquecer de descomentar a menuInicial na funcao gameOver.
+
+
+void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador){
+    destroiJogador(jogador);
+    destroiPokemon(pokemonDoComputador);
+    //menuInicial();
 }
+
+void batalha(Jogador* jogador){
+    int escolheAtaqueDoJogador;
+    int direciona1;
+    int direciona2;
+    Pokemon *pokemonJogador;
+    Pokemon *pokemonDoPC = sorteiaPokemon();
+    
+    while(1){
+        printf("Vez do jogador:\n");
+        printf("Digite um numero de 1 a 5:\n");
+        scanf("%d", &escolheAtaqueDoJogador);
+        direciona1 = jogadorAtaca(pokemonDoPC, escolheAtaqueDoJogador, jogador);
+        pokemonJogador = getPrimeiroPokemonDoJogador(jogador);
+        transicaoEntreTurnos(pokemonJogador);
+        
+        if( direciona1 == ATKNORMAL || direciona1 == NAOCAPTUROU || direciona1 == NAOFUGIU || direciona1 == ATKMORREU ){
+            printf("Vez do computador:\n");
+            direciona2 = computadorAtaca(pokemonDoPC, jogador);
+            transicaoEntreTurnos(pokemonDoPC);
+            
+            if(direciona2 == ATKNORMAL || direciona2 == ATKMATOU){
+                continue;
+                //direciona1 = jogadorAtaca(pokemonDoPC, escolheAtaqueDoJogador, jogador);
+
+            }else if(direciona2 == GAMEOVER ){
+                gameOver(jogador, pokemonDoPC);
+
+            }else if(direciona2 == ATKMORREU || direciona2 == ATKMATOUMORREU ){
+                batalha(jogador);
+            }
+
+ 
+        } else if(direciona1 == GAMEOVER ){
+            gameOver(jogador, pokemonDoPC );
+
+        } else if(direciona1 == FUGIU || direciona1 == CAPTUROU || direciona1 == ATKMATOU || direciona1== ATKMATOUMORREU ){
+            batalha(jogador); 
+            
+        }
+    }
+    
+
+}
+
+

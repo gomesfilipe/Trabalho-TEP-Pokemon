@@ -14,7 +14,7 @@
 
 #define QTDPOKEMONS 6
 
-enum possibilidadesAoAtacar{ATKNORMAL = 0, ATKMORREU, ATKMATOU, ATKMATOUMORREU, CAPTUROU, NAOCAPTUROU, FUGIU, NAOFUGIU};
+enum possibilidadesAoAtacar{ATKNORMAL = 0, ATKMORREU, ATKMATOU, ATKMATOUMORREU, CAPTUROU, NAOCAPTUROU, FUGIU, NAOFUGIU, GAMEOVER};
 
 // #define ATKNORMAL 0
 // #define ATKMORREU 1
@@ -27,6 +27,8 @@ enum possibilidadesAoAtacar{ATKNORMAL = 0, ATKMORREU, ATKMATOU, ATKMATOUMORREU, 
 
 typedef Pokemon* (*fptrInic) (); // Vetor de ponteiros de função com as funções de criação de pokemons.
 //fptrInic inicPokemons['V' + 1];
+
+int (*fptrBatalha) ( Jogador* jogador, Pokemon* pokemonDoPC, int escolheAtaque));
 
 //enum personagens{BLASTOISE = 0, CHARIZARD, MEW, PIKACHU, STEELIX, VENUSAUR};
 #define BLASTOISE 0
@@ -120,9 +122,26 @@ int vaiCapturarPokemonOuNao(Pokemon *p);
  * @param defensor Pokemon que sofrerá o ataque. Nessa função, é o pokemon do computador.
  * @param escolheAtaque Número da opção que o usuário irá escolher para seu ataque (1,2,3,4 ou 5).
  * @param jogador Jogador que irá comandar seu pokemon para atacar.
- * @return Um número inteiro entre 0 e 7 que indica o que aconteceu após o ataque, como por exemplo se capturou um pokemon, se matou
+ * @return Um número inteiro entre 0 e 8 que indica o que aconteceu após o ataque, como por exemplo se capturou um pokemon, se matou
  * o pokemon inimigo, se seu pokemon morreu ou fugiu, etc. 
  **/
 int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador);
+
+/**
+ * @brief Efetua o ataque do computador. Caso algum dos pokemons morra nesse ataque, a função faz os devidos tratamentos,
+ * como retirar o pokemon da lista do jogador caso ele morra, controlar a quantidade de pokemons do jogador, etc.
+ * @param atacante É o pokemon do computador que no momento está atacando.
+ * @param jogador É o usuário que está possui o primeiro pokemon de sua lista sendo atacado.
+ * @return Um número inteiro entre 0 e 8 que indica o que aconteceu após o ataque, se a partida acabou, se matou o pokemon inimigo, etc.
+**/
+int computadorAtaca(Pokemon *atacante, Jogador *jogador);
+
+/**
+ * @brief Decreta o final de uma partida. Essa função libera da memória o jogador e o pokemon atual do computador
+ * e direciona para o menu principal do jogo.
+ * @param jogador Jogador da partida que será liberado da memória.
+ * @param pokemonDoComputador Pokemon atual do computador que será liberado da memória.
+ **/
+void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador);
 
 #endif

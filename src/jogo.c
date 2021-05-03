@@ -270,10 +270,6 @@ void transicaoEntreTurnos(Pokemon *p){
 // }
 
 
-
-
-
-
 //int aleatorio = rand();  //sorteio entre 0 e RAND_MAX
 //int aleatorio = rand()% 10 ;  //sorteio entre 0 e 9
 //float aleatorio = (float)rand()/(float)(RAND_MAX); //calcula a probabilidade de sortear um  numero entre 0 e RAND_MAX

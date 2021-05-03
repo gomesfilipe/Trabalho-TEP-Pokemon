@@ -46,6 +46,26 @@ int getQtdPokebolas(Jogador* jogador){
     return jogador->qtdPokebolas;
 }
 
+int getQtdPokemons(Jogador* jogador){
+    return jogador->qtdPokemons;
+}
+
+int getQtdVitorias(Jogador* jogador){
+    return jogador->qtdVitorias;
+}
+
+Jogador* setQtdPokebolas(Jogador* jogador , int qtdPokebolas){
+    jogador->qtdPokebolas = qtdPokebolas;
+}
+
+Jogador* setQtdPokemons(Jogador* jogador , int qtdPokemons){
+    jogador->qtdPokemons = qtdPokemons;
+}
+
+Jogador* setQtdVitorias(Jogador* jogador , int qtdVitorias){
+    jogador->qtdVitorias = qtdVitorias;
+}
+
 Lista* getListaPokemons(Jogador* jogador){
     return jogador->pokemons;
 }
@@ -62,7 +82,7 @@ Jogador* setListaPokemons(Jogador *jogador, Lista *listaPokemons){
 
 Jogador* morrePokemon(Jogador* jogador){ //passar para o .h 
     jogador->pokemons = removePrimeiroLista(jogador-> pokemons);
-    return jogador;  
+    return jogador;
 }
 
 Jogador* capturaPokemon(Jogador* jogador, Pokemon *p){  //passar .h

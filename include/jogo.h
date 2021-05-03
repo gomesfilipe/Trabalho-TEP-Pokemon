@@ -101,14 +101,23 @@ void transicaoEntreTurnos(Pokemon *p);
  **/
 int podeJogar(Pokemon *atacante);
 
-int jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogador* jogador);
-
+/**
+ *@brief  Calcula a probabilidade de capturar um pokemon.
+ *@param p Pokemon que pode ser capturado ou não.
+ *@return Retorna 1 se for possível capturar o pokemon e retorna 0 se não for possível.
+**/
 int vaiCapturarPokemonOuNao(Pokemon *p);
 
 /**
- *@brief 
+ * @brief Calcula a probabiblidade de um pokemon fugir.
+ * @return Retorna 1 caso o pokemon consiga fugir e 0 caso não conseguir fugir.
 **/
  int fogeOuNao();
 
+/**
+ * @brief Efetua o ataque do jogador. Caso algum dos pokemons morra nesse ataque, a função faz os devidos tratamentos,
+ * como retirar o pokemon da lista do jogador caso ele morra, 
+ **/
+int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador);
 
 #endif

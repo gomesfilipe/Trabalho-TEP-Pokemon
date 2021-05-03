@@ -179,7 +179,6 @@ void destroiLista(Lista *inicio){
 }
 
 
-
 // int sorteiaCaptura(int C){
 
 // }

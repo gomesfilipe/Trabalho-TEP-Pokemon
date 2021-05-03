@@ -42,11 +42,41 @@ Jogador* capturaPokebola(Jogador* jogador, int C);
 int getQtdPokebolas(Jogador* jogador);
 
 /**
+ * @brief Captura a quantidade de pokemons de um jogador.
+ * @param jogador Jogador que terá o campo "qtdPokemons" capturado.
+ * @return Quantidade de pokemons que o jogador possui.
+ **/
+int getQtdPokemons(Jogador* jogador);
+
+/**
+ * @brief Captura a quantidade de vitórias de um jogador.
+ * @param jogador Jogador que terá o campo "qtdVitorias" capturado.
+ * @return Quantidade de vitórias que o jogador possui.
+ **/
+int getQtdVitorias(Jogador* jogador);
+
+/**
+ * @brief Seta uma quantidade de pokemons no campo "jogador->qtdPokemons".
+ * @param jogador Jogador que terá seu campo "jogador->qtdPokemons" atualizado.
+ * @param qtdPokemons Valor que será setado no campo "jogador->qtdPokemons".
+ * @return Jogador com sua quantidade de pokemons atualizada.
+ **/
+Jogador* setQtdPokemons(Jogador* jogador , int qtdPokemons);
+
+/**
  * @brief Captura o ponteiro para a lista de pokemons de um jogador.
  * @param jogador Jogador que terá sua lista de pokemons capturada.
  * @return Ponteiro para a lista de pokemons do jogador.
  **/
 Lista* getListaPokemons(Jogador* jogador);
+
+/**
+ * @brief Seta uma quantidade de pokemons no campo "jogador->qtdVitorias".
+ * @param jogador Jogador que terá seu campo "jogador->qtdVitorias" atualizado.
+ * @param qtdVitorias Valor que será setado no campo "jogador->qtdVitorias".
+ * @return Jogador com sua quantidade de vitórias atualizada.
+ **/
+Jogador* setQtdVitorias(Jogador* jogador , int qtdVitorias);
 
 /**
  * @brief Atualiza a lista de pokemons de um jogador.
@@ -77,5 +107,14 @@ Jogador* capturaPokemon(Jogador* jogador, Pokemon *p);
  * @return Retorna o primeiro pokemon da lista de um jogador.
 **/
 Pokemon* getPrimeiroPokemonDoJogador(Jogador *jogador);
+
+
+/**
+ * @brief Coloca uma determinada quantidade de pokebolas no campo qtdPokebolas de um jogador.
+ * @param qtdPokebolas É o valor que será colocado no campo qdtPokebolas de um jogador.
+ * @param jogador É o jogador que terá sua quantidade de pokebolasatualizada.
+ * @return Retorna o jogador que teve sua quantidade de pokebolas atualizada.
+**/
+Jogador* setQtdPokebolas(Jogador* jogador , int qtdPokebolas);
 
 #endif

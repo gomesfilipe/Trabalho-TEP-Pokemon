@@ -133,9 +133,9 @@ int vaiCapturarPokemonOuNao(Pokemon *p){
     }
 }
 
- int jogadorAtaca(Pokemon* atacante, Pokemon* defensor, int escolheAtaque, Jogador* jogador){
-   //  // TODO ataque normal / atacar e matar o adversario / ataca, morre e matar o adversario / ataca e morre
-    
+ int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
+    Pokemon* atacante = getPrimeiroPokemonDoJogador(jogador); //! ficar atento aqui
+
     if(escolheAtaque == 1 || escolheAtaque == 2 || escolheAtaque == 3){
         fptrAtaque atk = getAtaquePokemon(atacante, escolheAtaque - 1);
         atk(atacante, defensor);
@@ -144,13 +144,20 @@ int vaiCapturarPokemonOuNao(Pokemon *p){
         float hpDefensor = getHPAtual(defensor);
         
         if(hpAtacante <= 0 && hpDefensor <= 0){
+            jogador = morrePokemon(jogador);
+            int qtdVitorias = getQtdVitorias(jogador);
+            qtdVitorias--;
+            jogador = setQtdVitorias(jogador, qtdVitorias);
             return ATKMATOUMORREU; 
         
         } else if(hpDefensor <= 0){
-            
+            int qtdVitorias = getQtdVitorias(jogador);
+            qtdVitorias--;
+            jogador = setQtdVitorias(jogador, qtdVitorias);
             return ATKMATOU;
         
         } else if(hpAtacante <= 0){
+            jogador = morrePokemon(jogador);
             return ATKMORREU;
         
         } else{
@@ -158,8 +165,15 @@ int vaiCapturarPokemonOuNao(Pokemon *p){
         }
 
     }else if(escolheAtaque == 4){
-        if(vaiCapturarPokemonOuNao(defensor) == 1){ // TODO capturar ou nao
-            jogador = capturaPokemon(jogador, defensor);  
+        int qtdPokebolas = getQtdPokebolas(jogador);
+        qtdPokebolas--;
+        jogador = setQtdPokebolas(jogador, qtdPokebolas);
+        
+        if(vaiCapturarPokemonOuNao(defensor) == 1){
+            jogador = capturaPokemon(jogador, defensor);
+            int qtdPokemons = getQtdPokemons(jogador);
+            qtdPokemons++;
+            jogador = setQtdPokemons(jogador, qtdPokemons);
             return CAPTUROU;     
         }
         else{
@@ -173,7 +187,6 @@ int vaiCapturarPokemonOuNao(Pokemon *p){
             return NAOFUGIU;
         }
     }
-
 }   
     
 void transicaoEntreTurnos(Pokemon *p){ 
@@ -261,14 +274,14 @@ void transicaoEntreTurnos(Pokemon *p){
 
 
 
-    //int aleatorio = rand();  //sorteio entre 0 e RAND_MAX
-    //int aleatorio = rand()% 10 ;  //sorteio entre 0 e 9
-    //float aleatorio = (float)rand()/(float)(RAND_MAX); //calcula a probabilidade de sortear um  numero entre 0 e RAND_MAX
+//int aleatorio = rand();  //sorteio entre 0 e RAND_MAX
+//int aleatorio = rand()% 10 ;  //sorteio entre 0 e 9
+//float aleatorio = (float)rand()/(float)(RAND_MAX); //calcula a probabilidade de sortear um  numero entre 0 e RAND_MAX
 
-    int fogeOuNao(){
-        int aleatorio = rand() % 16;
-        if(aleatorio == 1){ //Número arbitrário para fazer a comparação. Nesse caso, a probabilidade de sortear 1 é 1/16, que é a probabilidade desejada.
-            return 1;
-        }
-        return 0;
+int fogeOuNao(){
+    int aleatorio = rand() % 16;
+    if(aleatorio == 1){ //Número arbitrário para fazer a comparação. Nesse caso, a probabilidade de sortear 1 é 1/16, que é a probabilidade desejada.
+        return 1;
     }
+    return 0;
+}

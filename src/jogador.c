@@ -28,7 +28,7 @@ void imprimeJogador(Jogador *jogador){
     printf("qtdPokemons [%d]\n", jogador->qtdPokemons);
     printf("qtdPokebolas [%d]\n", jogador->qtdPokebolas);
     printf("qtdVitorias [%d]\n", jogador->qtdVitorias);
-    imprimeLista(jogador->pokemons);
+    imprimeListaDePokemons(jogador->pokemons);
 }
 
 Jogador* capturaPokebola(Jogador *jogador, int C){  //ver se ta certa, testar

@@ -39,7 +39,7 @@ typedef void (*fptrAtaque) (Pokemon*, Pokemon*);
 Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3, char *nomeAtk1, char *nomeAtk2, char *nomeAtk3);
 
 //! funcao para testes, excluir depois
-void imprimePokemon(Pokemon *p);
+void imprimeNomePokemon(Pokemon *p);
 
 /**
  * @brief Atualiza o campo "hpAtual" de um dado pokemon.
@@ -175,10 +175,27 @@ Lista* adicicionaFinalLista(Lista *inicio, Pokemon* pokemon);
 Lista* removePrimeiroLista(Lista *inicio);
 
 /**
+ * @brief Remove um pokemon de uma determinada posição de uma lista de pokemons.
+ * @param inicio Ponteiro que aponta para o início da lista de pokemons.
+ * @param pos É posição da qual se querer remover o pokemon da lista.
+ * @param tamLista É o tamanho da lista.
+ * @return Lista com pokemon removido.
+ **/
+Lista* removePokemonQualquerLista(Lista *inicio, int pos, int tamLista);
+
+/**
+ * @brief Pega um pokemon numa determinada posição de uma lista de pokemons.
+ * @param inicio Ponteiro que aponta para o início da lista de pokemons.
+ * @param pos Posição do pokemon que será pego.
+ * @return Pokemon desejado da lista.
+ **/
+Pokemon* getPokemonLista(Lista* inicio, int pos);
+
+/**
  * @brief Imprime uma lista de pokemons.
  * @param inicio É a primeira célula da lista.
  **/
-void imprimeLista(Lista* inicio); //! talvez nao use
+void imprimeListaDePokemons(Lista* inicio); //! talvez nao use
 
 /**
  * @brief Libera da memória uma lista encadeada de pokemons.

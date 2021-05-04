@@ -367,55 +367,29 @@ int fogeOuNao(){
 //fazer funcao batalha
 //nao esquecer de descomentar a menuInicial na funcao gameOver.
 
-
 void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador){
     destroiJogador(jogador);
     destroiPokemon(pokemonDoComputador);
     //menuInicial();
 }
 
-void batalha(Jogador* jogador){
-    int escolheAtaqueDoJogador;
-    int direciona1;
-    int direciona2;
-    Pokemon *pokemonJogador;
-    Pokemon *pokemonDoPC = sorteiaPokemon();
+Lista* criaListaPokemonsTela(){
+    Lista* lista;
+    Pokemon *p = escolhePokemon(PIKACHU);
+    Pokemon *c = escolhePokemon(CHARIZARD);
+    Pokemon *v = escolhePokemon(VENUSAUR);
+    Pokemon *b = escolhePokemon(BLASTOISE);
+    Pokemon *s = escolhePokemon(STEELIX);
+    Pokemon *m = escolhePokemon(MEW);
     
-    while(1){
-        printf("Vez do jogador:\n");
-        printf("Digite um numero de 1 a 5:\n");
-        scanf("%d", &escolheAtaqueDoJogador);
-        direciona1 = jogadorAtaca(pokemonDoPC, escolheAtaqueDoJogador, jogador);
-        pokemonJogador = getPrimeiroPokemonDoJogador(jogador);
-        transicaoEntreTurnos(pokemonJogador);
-        
-        if( direciona1 == ATKNORMAL || direciona1 == NAOCAPTUROU || direciona1 == NAOFUGIU || direciona1 == ATKMORREU ){
-            printf("Vez do computador:\n");
-            direciona2 = computadorAtaca(pokemonDoPC, jogador);
-            transicaoEntreTurnos(pokemonDoPC);
-            
-            if(direciona2 == ATKNORMAL || direciona2 == ATKMATOU){
-                continue;
-                //direciona1 = jogadorAtaca(pokemonDoPC, escolheAtaqueDoJogador, jogador);
+    lista = criaLista(p);
+    lista = adicicionaFinalLista(lista, c);
+    lista = adicicionaFinalLista(lista, v);
+    lista = adicicionaFinalLista(lista, b);
+    lista = adicicionaFinalLista(lista, s);
+    lista = adicicionaFinalLista(lista, m);
 
-            }else if(direciona2 == GAMEOVER ){
-                gameOver(jogador, pokemonDoPC);
-
-            }else if(direciona2 == ATKMORREU || direciona2 == ATKMATOUMORREU ){
-                batalha(jogador);
-            }
-
- 
-        } else if(direciona1 == GAMEOVER ){
-            gameOver(jogador, pokemonDoPC );
-
-        } else if(direciona1 == FUGIU || direciona1 == CAPTUROU || direciona1 == ATKMATOU || direciona1== ATKMATOUMORREU ){
-            batalha(jogador); 
-            
-        }
-    }
-    
-
+    return lista;
 }
 
 

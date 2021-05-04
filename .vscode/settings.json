@@ -9,6 +9,7 @@
         "charizard.h": "c",
         "jogo.h": "c",
         "stdio.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "telas.h": "c"
     }
 }

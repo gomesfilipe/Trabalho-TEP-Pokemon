@@ -28,8 +28,6 @@ enum possibilidadesAoAtacar{ATKNORMAL = 0, ATKMORREU, ATKMATOU, ATKMATOUMORREU, 
 typedef Pokemon* (*fptrInic) (); // Vetor de ponteiros de função com as funções de criação de pokemons.
 //fptrInic inicPokemons['V' + 1];
 
-int (*fptrBatalha) ( Jogador* jogador, Pokemon* pokemonDoPC, int escolheAtaque));
-
 //enum personagens{BLASTOISE = 0, CHARIZARD, MEW, PIKACHU, STEELIX, VENUSAUR};
 #define BLASTOISE 0
 #define CHARIZARD 1
@@ -143,5 +141,12 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador);
  * @param pokemonDoComputador Pokemon atual do computador que será liberado da memória.
  **/
 void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador);
+
+/**
+ * @brief Cria a lista de pokemons que possui todos que foram implementados. Essa função servirá de auxílio
+ * no momento que o usuário estiver escolhendo seus pokemons antes de iniciar uma partida.
+ * @return Lista de pokemons com todos os pokemons existentes no jogo.
+ **/
+Lista* criaListaPokemonsTela();
 
 #endif

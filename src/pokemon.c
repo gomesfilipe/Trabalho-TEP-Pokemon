@@ -49,25 +49,25 @@ Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int ti
     return p;
 }
 
-void imprimePokemon(Pokemon *p){
-    printf("nome [%s]\n", p->nome);
-    printf("hp max [%.2f]\n", p->hpMax);
-    printf("hp Atual [%.2f]\n", p->hpAtual);
+void imprimeNomePokemon(Pokemon *p){
+    printf("%s\n", p->nome);
+    // printf("hp max [%.2f]\n", p->hpMax);
+    // printf("hp Atual [%.2f]\n", p->hpAtual);
     //printf("ataque [%.2f]\n", p->ataque);
     //printf("defesa [%.2f]\n", p->defesa);
     //printf("tipo [%d]\n", p->tipo);
     
-    printf("normal    [%d] turnos num estado [%d]\n", p->estados[NORMAL], p->turnosNumEstado[NORMAL]);
-    printf("dormir    [%d] turnos num estado [%d]\n", p->estados[DORMIR], p->turnosNumEstado[DORMIR]);
-    printf("queimar   [%d] turnos num estado [%d]\n", p->estados[QUEIMAR], p->turnosNumEstado[QUEIMAR]);
-    printf("paralisar [%d] turnos num estado [%d]\n", p->estados[PARALISAR], p->turnosNumEstado[PARALISAR]);
-    printf("protegido [%d] turnos num estado [%d]\n", p->estados[PROTEGIDO], p->turnosNumEstado[PROTEGIDO]);
-    printf("esconder  [%d] turnos num estado [%d]\n", p->estados[ESCONDER], p->turnosNumEstado[ESCONDER]);
-    printf("fullhp    [%d] turnos num estado [%d]\n", p->estados[FULLHP], p->turnosNumEstado[FULLHP]);
+    // printf("normal    [%d] turnos num estado [%d]\n", p->estados[NORMAL], p->turnosNumEstado[NORMAL]);
+    // printf("dormir    [%d] turnos num estado [%d]\n", p->estados[DORMIR], p->turnosNumEstado[DORMIR]);
+    // printf("queimar   [%d] turnos num estado [%d]\n", p->estados[QUEIMAR], p->turnosNumEstado[QUEIMAR]);
+    // printf("paralisar [%d] turnos num estado [%d]\n", p->estados[PARALISAR], p->turnosNumEstado[PARALISAR]);
+    // printf("protegido [%d] turnos num estado [%d]\n", p->estados[PROTEGIDO], p->turnosNumEstado[PROTEGIDO]);
+    // printf("esconder  [%d] turnos num estado [%d]\n", p->estados[ESCONDER], p->turnosNumEstado[ESCONDER]);
+    // printf("fullhp    [%d] turnos num estado [%d]\n", p->estados[FULLHP], p->turnosNumEstado[FULLHP]);
 
-    printf("%s\n", p->nomeAtaques[0]);
-    printf("%s\n", p->nomeAtaques[1]);
-    printf("%s\n", p->nomeAtaques[2]);
+    // printf("%s\n", p->nomeAtaques[0]);
+    // printf("%s\n", p->nomeAtaques[1]);
+    // printf("%s\n", p->nomeAtaques[2]);
 
     // for(int i = 0; i < QTDESTADOS; i++){
     //     printf("estado [%d] turnos num estado [%d]\n", p->estados[i], p->turnosNumEstado[i]);
@@ -124,7 +124,6 @@ int getTipo(Pokemon *p){
     return p->tipo;
 }
 
-
 Pokemon* getPrimeiroPokemon(Lista* lista){
     return lista->pokemon;
 }
@@ -173,16 +172,62 @@ Lista* removePrimeiroLista(Lista *inicio){
     return inicio;
 }
 
-void imprimeLista(Lista* inicio){
+Lista* removePokemonQualquerLista(Lista *inicio, int pos, int tamLista){
+    Lista *centro = inicio;
+    Lista *sucessor = centro->prox, *antecessor;
+    int posAtual;
+    for(posAtual = 1, centro = inicio; posAtual <= pos; posAtual++, centro = centro->prox, sucessor = sucessor->prox){
+        if(posAtual == 1 && pos == 1){ // Caso seja o primeiro pokemon.
+            sucessor = centro->prox;
+            destroiPokemon(centro->pokemon);
+            free(centro);
+            return sucessor; // Novo início da lista.
+
+        } else if(posAtual == tamLista && pos == tamLista){ // Caso seja o último pokemon.
+            destroiPokemon(centro->pokemon);
+            free(centro);
+            antecessor->prox = NULL;
+            return inicio; 
+        
+        } else if(posAtual == pos){ //Caso o pokemon se encontrar no meio da lista
+            antecessor->prox = sucessor;
+            destroiPokemon(centro->pokemon);
+            free(centro);
+            return inicio;  
+        
+        }
+
+        antecessor = centro;
+        //antecessor->prox = centro ->prox;
+    }
+
+  
+}
+
+Pokemon* getPokemonLista(Lista* inicio, int pos){
+    Lista *aux;
+    int posAtual;
+    for(posAtual = 1, aux = inicio; posAtual <= pos; posAtual++, aux = aux->prox){
+        if(posAtual == pos){
+            return aux->pokemon;
+        }
+    }
+}
+
+void imprimeListaDePokemons(Lista* inicio){
     Lista* aux;
+    int i = 1;
     for(aux=inicio; aux != NULL; aux= aux->prox){
-        imprimePokemon(aux->pokemon);
+        printf("%d- ", i);
+        imprimeNomePokemon(aux->pokemon);
+        i++;
     }
 }
 
 void destroiLista(Lista *inicio){
     Lista* aux = inicio;
     Lista* anterior;
+   
     if(aux != NULL){
         anterior = aux;
         aux = aux->prox;
@@ -191,11 +236,6 @@ void destroiLista(Lista *inicio){
         destroiLista(aux);
     }
 }
-
-
-// int sorteiaCaptura(int C){
-
-// }
 
 Pokemon* recuperaHPEntreBatalhas(Pokemon *p){  
     if(p->hpAtual + 10 > p->hpMax){
@@ -217,3 +257,5 @@ Pokemon* restauraHPAposDormir(Pokemon* p){
     p = setHPAtual(p, HPMax); 
     return p;
 }
+
+

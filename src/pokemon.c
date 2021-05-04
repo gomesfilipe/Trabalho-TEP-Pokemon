@@ -50,7 +50,7 @@ Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int ti
 }
 
 void imprimeNomePokemon(Pokemon *p){
-    printf("%s\n", p->nome);
+    printf("%s", p->nome);
     // printf("hp max [%.2f]\n", p->hpMax);
     // printf("hp Atual [%.2f]\n", p->hpAtual);
     //printf("ataque [%.2f]\n", p->ataque);
@@ -220,6 +220,7 @@ void imprimeListaDePokemons(Lista* inicio){
     for(aux=inicio; aux != NULL; aux= aux->prox){
         printf("%d- ", i);
         imprimeNomePokemon(aux->pokemon);
+        printf("\n");
         i++;
     }
 }
@@ -256,6 +257,14 @@ Pokemon* restauraHPAposDormir(Pokemon* p){
     float HPMax = getHPMaximo(p);
     p = setHPAtual(p, HPMax); 
     return p;
+}
+
+int estaImune(Pokemon *defensor){
+    if(defensor->estados[PROTEGIDO] == 1 || defensor->estados[ESCONDER] == 1){
+        return 1;
+    }
+
+    return 0;
 }
 
 

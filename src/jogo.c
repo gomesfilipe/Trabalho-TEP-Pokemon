@@ -370,7 +370,7 @@ int fogeOuNao(){
 void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador){
     destroiJogador(jogador);
     destroiPokemon(pokemonDoComputador);
-    //menuInicial();
+    menuInicial();
 }
 
 Lista* criaListaPokemonsTela(){

@@ -8,38 +8,42 @@ void batalha(Jogador* jogador){
     Pokemon *pokemonDoPC = sorteiaPokemon();
     
     while(1){
-        printf("Vez do jogador:\n");
-        printf("Digite um numero de 1 a 5:\n");
-        scanf("%d", &escolheAtaqueDoJogador);
-        direciona1 = jogadorAtaca(pokemonDoPC, escolheAtaqueDoJogador, jogador);
         pokemonJogador = getPrimeiroPokemonDoJogador(jogador);
-        transicaoEntreTurnos(pokemonJogador);
+        if(podeJogar(pokemonJogador)==1){
+            printf("Vez do jogador:\n");
+            printf("Digite um numero de 1 a 5:\n");
+            scanf("%d", &escolheAtaqueDoJogador);
+            
+            direciona1 = jogadorAtaca(pokemonDoPC, escolheAtaqueDoJogador, jogador);
+            transicaoEntreTurnos(pokemonJogador);
         
-        if( direciona1 == ATKNORMAL || direciona1 == NAOCAPTUROU || direciona1 == NAOFUGIU || direciona1 == ATKMORREU ){
-            printf("Vez do computador:\n");
-            direciona2 = computadorAtaca(pokemonDoPC, jogador);
-            transicaoEntreTurnos(pokemonDoPC);
-            
-            if(direciona2 == ATKNORMAL || direciona2 == ATKMATOU){
-                continue;
-                //direciona1 = jogadorAtaca(pokemonDoPC, escolheAtaqueDoJogador, jogador);
+            if(direciona1 == ATKNORMAL || direciona1 == NAOCAPTUROU || direciona1 == NAOFUGIU || direciona1 == ATKMORREU){
+                printf("Vez do computador:\n");
+                direciona2 = computadorAtaca(pokemonDoPC, jogador);
+                transicaoEntreTurnos(pokemonDoPC);
+                
+                if(direciona2 == ATKNORMAL || direciona2 == ATKMATOU){
+                    continue;
+                    //direciona1 = jogadorAtaca(pokemonDoPC, escolheAtaqueDoJogador, jogador);
 
-            }else if(direciona2 == GAMEOVER ){
-                gameOver(jogador, pokemonDoPC);
+                }else if(direciona2 == GAMEOVER ){
+                    gameOver(jogador, pokemonDoPC);
 
-            }else if(direciona2 == ATKMORREU || direciona2 == ATKMATOUMORREU ){
-                batalha(jogador);
+                }else if(direciona2 == ATKMORREU || direciona2 == ATKMATOUMORREU ){
+                    batalha(jogador);
+                }
+
+            } else if(direciona1 == GAMEOVER ){
+                gameOver(jogador, pokemonDoPC );
+
+            } else if(direciona1 == FUGIU || direciona1 == CAPTUROU || direciona1 == ATKMATOU || direciona1== ATKMATOUMORREU ){
+                batalha(jogador); 
+                
             }
-
- 
-        } else if(direciona1 == GAMEOVER ){
-            gameOver(jogador, pokemonDoPC );
-
-        } else if(direciona1 == FUGIU || direciona1 == CAPTUROU || direciona1 == ATKMATOU || direciona1== ATKMATOUMORREU ){
-            batalha(jogador); 
-            
+        }else{
+            imprimeEstadoQuandoNaoPodeJogar(pokemonJogador);
         }
-    }
+    } 
 }
 
 void melhoresPontuacoes(){
@@ -47,7 +51,7 @@ void melhoresPontuacoes(){
 }
 
 void sair(){
-
+    
 }
 
 void jogar(){
@@ -106,7 +110,7 @@ void menuInicial(){
     printf("2- Melhores pontuacoes\n");
     printf("3- Sair\n");
 
-    while(1);
+    while(1){
         scanf("%s", botao);
         botaoint = atoi(botao);
         if(botaoint == 1){
@@ -121,12 +125,30 @@ void menuInicial(){
         } else{
             printf("Escolha uma opcao valida.\n");
         }
+    }
 }   
 
 void limpaTela(){
     system("clear"); // clear pra linux, cls pra windows.
 }
 
+
+void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon){
+    int dormir = getEstado(pokemon, DORMIR);
+    int paralisar = getEstado(pokemon, PARALISAR);
+    int esconder = getEstado(pokemon, ESCONDER);
+    if(dormir  == 1){
+        imprimeNomePokemon(pokemon);
+        printf(" esta dormindo!\n");
+    }
+    else if(paralisar == 1){
+        imprimeNomePokemon(pokemon);
+        printf(" esta paralisado!\n");
+    }
+    else if(esconder == 1){
+        printf("Segundo turno do ataque cavar!\n");
+    }
+}
 
 
 

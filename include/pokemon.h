@@ -240,4 +240,12 @@ void ataque(int code, Pokemon *atacante, Pokemon *defensor);
  **/
 Pokemon* getPrimeiroPokemon(Lista* lista);
 
+
+/**
+ *@brief Verifica se um pokemon esta imune a ataques.
+ @param defensor É o pokemon que verificaremos se está imune.
+ @return Retorna 1 se o pokemon estiver imune e 0 caso não esteja imune.
+**/
+int estaImune(Pokemon *defensor);
+
 #endif

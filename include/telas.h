@@ -8,4 +8,18 @@
 
 #define TAM 100
 
+void batalha(Jogador* jogador);
+
+void melhoresPontuacoes();
+
+void sair();
+
+void jogar();
+
+void menuInicial();
+
+void limpaTela();
+
+void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon);
+
 #endif

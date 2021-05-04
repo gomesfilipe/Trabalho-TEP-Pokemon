@@ -10,30 +10,32 @@ Pokemon* criaSteelix(){
 }
 
 void raboDeFerro(Pokemon *steelix, Pokemon *defensor){
-    float matriz[QTDTIPOS][QTDTIPOS];
-    inicializaMatrizRelacaoTipos(matriz);
-    
-    float A = getAtaque(steelix);
-    float D = getDefesa(defensor);
-    float poder = 100;  
-    float MT = 1.5;
-    int tipoPokemonAtk = getTipo(steelix);
-    int tipoPokemonDef = getTipo(defensor);
-    float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
+    if(estaImune(defensor) == 0){
+        float matriz[QTDTIPOS][QTDTIPOS];
+        inicializaMatrizRelacaoTipos(matriz);
+        
+        float A = getAtaque(steelix);
+        float D = getDefesa(defensor);
+        float poder = 100;  
+        float MT = 1.5;
+        int tipoPokemonAtk = getTipo(steelix);
+        int tipoPokemonDef = getTipo(defensor);
+        float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
 
-    float critico;
-    int aleatorio = rand() % 24;
-    if(aleatorio == 2){
-        critico = 2;
-    } else{
-        critico = 1;
+        float critico;
+        int aleatorio = rand() % 24;
+        if(aleatorio == 2){
+            critico = 2;
+        } else{
+            critico = 1;
+        }
+
+        float dano = calculaDano(A, D, poder, critico, MT, relacaoTipo);
+        float hpAtualDefensor = getHPAtual(defensor);
+        float novoHP = hpAtualDefensor - dano;
+        
+        defensor = setHPAtual(defensor, novoHP);
     }
-
-    float dano = calculaDano(A, D, poder, critico, MT, relacaoTipo);
-    float hpAtualDefensor = getHPAtual(defensor);
-    float novoHP = hpAtualDefensor - dano;
-    
-    defensor = setHPAtual(defensor, novoHP);
 }
 
 void dormirSteelix(Pokemon *steelix, Pokemon *defensor){
@@ -46,7 +48,7 @@ void dormirSteelix(Pokemon *steelix, Pokemon *defensor){
 
 void cavar(Pokemon *steelix, Pokemon *defensor){ 
     int estado = getEstado(steelix, ESCONDER);
-    if(estado == 1){
+    if(estado == 1 && estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
         

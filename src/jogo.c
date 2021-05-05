@@ -63,22 +63,6 @@ float calculaDano(float A, float D, float poder, float critico, float MT, float 
     return ((14.0 * poder * A / D) / 50.0 + 2.0) * modificador;
 }
 
-//batalha
-//// funcao sorteia ataque (para o computador)
-//// funcao que controla o contador de turnosSemJogar e controle os  queimando
-//// funcao que restaura 100% do HP do ataque dormirestados quando volta ao normal
-//// funcao que aplica o dano de queimar depois de todo turno, caso esteja
-
-//// funcao de ganhar pokebola, tem probabilidade nisso
-//// funcao de capturar pokemon (acrescenta um pokemon na lista)
-//// funcao de fugir
-//// funcao que tira pokemon da lista de jogador do jogador quando morre 
-//// funcao que calcula porcentagem do hp atual em relacao ao hp maximo
-//// sortear proximo pokemon a ser enfrentado
-//// funcao de recuperar hp do pokemon entre batalhas
-
-// funcoes de imprimir os menus
-// implementar botoes como string e usar atoi quando conveniente
 
 Pokemon* sorteiaPokemon(){ 
     int aleatorio = rand() % QTDPOKEMONS; // Escolhe um numero de 0 a 5.
@@ -87,10 +71,15 @@ Pokemon* sorteiaPokemon(){
 }
 
 fptrAtaque sorteiaAtaque(Pokemon *p){ 
-     int aleatorio = rand() % QTDATAQUESPOKEMON; // Escolhe um numero de 0 a 2.
-     fptrAtaque atk = getAtaquePokemon(p , aleatorio);//vetor de ataques na posicao aleatoria
-     return atk;
+    int aleatorio = rand() % QTDATAQUESPOKEMON; // Escolhe um numero de 0 a 2.
+    fptrAtaque atk = getAtaquePokemon(p , aleatorio);//vetor de ataques na posicao aleatoria
+    imprimeNomePokemon(p);
+    printf(" usou ");
+    imprimeAtaque(p, aleatorio + 1);
+    return atk;
 }
+
+
 
 Pokemon* sofreQueimar(Pokemon *p){  
     int queimando = getEstado(p, QUEIMAR);
@@ -135,7 +124,7 @@ int vaiCapturarPokemonOuNao(Pokemon *p){
 
 int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
     Pokemon* atacante = getPrimeiroPokemonDoJogador(jogador); //! ficar atento aqui
-
+    
     if(escolheAtaque == 1 || escolheAtaque == 2 || escolheAtaque == 3){
         fptrAtaque atk = getAtaquePokemon(atacante, escolheAtaque - 1);
         atk(atacante, defensor);
@@ -213,7 +202,7 @@ int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
 void transicaoEntreTurnos(Pokemon *p){ 
     int estados[QTDESTADOS];
     int turnosNumEstado[QTDESTADOS];
-    
+
     // Pegando os valores de turnos num estado.
     turnosNumEstado[DORMIR] = getTurnosNumEstado(p, DORMIR);
     turnosNumEstado[PARALISAR] = getTurnosNumEstado(p, PARALISAR);
@@ -226,7 +215,13 @@ void transicaoEntreTurnos(Pokemon *p){
     if(turnosNumEstado[PARALISAR] > 0) turnosNumEstado[PARALISAR]--;
     if(turnosNumEstado[PROTEGIDO] > 0) turnosNumEstado[PROTEGIDO]--;
     if(turnosNumEstado[ESCONDER] > 0) turnosNumEstado[ESCONDER]--;
-    if(turnosNumEstado[FULLHP] > 0) turnosNumEstado[FULLHP]--;
+    
+    if(turnosNumEstado[FULLHP] > 0){
+        turnosNumEstado[FULLHP]--;
+        if(turnosNumEstado[FULLHP] == 0){
+            p = restauraHPAposDormir(p);
+        }
+    }
 
     // Pegando todos os estados de um pokemon. 
     estados[DORMIR] = getEstado(p, DORMIR);
@@ -287,7 +282,8 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador){
         int qtdPokemons = getQtdPokemons(jogador);
         qtdPokemons--;
         jogador = setQtdPokemons(jogador, qtdPokemons);
-        jogador = morrePokemon(jogador);
+        
+        //jogador = morrePokemon(jogador);
         return ATKMATOU;
     
     } else if(hpAtacante <= 0){ // Pokemon do computador morreu.
@@ -301,35 +297,7 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador){
         return ATKNORMAL;
     }
 }
-// FUNCAO DE JOGADOR ATACA
-// tem que ver os estados que o pokemon esta
-/**
- * normal, pode jogar
- * dormir e turnos sem jogar != 0, nao pode jogar
- * queimar pode jogar
- * paralisar e turnos sem jogar != 0, nao pode jogar
- * protegido pode jogar
- * esconder nao pode jogar
- * fullhp e turnos sem jogar = 0, hp vai pra 100%
- **/
-//so pode tentar capturar o oponente se tiver pokebola e tbm fazer coisa da probabiblidade
 
-
-//enum estados {NORMAL = 0, DORMIR, QUEIMAR, PARALISAR, PROTEGIDO, ESCONDER, FULLHP};
-
-//no final chamar a função de capturar de capurar pokebola
-
-//OBS: nao fazer o controle de turnosNumEstado para o steelix, ja fizemos na funcao.
-
-// void computadorAtaca(Pokemon *atacante, Pokemon *defensor){
-//     if(podeJogar(atacante)){
-//         fptrAtaque atk = sorteiaAtaque(atacante);
-//         atk(atacante, defensor);
-    
-//     } else{ // Se não pode atacar
-
-//     }
-// }
 
 
 //int aleatorio = rand();  //sorteio entre 0 e RAND_MAX
@@ -344,28 +312,6 @@ int fogeOuNao(){
     return 0;
 }  
 
-//TODO jogador atacando
-//// ATKNORMAL        chama funcao computadorataca 
-//// ATKMORREU (jogador continua vivo e na mesma batalha) chama computador ataca
-//// GAME OVER // chama funcao de gameover 
-// ATKMATOU         chama funcao de inicio nova batalha
-// ATKMATOUMORREU   (jogador continua vivo) // chama funcao de inicio nova batalha
-// CAPTUROU         chama funcao de inicia nova batalha //
-//// NAOCAPTUROU      chama funcao computadorataca
-// FUGIU            chama funcao de inicia nova batalha 
-//// NAOFUGIU         chama funcao computadorataca
-
-
-//TODO COMPUTADOR ATACANDO
-////ATKNORMAL         chama jogadorAtaca    
-////ATKMORREU         chama funcao de inicio nova batalha
-//// GAME OVER        chama funcao de GAMEOVER
-////ATKMATOU         chama jogadorAtaca
-//// ATKMATOUMORREU   chama funcao de inicio nova batalha
-
-//fazer funcao GAMEOVER
-//fazer funcao batalha
-//nao esquecer de descomentar a menuInicial na funcao gameOver.
 
 void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador){
     destroiJogador(jogador);

@@ -8,17 +8,27 @@ int main(){
     srand(time(NULL));
     iniciaTabelaCriacaoPokemons();
     inicializaVetorComTodosAtaques();
-    // Pokemon *b = escolhePokemon(BLASTOISE);
+
+    //Pokemon *b = escolhePokemon(BLASTOISE);
+
+   
+
+    // Lista* listaFilipe = criaLista(b);
+    
+    // Jogador* jogadorfilipe = criaJogador(jogadorfilipe, listaFilipe);
+    // Pokemon *pokemonJogador = getPrimeiroPokemonDoJogador(jogadorfilipe);
+    
+    menuInicial();
     // Pokemon *c = escolhePokemon(CHARIZARD);
     // Pokemon *m = escolhePokemon(MEW);
     // Pokemon *p = escolhePokemon(PIKACHU);
     // Pokemon *s = escolhePokemon(STEELIX);
     // Pokemon *v = escolhePokemon(VENUSAUR);
 
-    Lista* l = criaListaPokemonsTela();
-    imprimeListaDePokemons(l);
-    Pokemon *teste = getPokemonLista(l, 6);
-    imprimeNomePokemon(teste);
+    // Lista* l = criaListaPokemonsTela();
+    // imprimeListaDePokemons(l);
+    // Pokemon *teste = getPokemonLista(l, 6);
+    // imprimeNomePokemon(teste);
     //imprimeListaDePokemons(l);
     //printf("---------\n");
     // l = removePokemonQualquerLista(l, 6, 6);
@@ -105,6 +115,5 @@ int main(){
     // destroiPokemon(s);
     // destroiPokemon(v);
 
-    
     return 0;
 }

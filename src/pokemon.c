@@ -1,17 +1,17 @@
 #include "../include/pokemon.h"
 
 struct pokemon{   
-    char *nome;
-    float hpMax;
-    float hpAtual;
-    float ataque;
-    float defesa;
-    int estados[QTDESTADOS];
-    int tipo;
+    char *nome;      
+    float hpMax;    
+    float hpAtual; 
+    float ataque;   
+    float defesa;   
+    int estados[QTDESTADOS];  
+    int tipo;                
     //int turnosSemJogar;
-    int turnosNumEstado[QTDESTADOS];
-    fptrAtaque ataques[QTDATAQUESPOKEMON]; // Vetor para ponteiros de funções de ataque do pokemon
-    char **nomeAtaques;
+    int turnosNumEstado[QTDESTADOS];   
+    fptrAtaque ataques[QTDATAQUESPOKEMON]; // Vetor para ponteiros de funções de ataque do pokemon  
+    char **nomeAtaques; 
 };
 
 struct listaPokemon{
@@ -76,6 +76,13 @@ void imprimeNomePokemon(Pokemon *p){
     //printf("ponteiro de funcao atk1 [%p]\n", p->ataques[0]);
     //printf("ponteiro de funcao atk2 [%p]\n", p->ataques[1]);
     //printf("ponteiro de funcao atk3 [%p]\n\n", p->ataques[2]);
+}
+
+void imprimeAtaquesPokemon(Pokemon *p){  
+    for(int i = 0; i < QTDATAQUESPOKEMON; i++){   
+        printf("%d- %s\n", i + 1, p->nomeAtaques[i]);
+    }
+
 }
 
 Pokemon* setHPAtual(Pokemon* p, float hpAtual){
@@ -254,17 +261,36 @@ float porcentagemDeVida(Pokemon *p){
 }
 
 Pokemon* restauraHPAposDormir(Pokemon* p){  
-    float HPMax = getHPMaximo(p);
-    p = setHPAtual(p, HPMax); 
-    return p;
+    if(p->turnosNumEstado[FULLHP] == 1){
+        float HPMax = getHPMaximo(p);
+        p = setHPAtual(p, HPMax); 
+        return p;
+    }
 }
 
 int estaImune(Pokemon *defensor){
     if(defensor->estados[PROTEGIDO] == 1 || defensor->estados[ESCONDER] == 1){
         return 1;
     }
-
     return 0;
 }
 
 
+void imprimeAtaque(Pokemon* pokemon, int pos){
+    printf("%s\n", pokemon->nomeAtaques[pos - 1]);
+}
+
+char* getNomePokemon(Pokemon* pokemon){
+    char* nome;
+    nome = strdup(pokemon->nome);
+    return nome;
+}
+
+char* getNomeAtaque(Pokemon* pokemon, int posVetor){
+    char* nomeAtaque = strdup(pokemon->nomeAtaques[posVetor]);
+    return nomeAtaque;
+}
+
+fptrAtaque getPonteiroAtaque(Pokemon *pokemon, int posVetor){
+    return pokemon->ataques[posVetor];
+}

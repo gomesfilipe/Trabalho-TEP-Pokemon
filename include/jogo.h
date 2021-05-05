@@ -11,6 +11,7 @@
 #include "pokemons/steelix.h"
 #include "pokemons/venusaur.h"
 #include "jogador.h"
+#include "telas.h"
 
 #define QTDPOKEMONS 6
 
@@ -76,6 +77,8 @@ Pokemon* sorteiaPokemon();
 
 /**
  * @brief Sorteia um dos ataques de um determinado pokemon para o computador jogar contra o usuário.
+ * Também colocamos aqui parte da impressao do ataque do computador pois não havia como capturar a referencia do numero aleatório
+ * que era necessário para imprimir o ataque do computador, pois essa função já retorna um ponteiro de função.
  * @param p Pokemon que terá um de seus ataques sorteado.
  * @return Ponteiro da função do ataque que será sorteado.
  **/

@@ -38,8 +38,17 @@ typedef void (*fptrAtaque) (Pokemon*, Pokemon*);
 **/
 Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int tipo, fptrAtaque atk1, fptrAtaque atk2, fptrAtaque atk3, char *nomeAtk1, char *nomeAtk2, char *nomeAtk3);
 
-//! funcao para testes, excluir depois
+/**
+ * @brief Imprime o nome de um pokemon.
+ * @param p Pokemon que terá seu nome impresso.
+ **/
 void imprimeNomePokemon(Pokemon *p);
+
+/**
+ * @brief Imprime os nomes dos ataques de um pokemon.
+ * @param p Pokemon que terá seus ataques impressos.
+ **/
+void imprimeAtaquesPokemon(Pokemon *p);
 
 /**
  * @brief Atualiza o campo "hpAtual" de um dado pokemon.
@@ -240,12 +249,41 @@ void ataque(int code, Pokemon *atacante, Pokemon *defensor);
  **/
 Pokemon* getPrimeiroPokemon(Lista* lista);
 
-
 /**
  *@brief Verifica se um pokemon esta imune a ataques.
  @param defensor É o pokemon que verificaremos se está imune.
  @return Retorna 1 se o pokemon estiver imune e 0 caso não esteja imune.
 **/
 int estaImune(Pokemon *defensor);
+
+/**
+ *@brief Imprime um determinado ataque de um pokemon.
+ @param pokemon É o pokemon que terá um de seus ataques impressos. 
+ @param pos É posição do vetor que queremos imprimir o ataque.
+**/
+void imprimeAtaque(Pokemon* pokemon, int pos);
+
+/**
+ * @brief Captura o nome de um pokemon.
+ * @param pokemon É o pokemon que terá seu nome capturado.
+ * @return Ponteiro de char que aponta para a primeira posição da string desejada.
+**/
+char* getNomePokemon(Pokemon* pokemon);
+
+/**
+ * @brief Captura o nome do ataque de um pokemon numa posição específica do seu vetor de nomes de ataques.
+ * @param pokemon É o pokemon que terá um dos nomes de seus ataques capturado.
+ * @return Ponteiro de char que aponta para a primeira posição da string desejada.
+**/
+char* getNomeAtaque(Pokemon* pokemon, int posVetor);
+
+/**
+ * @brief Captura o ponteiro de uma função de ataque numa posição específica do vetor de ataques de um pokemon.
+ * @param pokemon Pokemon que terá um de seus ponteiros de função de ataque capturado.
+ * @param posVetor Posição do ponteiro de função de ataque no vetor de ataques.
+ * @return Ponteiro de função de ataque desejado.
+ **/
+fptrAtaque getPonteiroAtaque(Pokemon *pokemon, int posVetor);
+
 
 #endif

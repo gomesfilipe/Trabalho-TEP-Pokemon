@@ -53,7 +53,7 @@ void ondaDeChoque(Pokemon *pikachu, Pokemon *defensor){
 }
 
 void baterPikachu(Pokemon *pikachu, Pokemon *defensor){
-    if(estaImune(defensor == 0)){
+    if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
         

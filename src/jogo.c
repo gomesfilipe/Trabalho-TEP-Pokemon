@@ -3,10 +3,10 @@
 void iniciaTabelaCriacaoPokemons(){
     inicPokemons[BLASTOISE] = criaBlastoise;
     inicPokemons[CHARIZARD] = criaCharizard;
-    inicPokemons[MEW] = criaMew;
+    inicPokemons[VENUSAUR] = criaVenusaur;
     inicPokemons[PIKACHU] = criaPikachu;
     inicPokemons[STEELIX] = criaSteelix;
-    inicPokemons[VENUSAUR] = criaVenusaur;
+    inicPokemons[MEW] = criaMew;
 }
 
 Pokemon* escolhePokemon(int code){
@@ -65,9 +65,17 @@ float calculaDano(float A, float D, float poder, float critico, float MT, float 
 
 
 Pokemon* sorteiaPokemon(){ 
-    int aleatorio = rand() % QTDPOKEMONS; // Escolhe um numero de 0 a 5.
-    Pokemon *p = escolhePokemon(aleatorio);
-    return p;
+    float random = (float)rand()/(float)(RAND_MAX);
+    if(random <= 1.0 / 128.0){ // Sorteando ou não o mew.
+        Pokemon *mew = criaMew();
+        return mew;
+    
+    } else{ // Se não for o mew, sorteia entre os pokemons restantes.
+        int aleatorio = rand() % (QTDPOKEMONS - 1); // Escolhe um numero de 0 a 4, pois estamos excluindo o mew nesse caso.
+        Pokemon *p = escolhePokemon(aleatorio);
+        return p;
+    }
+
 }
 
 fptrAtaque sorteiaAtaque(Pokemon *p){ 
@@ -78,8 +86,6 @@ fptrAtaque sorteiaAtaque(Pokemon *p){
     imprimeAtaque(p, aleatorio + 1);
     return atk;
 }
-
-
 
 Pokemon* sofreQueimar(Pokemon *p){  
     int queimando = getEstado(p, QUEIMAR);
@@ -136,8 +142,8 @@ int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
             int qtdPokemons = getQtdPokemons(jogador);
             qtdPokemons--;
             jogador = setQtdPokemons(jogador, qtdPokemons);
-            jogador = morrePokemon(jogador); //TODO JOGAR PRA FORA
-            destroiPokemon(defensor); //TODO JOGAR PRA FORA
+            //jogador = morrePokemon(jogador);
+            //destroiPokemon(defensor);
             
             if(qtdPokemons > 0){ // Ainda não é o último pokemon.
                 int qtdVitorias = getQtdVitorias(jogador);
@@ -159,7 +165,7 @@ int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
             int qtdPokemons = getQtdPokemons(jogador);
             qtdPokemons--;
             jogador = setQtdPokemons(jogador, qtdPokemons);
-            jogador = morrePokemon(jogador);
+            //jogador = morrePokemon(jogador);
             
                 if(qtdPokemons > 0){ // Ainda não é o último pokemon.
                     int qtdVitorias = getQtdVitorias(jogador);
@@ -266,7 +272,7 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador){
         int qtdPokemons = getQtdPokemons(jogador);
         qtdPokemons--;
         jogador = setQtdPokemons(jogador, qtdPokemons);
-        jogador = morrePokemon(jogador);
+        //jogador = morrePokemon(jogador);
         //destroiPokemon(atacante);
         
         if(qtdPokemons > 0){
@@ -299,12 +305,6 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador){
     }
 }
 
-
-
-//int aleatorio = rand();  //sorteio entre 0 e RAND_MAX
-//int aleatorio = rand()% 10 ;  //sorteio entre 0 e 9
-//float aleatorio = (float)rand()/(float)(RAND_MAX); //calcula a probabilidade de sortear um  numero entre 0 e RAND_MAX
-
 int fogeOuNao(){
     int aleatorio = rand() % 16;
     if(aleatorio == 1){ //Número arbitrário para fazer a comparação. Nesse caso, a probabilidade de sortear 1 é 1/16, que é a probabilidade desejada.
@@ -313,10 +313,10 @@ int fogeOuNao(){
     return 0;
 }  
 
-
-void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador){
+void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador, Lista* listaPC){
     //destroiJogador(jogador);
     destroiPokemon(pokemonDoComputador);
+    destroiLista(listaPC);
     menuInicial();
 }
 
@@ -338,5 +338,3 @@ Lista* criaListaPokemonsTela(){
 
     return lista;
 }
-
-

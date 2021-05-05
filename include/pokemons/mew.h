@@ -40,6 +40,9 @@ void baterMew(Pokemon *mew, Pokemon *defensor);
  **/
 void autoDestruir(Pokemon *mew, Pokemon *defensor);
 
+/**
+ * @brief Inicializa o vetor de ponteiros de função que possui as funções de todos os ataques disponíveis do jogo.
+ **/
 void inicializaVetorComTodosAtaques();
 
 #endif

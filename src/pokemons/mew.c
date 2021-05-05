@@ -10,7 +10,7 @@ Pokemon* criaMew(){
 }
 
 void metronomo(Pokemon *mew, Pokemon *defensor){
-    int aleatorio = rand() % 13;
+    int aleatorio = ImprimeAtaqueMetronomo();
     fptrAtaque ataqueMew = todosAtaques[aleatorio];
     ataqueMew(mew, defensor);   
 }

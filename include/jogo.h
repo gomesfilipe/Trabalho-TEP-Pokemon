@@ -32,10 +32,10 @@ typedef Pokemon* (*fptrInic) (); // Vetor de ponteiros de função com as funç�
 //enum personagens{BLASTOISE = 0, CHARIZARD, MEW, PIKACHU, STEELIX, VENUSAUR};
 #define BLASTOISE 0
 #define CHARIZARD 1
-#define MEW 2
+#define VENUSAUR 2
 #define PIKACHU 3
 #define STEELIX 4
-#define VENUSAUR 5
+#define MEW 5
 
 fptrInic inicPokemons[QTDPOKEMONS];
 
@@ -151,5 +151,13 @@ void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador);
  * @return Lista de pokemons com todos os pokemons existentes no jogo.
  **/
 Lista* criaListaPokemonsTela();
+
+/**
+ *@brief Captura o nome de um jogador.
+ *@param jogador É o jogador que terá seu nome capturado.
+ @return Ponteiro que aponta para a primeira posição da string do nome do jogador.
+**/
+char* getNomeJogador(Jogador* jogador);
+
 
 #endif

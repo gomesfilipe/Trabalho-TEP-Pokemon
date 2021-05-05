@@ -5,17 +5,19 @@
 #include "jogador.h"
 #include "jogo.h"
 #include "utils.h"
+#include <unistd.h>
 
 #define TAM 100
-
+#define TIME 2
 
 /**
  *@brief Função que realiza a batalha, chama o ataque do jogador e o ataque do computador. Caso o jogador vença a batalha,
  essa função é chamada novamente. Esse ciclo só encerra quando o último  pokemon do jogador está com 0 de HP e chamamos a função GAMEOVER.
  @param jogador É jogador que batalhará com o computador.
+ @param listaPC Lista de pokemons do computador.
 **/
 
-void batalha(Jogador* jogador);
+void batalha(Jogador* jogador, Lista *listaPC);
 
 /**
  * 
@@ -74,5 +76,11 @@ void imprimeAtaqueJogador(Pokemon *pokemonJogador, Pokemon *pokemonDoPC, int num
  * @param pokemonDoPC Pokemon do computador que terá HP impresso na tela.
  **/
 void imprimeHPs(Pokemon *pokemonJogador, Pokemon *pokemonDoPC);
+
+/**
+ *@brief Imprime o nome de um ataque que o metronomo sorteou.
+ *@return Retorna o numero de qual ataque o metronomo sorteou. 
+**/
+int ImprimeAtaqueMetronomo();
 
 #endif

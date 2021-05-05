@@ -54,6 +54,10 @@ int getQtdVitorias(Jogador* jogador){
     return jogador->qtdVitorias;
 }
 
+char* getNomeJogador(Jogador* jogador){
+    return jogador->nome;
+}
+
 Jogador* setQtdPokebolas(Jogador* jogador , int qtdPokebolas){
     jogador->qtdPokebolas = qtdPokebolas;
 }

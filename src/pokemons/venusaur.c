@@ -10,7 +10,7 @@ Pokemon* criaVenusaur(){
 }
 
 void poDeSono(Pokemon *venusaur, Pokemon *defensor){
-    if(estaImune(defensor)){
+    if(estaImune(defensor) == 0){
         int turnosDormindo = rand() % 3;
         defensor = setEstado(defensor, DORMIR, 1);
         defensor = setEstado(defensor, NORMAL, 0);
@@ -47,7 +47,7 @@ void bombaDeSemente(Pokemon *venusaur, Pokemon *defensor){
 }
 
 void doisGumes(Pokemon *venusaur, Pokemon *defensor){
-    if(estaImune(defensor) == 0) {
+    if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
         float A = getAtaque(venusaur);

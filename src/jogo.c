@@ -101,7 +101,7 @@ int podeJogar(Pokemon *atacante){
     estado[FULLHP] = getEstado(atacante, FULLHP);
     estado[PROTEGIDO] = getEstado(atacante, PROTEGIDO);
 
-    if(estado[DORMIR] == 0 && estado[PARALISAR]== 0 && estado[ESCONDER] == 0 && estado[FULLHP]== 0 && estado[PROTEGIDO]==0){
+    if(estado[DORMIR] == 0 && estado[PARALISAR]== 0 && estado[ESCONDER] == 0){
         return 1;
     }
 
@@ -136,8 +136,8 @@ int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
             int qtdPokemons = getQtdPokemons(jogador);
             qtdPokemons--;
             jogador = setQtdPokemons(jogador, qtdPokemons);
-            jogador = morrePokemon(jogador);
-            destroiPokemon(defensor);
+            jogador = morrePokemon(jogador); //TODO JOGAR PRA FORA
+            destroiPokemon(defensor); //TODO JOGAR PRA FORA
             
             if(qtdPokemons > 0){ // Ainda não é o último pokemon.
                 int qtdVitorias = getQtdVitorias(jogador);
@@ -152,7 +152,7 @@ int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
             int qtdVitorias = getQtdVitorias(jogador);
             qtdVitorias++;
             jogador = setQtdVitorias(jogador, qtdVitorias);
-            destroiPokemon(defensor);
+            //destroiPokemon(defensor);
             return ATKMATOU;
         
         } else if(hpAtacante <= 0){ // Pokemon do jogador morreu.
@@ -178,8 +178,9 @@ int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
         int qtdPokebolas = getQtdPokebolas(jogador);
         qtdPokebolas--;
         jogador = setQtdPokebolas(jogador, qtdPokebolas);
+
         
-        if(vaiCapturarPokemonOuNao(defensor) == 1){
+        if(vaiCapturarPokemonOuNao(defensor) == 1 ){
             jogador = capturaPokemon(jogador, defensor);
             int qtdPokemons = getQtdPokemons(jogador);
             qtdPokemons++;
@@ -207,14 +208,14 @@ void transicaoEntreTurnos(Pokemon *p){
     turnosNumEstado[DORMIR] = getTurnosNumEstado(p, DORMIR);
     turnosNumEstado[PARALISAR] = getTurnosNumEstado(p, PARALISAR);
     turnosNumEstado[PROTEGIDO] = getTurnosNumEstado(p, PROTEGIDO);
-    turnosNumEstado[ESCONDER] = getTurnosNumEstado(p, ESCONDER);
+    //turnosNumEstado[ESCONDER] = getTurnosNumEstado(p, ESCONDER);
     turnosNumEstado[FULLHP] = getTurnosNumEstado(p, FULLHP);
 
     // Decrementando eles pois passou um turno.
     if(turnosNumEstado[DORMIR] > 0) turnosNumEstado[DORMIR]--;
     if(turnosNumEstado[PARALISAR] > 0) turnosNumEstado[PARALISAR]--;
     if(turnosNumEstado[PROTEGIDO] > 0) turnosNumEstado[PROTEGIDO]--;
-    if(turnosNumEstado[ESCONDER] > 0) turnosNumEstado[ESCONDER]--;
+    //if(turnosNumEstado[ESCONDER] > 0) turnosNumEstado[ESCONDER]--;
     
     if(turnosNumEstado[FULLHP] > 0){
         turnosNumEstado[FULLHP]--;
@@ -227,28 +228,28 @@ void transicaoEntreTurnos(Pokemon *p){
     estados[DORMIR] = getEstado(p, DORMIR);
     estados[PARALISAR] = getEstado(p, PARALISAR);
     estados[PROTEGIDO] = getEstado(p, PROTEGIDO);
-    estados[ESCONDER] = getEstado(p, ESCONDER);
+    //estados[ESCONDER] = getEstado(p, ESCONDER);
     estados[FULLHP] = getEstado(p, FULLHP);
 
     // Se o contador de turnos num estado cair pra 0, esse determinado estado acabou.
     if(turnosNumEstado[DORMIR] == 0) estados[DORMIR] = 0;
     if(turnosNumEstado[PARALISAR] == 0) estados[PARALISAR] = 0;
     if(turnosNumEstado[PROTEGIDO] == 0) estados[PROTEGIDO] = 0;
-    if(turnosNumEstado[ESCONDER] == 0) estados[ESCONDER] = 0;
+    //if(turnosNumEstado[ESCONDER] == 0) estados[ESCONDER] = 0;
     if(turnosNumEstado[FULLHP] == 0) estados[FULLHP] = 0;
 
     // Setando novos valores de turnos num estado.
     p = setTurnosNumEstado(p, DORMIR, turnosNumEstado[DORMIR]);
     p = setTurnosNumEstado(p, PARALISAR, turnosNumEstado[PARALISAR]);
     p = setTurnosNumEstado(p, PROTEGIDO, turnosNumEstado[PROTEGIDO]);
-    p = setTurnosNumEstado(p, ESCONDER, turnosNumEstado[ESCONDER]);
+    //p = setTurnosNumEstado(p, ESCONDER, turnosNumEstado[ESCONDER]);
     p = setTurnosNumEstado(p, FULLHP, turnosNumEstado[FULLHP]);
     
     // Setando novos valores dos estados do pokemon.
     p = setEstado(p, DORMIR, estados[DORMIR]);
     p = setEstado(p, PARALISAR, estados[PARALISAR]);
     p = setEstado(p, PROTEGIDO, estados[PROTEGIDO]);
-    p = setEstado(p, ESCONDER, estados[ESCONDER]);
+    //p = setEstado(p, ESCONDER, estados[ESCONDER]);
     p = setEstado(p, FULLHP, estados[FULLHP]);
 }
 
@@ -266,7 +267,7 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador){
         qtdPokemons--;
         jogador = setQtdPokemons(jogador, qtdPokemons);
         jogador = morrePokemon(jogador);
-        destroiPokemon(atacante);
+        //destroiPokemon(atacante);
         
         if(qtdPokemons > 0){
             int qtdVitorias = getQtdVitorias(jogador);
@@ -290,7 +291,7 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador){
         int qtdVitorias = getQtdVitorias(jogador);
         qtdVitorias++;
         jogador = setQtdVitorias(jogador, qtdVitorias);
-        destroiPokemon(atacante);
+        //destroiPokemon(atacante);
         return ATKMORREU;
     
     } else{ // Ninguém morreu.
@@ -314,7 +315,7 @@ int fogeOuNao(){
 
 
 void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador){
-    destroiJogador(jogador);
+    //destroiJogador(jogador);
     destroiPokemon(pokemonDoComputador);
     menuInicial();
 }

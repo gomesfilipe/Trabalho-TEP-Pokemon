@@ -39,7 +39,7 @@ void armaDeAgua(Pokemon *blastoise, Pokemon *defensor){
 
 void proteger(Pokemon *blastoise, Pokemon *defensor){
     blastoise = setEstado(blastoise, PROTEGIDO, 1); 
-    blastoise = setTurnosNumEstado(blastoise, PROTEGIDO , 1);
+    blastoise = setTurnosNumEstado(blastoise, PROTEGIDO , 2);
     blastoise = setEstado(blastoise, NORMAL, 0);
 }
 

@@ -6,8 +6,19 @@ void batalha(Jogador* jogador){
     int vezJogador = 1;
     int direciona1;
     int direciona2;
+    int qtdPokebolas; 
     Pokemon *pokemonJogador; //= getPrimeiroPokemonDoJogador(jogador);
-    Pokemon *pokemonDoPC = sorteiaPokemon();
+    //lista de pokemons pc
+    int qtdVitorias = getQtdVitorias(jogador);
+    Lista *listaPC;
+    
+    if(qtdVitorias > 0){
+        Pokemon *pokemonDoPC = sorteiaPokemon();
+        listaPC = adicicionaFinalLista(listaPC, pokemonDoPC);
+    }
+    //cria a lista qtdVitoria = 0
+    //se qtdVitoria >0 adicona pokemon na lista
+    
     printf("Um ");
     imprimeNomePokemon(pokemonDoPC);
     printf(" selvagem aparece!\n\n");
@@ -17,8 +28,7 @@ void batalha(Jogador* jogador){
         if(podeJogar(pokemonJogador) == 1 || vezJogador == 0){
             if(vezJogador == 1){
                 
-                printf("Vez do jogador:\n");
-                printf("Digite um numero de 1 a 5:\n");
+                printf("\nVez do jogador:\n");
                 imprimeMenuAtaque(jogador, pokemonDoPC);
                 
                 scanf("%s", escolheAtaqueDoJogadorChar);
@@ -27,21 +37,25 @@ void batalha(Jogador* jogador){
                     printf("Escolha uma opcao valida!\n");
                     continue; 
                 }
+                if(escolheAtaqueDoJogador == 4 ){
+                    qtdPokebolas = getQtdPokebolas(jogador);
+                    if(qtdPokebolas <= 0 ){
+                        printf("Voce nao tem pokebolas suficientes para realizar essa acao!\n");
+                        printf("Jogue novamente!\n");
+                        vezJogador = 1;
+                        continue;
+                    }
+                }
             
                 direciona1 = jogadorAtaca(pokemonDoPC, escolheAtaqueDoJogador, jogador);          
                 pokemonDoPC = sofreQueimar( pokemonDoPC );
-                imprimeAtaqueJogador(pokemonJogador, pokemonDoPC, escolheAtaqueDoJogador);
+                imprimeAtaqueJogador(pokemonJogador, pokemonDoPC, escolheAtaqueDoJogador); 
                 transicaoEntreTurnos(pokemonJogador);
             }
           
             if(direciona1 == ATKNORMAL || direciona1 == NAOCAPTUROU || direciona1 == NAOFUGIU || direciona1 == ATKMORREU || vezJogador == 0){
-                if(vezJogador == 0){
-                    vezJogador = 1;
-                } else if(vezJogador == 1){
-                    vezJogador = 0;
-                }
-                
-                printf("Vez do computador:\n");
+                vezJogador = 1;
+                printf("\nVez do computador:\n");
                 if(podeJogar(pokemonDoPC) == 1){
                     direciona2 = computadorAtaca(pokemonDoPC, jogador); 
                     pokemonJogador = sofreQueimar(pokemonJogador);
@@ -57,19 +71,20 @@ void batalha(Jogador* jogador){
                         jogador = morrePokemon(jogador);
                         continue;
                     }
-                    else if(direciona2 == GAMEOVER ){
+                    else if(direciona2 == GAMEOVER){
                         printf("Todos os seus pokemons foram derrotados! GAME OVER!\n");
-                        
+                        jogador = morrePokemon(jogador);
                         gameOver(jogador, pokemonDoPC);
 
                     }else if(direciona2 == ATKMORREU || direciona2 == ATKMATOUMORREU ){
+                        destroiPokemon(pokemonDoPC);
                         batalha(jogador);
                     }
                 }else{
                     printf("Computador nao pode atacar!\n");
-                    imprimeEstadoQuandoNaoPodeJogar(pokemonDoPC);
+                    imprimeEstadoQuandoNaoPodeJogar(pokemonDoPC, pokemonJogador);
                   
-                    pokemonJogador = sofreQueimar( pokemonJogador );
+                    pokemonJogador = sofreQueimar(pokemonJogador);
                     transicaoEntreTurnos(pokemonDoPC);
             
                     //getc(stdin);
@@ -85,9 +100,9 @@ void batalha(Jogador* jogador){
             }
         }else{
             printf("Voce nao pode atacar!\n");
-            imprimeEstadoQuandoNaoPodeJogar(pokemonJogador);
+            imprimeEstadoQuandoNaoPodeJogar(pokemonJogador, pokemonDoPC);
             pokemonDoPC = sofreQueimar(pokemonDoPC);
-            transicaoEntreTurnos(pokemonDoPC);
+            transicaoEntreTurnos(pokemonJogador);
             if(vezJogador == 1){
                 vezJogador = 0;
             }
@@ -159,6 +174,9 @@ void jogar(){
                     else if(tamListaJogador == QTDPOKEMONSINICIAIS){ // Quando a lista de pokemons chega a 3, finalmente cria o jogador.
                         listaJogador = adicicionaFinalLista(listaJogador, escolhido);
                         jogador = criaJogador(nome, listaJogador);
+                        Pokemon *pokemonDoPC = sorteiaPokemon();
+                        Lista *listaPC = criaLista(pokemonDoPC);
+                        //!
                         batalha(jogador);
                     }
                 }  
@@ -198,7 +216,7 @@ void limpaTela(){
     system("clear"); // clear pra linux, cls pra windows.
 }
 
-void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon){
+void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon, Pokemon *defensor){
     int dormir = getEstado(pokemon, DORMIR);
     int paralisar = getEstado(pokemon, PARALISAR);
     int esconder = getEstado(pokemon, ESCONDER);
@@ -211,8 +229,12 @@ void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon){
         printf(" esta paralisado!\n");
     }
     else if(esconder == 1){
-        printf("Segundo turno do ataque cavar!\n");
+        printf("Segundo turno do ataque cavar!\n\n"); 
+        
+        cavar(pokemon,defensor);
     }
+
+    imprimeHPs(pokemon, defensor);  //olhar dnv steelix vs steelix
 }
 
 void imprimeMenuAtaque(Jogador *jogador, Pokemon* pokemonDoPC){

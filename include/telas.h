@@ -48,8 +48,10 @@ void limpaTela();
 /**
  * @brief Imprime os motivos de um pokemon não poder efetuar um ataque, seja devido a estar paralisado, dormindo ou escondido.
  * @param pokemon Pokemon que terá seus motivos impressos.
+ * @param defensor Pokemon que defenderá no ataque cavar do steelix. Foi necessário colocar essa parametro para fazer o controle correto
+ * de quando steelix não pode jogar, mas mesmo assim aplica o dano do seu ataque cavar.
  **/
-void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon);
+void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon, Pokemon *defensor);
 
 /**
  * @brief Imprime o menu de ataque, mostrando ao usuário o HP dos pokemons e suas opções de movimentos para jogar.

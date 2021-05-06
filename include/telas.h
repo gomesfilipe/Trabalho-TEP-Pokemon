@@ -15,9 +15,10 @@
  essa função é chamada novamente. Esse ciclo só encerra quando o último  pokemon do jogador está com 0 de HP e chamamos a função GAMEOVER.
  @param jogador É jogador que batalhará com o computador.
  @param listaPC Lista de pokemons do computador.
+ @param f Ponteiro que apontará para o arquivo de log de batalhas.
 **/
 
-void batalha(Jogador* jogador, Lista *listaPC);
+void batalha(Jogador* jogador, Lista *listaPC, FILE *f);
 
 /**
  * 
@@ -67,8 +68,9 @@ void imprimeMenuAtaque(Jogador *jogador, Pokemon* pokemonDoPC);
  * @param pokemonJogador Pokemon do jogador.
  * @param pokemonDoPC Pokemon do computador.
  * @param numAtk Número do ataque do pokemon em seu vetor de ponteiros de funções de ataque.
+ *@param f Ponteiro que aponta para o arquivo de log de batalhas.
  **/
-void imprimeAtaqueJogador(Pokemon *pokemonJogador, Pokemon *pokemonDoPC, int numAtk);
+void imprimeAtaqueJogador(Pokemon *pokemonJogador, Pokemon *pokemonDoPC, int numAtk, FILE *f);
 
 /**
  * @brief Imprime os HPS dos pokemons que estão batalhando.

@@ -15,8 +15,6 @@ void batalha(Jogador* jogador, Lista *listaPC){
         pokemonDoPC = sorteiaPokemon();
         listaPC = adicicionaFinalLista(listaPC, pokemonDoPC);
     }
-    
-    gameOver(jogador, pokemonDoPC, listaPC);
    
     printf("Um ");
     imprimeNomePokemon(pokemonDoPC);
@@ -98,7 +96,7 @@ void batalha(Jogador* jogador, Lista *listaPC){
                     else if(direciona2 == GAMEOVER){
                         printf("Todos os seus pokemons foram derrotados! GAME OVER!\n");
                         jogador = morrePokemon(jogador);
-                        gameOver(jogador, pokemonDoPC, listaPC);
+                        gameOver(jogador, listaPC);
                         getchar();
 
                     }else if(direciona2 == ATKMATOUMORREU){
@@ -126,7 +124,7 @@ void batalha(Jogador* jogador, Lista *listaPC){
 
             } else if(direciona1 == GAMEOVER){
                 jogador = morrePokemon(jogador);
-                gameOver(jogador, pokemonDoPC, listaPC);
+                gameOver(jogador, listaPC);
 
             } else if(direciona1 == FUGIU || direciona1 == CAPTUROU || direciona1 == ATKMATOU){
                 if(direciona1 == CAPTUROU  || direciona1 == FUGIU){
@@ -272,7 +270,7 @@ void menuInicial(){
 }   
 
 void limpaTela(){
-    //system("clear"); // clear pra linux, cls pra windows.
+    system("clear"); // clear pra linux, cls pra windows.
 }
 
 void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon, Pokemon *defensor){

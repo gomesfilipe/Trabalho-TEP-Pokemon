@@ -288,12 +288,12 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador){
     } else if(hpDefensor <= 0){ // Pokemon do jogador morreu.
         int qtdPokemons = getQtdPokemons(jogador);
         qtdPokemons--;
+        jogador = setQtdPokemons(jogador, qtdPokemons);
+        
         if(qtdPokemons <= 0){
             return GAMEOVER;
         }
 
-        jogador = setQtdPokemons(jogador, qtdPokemons);
-        
         //jogador = morrePokemon(jogador);
         return ATKMATOU;
     
@@ -317,12 +317,10 @@ int fogeOuNao(){
     return 0;
 }  
 
-void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador, Lista* listaPC){
+void gameOver(Jogador* jogador, Lista* listaPC){
     destroiJogador(jogador);
-    //destroiPokemon(pokemonDoComputador);
     destroiLista(listaPC);
     menuInicial();
-    exit(0);
 }
 
 Lista* criaListaPokemonsTela(){

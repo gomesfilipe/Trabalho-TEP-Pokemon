@@ -15,6 +15,8 @@ void batalha(Jogador* jogador, Lista *listaPC){
         pokemonDoPC = sorteiaPokemon();
         listaPC = adicicionaFinalLista(listaPC, pokemonDoPC);
     }
+    
+    gameOver(jogador, pokemonDoPC, listaPC);
    
     printf("Um ");
     imprimeNomePokemon(pokemonDoPC);
@@ -96,7 +98,7 @@ void batalha(Jogador* jogador, Lista *listaPC){
                     else if(direciona2 == GAMEOVER){
                         printf("Todos os seus pokemons foram derrotados! GAME OVER!\n");
                         jogador = morrePokemon(jogador);
-                        gameOver(jogador, pokemonDoPC);
+                        gameOver(jogador, pokemonDoPC, listaPC);
                         getchar();
 
                     }else if(direciona2 == ATKMATOUMORREU){
@@ -124,7 +126,7 @@ void batalha(Jogador* jogador, Lista *listaPC){
 
             } else if(direciona1 == GAMEOVER){
                 jogador = morrePokemon(jogador);
-                gameOver(jogador, pokemonDoPC);
+                gameOver(jogador, pokemonDoPC, listaPC);
 
             } else if(direciona1 == FUGIU || direciona1 == CAPTUROU || direciona1 == ATKMATOU){
                 if(direciona1 == CAPTUROU  || direciona1 == FUGIU){
@@ -166,7 +168,7 @@ void melhoresPontuacoes(){
 }
 
 void sair(){
-    
+
 }
 
 void jogar(){
@@ -205,13 +207,13 @@ void jogar(){
                     float defesa = getDefesa(escolhidoAux);
                     float tipo = getTipo(escolhidoAux);
                     fptrAtaque atk1 = getPonteiroAtaque(escolhidoAux, 0);
-                    fptrAtaque atk2 = getPonteiroAtaque(escolhidoAux, 1);;
-                    fptrAtaque atk3 = getPonteiroAtaque(escolhidoAux, 2);;
+                    fptrAtaque atk2 = getPonteiroAtaque(escolhidoAux, 1);
+                    fptrAtaque atk3 = getPonteiroAtaque(escolhidoAux, 2);
                     char *nomeAtk1 = getNomeAtaque(escolhidoAux, 0);
                     char *nomeAtk2 = getNomeAtaque(escolhidoAux, 1);
-                    char *nomeAtk3 = getNomeAtaque(escolhidoAux, 2) ;
+                    char *nomeAtk3 = getNomeAtaque(escolhidoAux, 2);
+
                     Pokemon* escolhido = criaPokemon(nomePrimeiroPokemon, hpMax, ataque, defesa, tipo, atk1, atk2, atk3, nomeAtk1, nomeAtk2, nomeAtk3);
-                    
                     
                     listaPokemons = removePokemonQualquerLista(listaPokemons, botaoint, tamListaOpcoes);
                     tamListaOpcoes--; // Controlando tamanho das listas.
@@ -228,6 +230,7 @@ void jogar(){
                         jogador = criaJogador(nome, listaJogador);
                         Pokemon *pokemonDoPC = sorteiaPokemon();
                         Lista *listaPC = criaLista(pokemonDoPC);
+                        destroiLista(listaPokemons);
                         batalha(jogador, listaPC);
                     }
                 }  
@@ -239,14 +242,9 @@ void jogar(){
 void menuInicial(){
     char botao[TAM];
     int botaoint;
-    // printf("Menu Inicial\n");
-    // printf("Digite um numero de 1 a 3 para selecionar uma opcao.\n");
-    // printf("1- Jogar\n");
-    // printf("2- Melhores pontuacoes\n");
-    // printf("3- Sair\n");
 
     while(1){
-        limpaTela();
+        //limpaTela();
         printf("Menu Inicial\n");
         printf("Digite um numero de 1 a 3 para selecionar uma opcao.\n");
         printf("1- Jogar\n");
@@ -263,7 +261,8 @@ void menuInicial(){
             melhoresPontuacoes();
 
         } else if(botaoint == 3){
-            sair();
+            //sair();
+            exit(1);
 
         } else{
             printf("Escolha uma opcao valida.\n");
@@ -273,7 +272,7 @@ void menuInicial(){
 }   
 
 void limpaTela(){
-    system("clear"); // clear pra linux, cls pra windows.
+    //system("clear"); // clear pra linux, cls pra windows.
 }
 
 void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon, Pokemon *defensor){
@@ -385,7 +384,8 @@ int ImprimeAtaqueMetronomo(){
 //// imprimir na captura de pokemon e na fuga se foi fracasso ou sucesso
 //// ver se ainda falta getchar ou algo relacionado
 // fazer gameover
-
 // fazer classificacao e log de batalhas
 // fazer lista encadeada de jogadores
 // imprimir algo do tipo "voce esta na sua batalha x, partida y"
+// argc e argv
+// makefile

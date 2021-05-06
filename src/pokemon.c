@@ -7,10 +7,9 @@ struct pokemon{
     float ataque;   
     float defesa;   
     int estados[QTDESTADOS];  
-    int tipo;                
-    //int turnosSemJogar;
+    int tipo;               
     int turnosNumEstado[QTDESTADOS];   
-    fptrAtaque ataques[QTDATAQUESPOKEMON]; // Vetor para ponteiros de funções de ataque do pokemon  
+    fptrAtaque ataques[QTDATAQUESPOKEMON]; 
     char **nomeAtaques; 
 };
 
@@ -181,7 +180,7 @@ Lista* removePrimeiroLista(Lista *inicio){
 
 Lista* removePokemonQualquerLista(Lista *inicio, int pos, int tamLista){
     Lista *centro = inicio;
-    Lista *sucessor = centro->prox, *antecessor;
+    Lista *sucessor = centro->prox, *antecessor = NULL;
     int posAtual;
     for(posAtual = 1, centro = inicio; posAtual <= pos; posAtual++, centro = centro->prox, sucessor = sucessor->prox){
         if(posAtual == 1 && pos == 1){ // Caso seja o primeiro pokemon.
@@ -282,12 +281,14 @@ void imprimeAtaque(Pokemon* pokemon, int pos){
 
 char* getNomePokemon(Pokemon* pokemon){
     char* nome;
-    nome = strdup(pokemon->nome);
+    nome = pokemon->nome;
+    //nome = strdup(pokemon->nome);
     return nome;
 }
 
 char* getNomeAtaque(Pokemon* pokemon, int posVetor){
-    char* nomeAtaque = strdup(pokemon->nomeAtaques[posVetor]);
+    char* nomeAtaque = pokemon->nomeAtaques[posVetor];
+    //char* nomeAtaque = strdup(pokemon->nomeAtaques[posVetor]);
     return nomeAtaque;
 }
 

@@ -84,38 +84,18 @@ Jogador* setListaPokemons(Jogador *jogador, Lista *listaPokemons){
     return jogador;
 }
 
-Jogador* morrePokemon(Jogador* jogador){ //passar para o .h 
+Jogador* morrePokemon(Jogador* jogador){ 
     jogador->pokemons = removePrimeiroLista(jogador->pokemons);
     return jogador;
 }
 
-Jogador* capturaPokemon(Jogador* jogador, Pokemon *p){  //passar .h
-    float hpMax = getHPMaximo(p);//Quando captura um pokemom, seu HpAtual esta no máximo
+Jogador* capturaPokemon(Jogador* jogador, Pokemon *p){ 
+    float hpMax = getHPMaximo(p);//Quando captura um pokemon, seu HpAtual esta no máximo
     p = setHPAtual(p, hpMax);
     jogador->pokemons = adicicionaFinalLista(jogador->pokemons , p);
     return jogador;
 }
 
 
-// FUNCAO DE JOGADOR ATACA
-// tem que ver os estados que o pokemon esta
-/**
- * dormir e turnos sem jogar != 0, nao pode jogar
- * paralisar e turnos sem jogar != 0, nao pode jogar
- * esconder nao pode jogar
- * 
- * normal, pode jogar
- * queimar pode jogar
- * protegido pode jogar
- * fullhp e turnos sem jogar = 0, hp vai pra 100%
- **/
-//so pode tentar capturar o oponente se tiver pokebola e tbm fazer coisa da probabiblidade
-
-
-//enum estados {NORMAL = 0, DORMIR, QUEIMAR, PARALISAR, PROTEGIDO, ESCONDER, FULLHP};
-
-//no final chamar a função de capturar de capurar pokebola
-
-//OBS: nao fazer o controle de turnosNumEstado para o steelix, ja fizemos na funcao.
 
 

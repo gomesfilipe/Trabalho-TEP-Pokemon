@@ -142,8 +142,9 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador);
  * e direciona para o menu principal do jogo.
  * @param jogador Jogador da partida que será liberado da memória.
  * @param pokemonDoComputador Pokemon atual do computador que será liberado da memória.
+ *@param listaPC É a lista de pokemons do computador que será liberada da memória.
  **/
-void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador);
+void gameOver(Jogador* jogador, Pokemon* pokemonDoComputador, Lista* listaPC);
 
 /**
  * @brief Cria a lista de pokemons que possui todos que foram implementados. Essa função servirá de auxílio

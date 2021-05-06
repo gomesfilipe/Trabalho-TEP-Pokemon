@@ -289,7 +289,7 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador){
         int qtdPokemons = getQtdPokemons(jogador);
         qtdPokemons--;
         jogador = setQtdPokemons(jogador, qtdPokemons);
-        
+    
         if(qtdPokemons <= 0){
             return GAMEOVER;
         }

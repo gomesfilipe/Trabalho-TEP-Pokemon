@@ -381,7 +381,7 @@ int ImprimeAtaqueMetronomo(){
 //// resolver problema do nome do jogador, ta imprimindo nome do pokemon quando vence
 //// imprimir na captura de pokemon e na fuga se foi fracasso ou sucesso
 //// ver se ainda falta getchar ou algo relacionado
-// fazer gameover
+//// fazer gameover
 // fazer classificacao e log de batalhas
 // fazer lista encadeada de jogadores
 // imprimir algo do tipo "voce esta na sua batalha x, partida y"

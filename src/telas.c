@@ -27,7 +27,7 @@ void batalha(Jogador* jogador, Lista *listaPC){
         if(podeJogar(pokemonJogador) == 1 || vezJogador == 0){
             if(vezJogador == 1){
                 
-                printf("Vez do jogador:\n");
+                printf("Vez do jogador:\n\n");
                 imprimeMenuAtaque(jogador, pokemonDoPC);
                 
                 scanf("%s", escolheAtaqueDoJogadorChar);
@@ -74,7 +74,7 @@ void batalha(Jogador* jogador, Lista *listaPC){
 
                 vezJogador = 1;
                 limpaTela();
-                printf("Vez do computador:\n");
+                printf("Vez do computador:\n\n");
                 if(podeJogar(pokemonDoPC) == 1){
                     direciona2 = computadorAtaca(pokemonDoPC, jogador); 
                     pokemonJogador = sofreQueimar(pokemonJogador);
@@ -94,10 +94,10 @@ void batalha(Jogador* jogador, Lista *listaPC){
                         continue;
                     }
                     else if(direciona2 == GAMEOVER){
-                        printf("Todos os seus pokemons foram derrotados! GAME OVER!\n");
+                        printf("Todos os seus pokemons foram derrotados! GAME OVER!!!\n\n");
                         jogador = morrePokemon(jogador);
-                        gameOver(jogador, listaPC);
                         getchar();
+                        gameOver(jogador, listaPC);
 
                     }else if(direciona2 == ATKMATOUMORREU){
                         limpaTela();
@@ -242,7 +242,7 @@ void menuInicial(){
     int botaoint;
 
     while(1){
-        //limpaTela();
+        limpaTela();
         printf("Menu Inicial\n");
         printf("Digite um numero de 1 a 3 para selecionar uma opcao.\n");
         printf("1- Jogar\n");
@@ -382,6 +382,8 @@ int ImprimeAtaqueMetronomo(){
 //// imprimir na captura de pokemon e na fuga se foi fracasso ou sucesso
 //// ver se ainda falta getchar ou algo relacionado
 //// fazer gameover
+
+
 // fazer classificacao e log de batalhas
 // fazer lista encadeada de jogadores
 // imprimir algo do tipo "voce esta na sua batalha x, partida y"

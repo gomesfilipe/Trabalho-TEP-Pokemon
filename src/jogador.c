@@ -90,9 +90,22 @@ Jogador* morrePokemon(Jogador* jogador){
 }
 
 Jogador* capturaPokemon(Jogador* jogador, Pokemon *p){ 
-    float hpMax = getHPMaximo(p);//Quando captura um pokemon, seu HpAtual esta no máximo
-    p = setHPAtual(p, hpMax);
-    jogador->pokemons = adicicionaFinalLista(jogador->pokemons , p);
+    //float hpMax = getHPMaximo(p);
+    //p = setHPAtual(p, hpMax); //Quando captura um pokemon, seu HpAtual esta no máximo
+    char *nomePokemon = getNomePokemon(p);
+    float hpMax = getHPMaximo(p);
+    float ataque = getAtaque(p);
+    float defesa = getDefesa(p);
+    float tipo = getTipo(p);
+    fptrAtaque atk1 = getPonteiroAtaque(p, 0);
+    fptrAtaque atk2 = getPonteiroAtaque(p, 1);
+    fptrAtaque atk3 = getPonteiroAtaque(p, 2);
+    char *nomeAtk1 = getNomeAtaque(p, 0);
+    char *nomeAtk2 = getNomeAtaque(p, 1);
+    char *nomeAtk3 = getNomeAtaque(p, 2);
+
+    Pokemon* aux = criaPokemon(nomePokemon, hpMax, ataque, defesa, tipo, atk1, atk2, atk3, nomeAtk1, nomeAtk2, nomeAtk3);
+    jogador->pokemons = adicicionaFinalLista(jogador->pokemons , aux);
     return jogador;
 }
 

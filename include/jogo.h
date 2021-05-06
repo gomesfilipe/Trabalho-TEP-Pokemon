@@ -80,9 +80,10 @@ Pokemon* sorteiaPokemon();
  * Também colocamos aqui parte da impressao do ataque do computador pois não havia como capturar a referencia do numero aleatório
  * que era necessário para imprimir o ataque do computador, pois essa função já retorna um ponteiro de função.
  * @param p Pokemon que terá um de seus ataques sorteado.
+ * @param f Ponteiro que aponta para arquivo.
  * @return Ponteiro da função do ataque que será sorteado.
  **/
-fptrAtaque sorteiaAtaque(Pokemon *p);
+fptrAtaque sorteiaAtaque(Pokemon *p,  FILE* f);
 
 /**
  * @brief Aplica o dano de QUEIMAR caso o pokemon esteja neste estado.
@@ -133,17 +134,19 @@ int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador);
  * como retirar o pokemon da lista do jogador caso ele morra, controlar a quantidade de pokemons do jogador, etc.
  * @param atacante É o pokemon do computador que no momento está atacando.
  * @param jogador É o usuário que está possui o primeiro pokemon de sua lista sendo atacado.
+ * @param f Ponteiro que aponta para arquivo.
  * @return Um número inteiro entre 0 e 8 que indica o que aconteceu após o ataque, se a partida acabou, se matou o pokemon inimigo, etc.
 **/
-int computadorAtaca(Pokemon *atacante, Jogador *jogador);
+int computadorAtaca(Pokemon *atacante, Jogador *jogador,  FILE* f);
 
 /**
- * @brief Decreta o final de uma partida. Essa função libera da memória o jogador e o pokemon atual do computador
+ * @brief Decreta o final de uma partida. Essa função libera da memória a lista de pokemons do computador, o arquivo do log de batalhas
  * e direciona para o menu principal do jogo.
  * @param jogador Jogador da partida que será liberado da memória.
  * @param listaPC É a lista de pokemons do computador que será liberada da memória.
+ * @param f Ponteiro para o arquivo que será liberado da memória.
  **/
-void gameOver(Jogador* jogador, Lista* listaPC);
+void gameOver(Jogador* jogador, Lista* listaPC, FILE *f);
 
 /**
  * @brief Cria a lista de pokemons que possui todos que foram implementados. Essa função servirá de auxílio

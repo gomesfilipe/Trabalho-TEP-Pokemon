@@ -8,6 +8,11 @@ struct jogador{
     Lista *pokemons; //vetor de pokemons // usar lista encadeada nessa parte
 };
 
+struct listaJogadores{
+    Jogador *jogador;
+    struct listaJogadores *prox;
+};
+
 Jogador* criaJogador(char *nome, Lista *pokemons){
     Jogador *jogador = (Jogador*) malloc(sizeof(Jogador));
     jogador->nome = strdup(nome);
@@ -108,7 +113,3 @@ Jogador* capturaPokemon(Jogador* jogador, Pokemon *p){
     jogador->pokemons = adicicionaFinalLista(jogador->pokemons , aux);
     return jogador;
 }
-
-
-
-

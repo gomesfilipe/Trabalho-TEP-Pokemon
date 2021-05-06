@@ -41,8 +41,9 @@ Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int ti
 /**
  * @brief Imprime o nome de um pokemon.
  * @param p Pokemon que terá seu nome impresso.
+ * @param f Ponteiro para arquivo.
  **/
-void imprimeNomePokemon(Pokemon *p);
+void imprimeNomePokemon(Pokemon *p, FILE* f);
 
 /**
  * @brief Imprime os nomes dos ataques de um pokemon.
@@ -257,11 +258,12 @@ Pokemon* getPrimeiroPokemon(Lista* lista);
 int estaImune(Pokemon *defensor);
 
 /**
- *@brief Imprime um determinado ataque de um pokemon.
- @param pokemon É o pokemon que terá um de seus ataques impressos. 
- @param pos É posição do vetor que queremos imprimir o ataque.
+ * @brief Imprime um determinado ataque de um pokemon.
+ * @param pokemon É o pokemon que terá um de seus ataques impressos. 
+ * @param pos É posição do vetor que queremos imprimir o ataque.
+ * @param f Ponteiro que aponta para um arquivo.
 **/
-void imprimeAtaque(Pokemon* pokemon, int pos);
+void imprimeAtaque(Pokemon* pokemon, int pos, FILE *f);
 
 /**
  * @brief Captura o nome de um pokemon.

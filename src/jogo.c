@@ -78,12 +78,18 @@ Pokemon* sorteiaPokemon(){
 
 }
 
-fptrAtaque sorteiaAtaque(Pokemon *p){ 
+fptrAtaque sorteiaAtaque(Pokemon *p, FILE* f){ 
     int aleatorio = rand() % QTDATAQUESPOKEMON; // Escolhe um numero de 0 a 2.
-    fptrAtaque atk = getAtaquePokemon(p , aleatorio);//vetor de ataques na posicao aleatoria
-    imprimeNomePokemon(p);
-    printf(" usou ");
-    imprimeAtaque(p, aleatorio + 1);
+    fptrAtaque atk = getAtaquePokemon(p , aleatorio); // Vetor de ataques na posicao aleatoria.
+    fprintf(f, "\t"); // Imprimindo no log de batalhas.
+    imprimeNomePokemon(p, f);
+    fprintf(f," usa ");
+    imprimeAtaque(p, aleatorio + 1, f);
+    
+    printf("\t"); // Imprimindo no terminal.
+    imprimeNomePokemon(p, stdout);
+    fprintf(stdout," usa ");
+    imprimeAtaque(p, aleatorio + 1, stdout);
     return atk;
 }
 
@@ -259,8 +265,8 @@ void transicaoEntreTurnos(Pokemon *p){
     p = setEstado(p, FULLHP, estados[FULLHP]);
 }
 
-int computadorAtaca(Pokemon *atacante, Jogador *jogador){
-    fptrAtaque atk = sorteiaAtaque(atacante);
+int computadorAtaca(Pokemon *atacante, Jogador *jogador, FILE* f){
+    fptrAtaque atk = sorteiaAtaque(atacante, f);
     Pokemon *defensor = getPrimeiroPokemonDoJogador(jogador);
 
     atk(atacante, defensor);
@@ -317,9 +323,10 @@ int fogeOuNao(){
     return 0;
 }  
 
-void gameOver(Jogador* jogador, Lista* listaPC){
-    destroiJogador(jogador);
+void gameOver(Jogador* jogador, Lista* listaPC, FILE *f){
+    destroiJogador(jogador); //TODO TIRAR DEPOIS
     destroiLista(listaPC);
+    fclose(f);
     menuInicial();
 }
 

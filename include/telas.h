@@ -70,19 +70,27 @@ void imprimeMenuAtaque(Jogador *jogador, Pokemon* pokemonDoPC);
  * @param numAtk Número do ataque do pokemon em seu vetor de ponteiros de funções de ataque.
  *@param f Ponteiro que aponta para o arquivo de log de batalhas.
  **/
-void imprimeAtaqueJogador(Pokemon *pokemonJogador, Pokemon *pokemonDoPC, int numAtk, FILE *f);
+void imprimeAtaqueJogador(Pokemon *pokemonJogador, Pokemon *pokemonDoPC, int numAtk,  FILE *f);
 
 /**
  * @brief Imprime os HPS dos pokemons que estão batalhando.
  * @param pokemonJogador Pokemon do jogador que terá HP impresso na tela.
  * @param pokemonDoPC Pokemon do computador que terá HP impresso na tela.
+ *@param f Ponteiro que aponta para o arquivo de log de batalhas.
  **/
-void imprimeHPs(Pokemon *pokemonJogador, Pokemon *pokemonDoPC);
+void imprimeHPs(Pokemon *pokemonJogador, Pokemon *pokemonDoPC,  FILE *f);
 
 /**
  *@brief Imprime o nome de um ataque que o metronomo sorteou.
  *@return Retorna o numero de qual ataque o metronomo sorteou. 
 **/
 int ImprimeAtaqueMetronomo();
+
+/**
+*@brief Imprime os estados(paralizado, dormindo e/ou queimando) de um pokemon no log de batalhas.
+*@param p Pokemon que terá seus estados imprimessos.
+*@param f Ponteiro que aponta para o arquivo de log de batalhas.
+**/
+void imprimeEstadosLog(Pokemon *p, FILE *f);
 
 #endif

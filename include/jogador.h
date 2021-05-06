@@ -10,6 +10,8 @@
 
 typedef struct jogador Jogador;
 
+//typedef struct 
+
 /**
  * @brief Cria um jogador
  * @param nome É o nome do jogador.

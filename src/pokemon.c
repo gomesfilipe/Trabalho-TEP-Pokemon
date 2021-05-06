@@ -48,8 +48,8 @@ Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int ti
     return p;
 }
 
-void imprimeNomePokemon(Pokemon *p){
-    printf("%s", p->nome);
+void imprimeNomePokemon(Pokemon *p, FILE* f){
+    fprintf(f, "%s", p->nome);
     // printf("hp max [%.2f]\n", p->hpMax);
     // printf("hp Atual [%.2f]\n", p->hpAtual);
     //printf("ataque [%.2f]\n", p->ataque);
@@ -79,7 +79,7 @@ void imprimeNomePokemon(Pokemon *p){
 
 void imprimeAtaquesPokemon(Pokemon *p){  
     for(int i = 0; i < QTDATAQUESPOKEMON; i++){   
-        printf("%d- %s\n", i + 1, p->nomeAtaques[i]);
+        printf("\t%d- %s\n", i + 1, p->nomeAtaques[i]);
     }
 
 }
@@ -95,10 +95,7 @@ Pokemon* setEstado(Pokemon *p, int posVetor, int valor){
 }
 
 Pokemon* setTurnosNumEstado(Pokemon *p, int posVetor, int turnosNumEstado){
-    //if(turnosNumEstado > p->turnosNumEstado[posVetor]){
-        p->turnosNumEstado[posVetor] = turnosNumEstado;
-    //}
-    
+    p->turnosNumEstado[posVetor] = turnosNumEstado;
     return p;
 }
 
@@ -224,8 +221,8 @@ void imprimeListaDePokemons(Lista* inicio){
     Lista* aux;
     int i = 1;
     for(aux=inicio; aux != NULL; aux= aux->prox){
-        printf("%d- ", i);
-        imprimeNomePokemon(aux->pokemon);
+        printf("\t%d- ", i);
+        imprimeNomePokemon(aux->pokemon, stdout);
         printf("\n");
         i++;
     }
@@ -275,8 +272,8 @@ int estaImune(Pokemon *defensor){
 }
 
 
-void imprimeAtaque(Pokemon* pokemon, int pos){
-    printf("%s\n", pokemon->nomeAtaques[pos - 1]);
+void imprimeAtaque(Pokemon* pokemon, int pos, FILE *f){
+    fprintf(f,"%s\n", pokemon->nomeAtaques[pos - 1]);
 }
 
 char* getNomePokemon(Pokemon* pokemon){
@@ -284,6 +281,7 @@ char* getNomePokemon(Pokemon* pokemon){
     nome = pokemon->nome;
     //nome = strdup(pokemon->nome);
     return nome;
+   
 }
 
 char* getNomeAtaque(Pokemon* pokemon, int posVetor){

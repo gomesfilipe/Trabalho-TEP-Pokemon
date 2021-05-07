@@ -115,6 +115,8 @@ Jogador* capturaPokemon(Jogador* jogador, Pokemon *p){
     char *nomeAtk2 = getNomeAtaque(p, 1);
     char *nomeAtk3 = getNomeAtaque(p, 2);
 
+    jogador->qtdVitorias++; 
+
     Pokemon* aux = criaPokemon(nomePokemon, hpMax, ataque, defesa, tipo, atk1, atk2, atk3, nomeAtk1, nomeAtk2, nomeAtk3);
     jogador->pokemons = adicicionaFinalLista(jogador->pokemons , aux);
     return jogador;
@@ -171,18 +173,40 @@ int getTamanhoListaJogadores(listaJog *lista){
 }
 
 void ordenaListaJogadores(listaJog *lista){
-    celulaJogador *i, *j;
-    celulaJogador *aux;
-    for(i = lista->primeiro; i != NULL;  i=  i->prox){
+    celulaJogador *i, *j; 
+    Jogador* aux;
+    
+    for(i = lista->primeiro; i != NULL;  i =  i->prox){
         for(j = i->prox; j != NULL   ; j = j->prox){
             if(i->jogador->qtdVitorias < j->jogador->qtdVitorias){
-                aux = i;
+                //aux->jogador = i->jogador;
+                aux = i->jogador;
                 i->jogador = j->jogador;
-                j->jogador = aux->jogador;
+                j->jogador = aux;
+            }
+        }
+    }
+
+    OrdenaListaJogadoresNome(lista);
+}
+
+void OrdenaListaJogadoresNome(listaJog *lista){
+    celulaJogador *i, *j; 
+    Jogador* aux;
+ 
+    for(i = lista->primeiro; i != NULL;  i =  i->prox){
+        for(j = i->prox; j != NULL   ; j = j->prox){
+            if(i->jogador->qtdVitorias ==  j->jogador->qtdVitorias){ //vamos ordenar por nome depois de ja ter ordenado por pontuacao
+                if(strcmp(i->jogador->nome , j->jogador->nome) < 0){ //nome de j é menor alfabeticamente
+                    aux = j->jogador;
+                    j->jogador = i->jogador;
+                    i->jogador = aux;
+                }   
             }
         }
     }
 }
+
 
 void imprimeListaJogadores(listaJog *lista, FILE *f){ // Imprime no arquivo de pontuações.
     celulaJogador *aux;

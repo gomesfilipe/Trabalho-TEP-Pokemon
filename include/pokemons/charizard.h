@@ -16,21 +16,24 @@ Pokemon* criaCharizard();
  * @brief Aplica o ataque Lança Chamas.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void lancaChamas(Pokemon *charizard, Pokemon *defensor);
+void lancaChamas(Pokemon *charizard, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Aplica o ataque Dormir.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+* @param f Ponteiro para arquivo.
  **/
-void dormirCharizard(Pokemon* charizard, Pokemon* defensor);
+void dormirCharizard(Pokemon* charizard, Pokemon* defensor, FILE *f);
 
 /**
  * @brief Aplica o ataque Bater.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void baterCharizard(Pokemon *charizard, Pokemon *defensor);
+void baterCharizard(Pokemon *charizard, Pokemon *defensor, FILE *f);
 
 #endif

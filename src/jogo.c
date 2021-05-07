@@ -134,12 +134,12 @@ int vaiCapturarPokemonOuNao(Pokemon *p){
     }
 } 
 
-int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
+int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador, FILE *f){
     Pokemon* atacante = getPrimeiroPokemonDoJogador(jogador); //! ficar atento aqui
     
     if(escolheAtaque == 1 || escolheAtaque == 2 || escolheAtaque == 3){
         fptrAtaque atk = getAtaquePokemon(atacante, escolheAtaque - 1);
-        atk(atacante, defensor);
+        atk(atacante, defensor, f);
 
         float hpAtacante = getHPAtual(atacante);
         float hpDefensor = getHPAtual(defensor);
@@ -174,9 +174,9 @@ int jogadorAtaca(Pokemon* defensor, int escolheAtaque, Jogador* jogador){
             //jogador = morrePokemon(jogador);
             
                 if(qtdPokemons > 0){ // Ainda não é o último pokemon.
-                    int qtdVitorias = getQtdVitorias(jogador);
-                    qtdVitorias++;
-                    jogador = setQtdVitorias(jogador, qtdVitorias);
+                    //int qtdVitorias = getQtdVitorias(jogador);
+                    //qtdVitorias++;
+                    //jogador = setQtdVitorias(jogador, qtdVitorias);
                     return ATKMORREU;
                 
                 } else if(qtdPokemons == 0){ // Chegou no último pokemon.
@@ -269,7 +269,7 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador, FILE* f){
     fptrAtaque atk = sorteiaAtaque(atacante, f);
     Pokemon *defensor = getPrimeiroPokemonDoJogador(jogador);
 
-    atk(atacante, defensor);
+    atk(atacante, defensor, f);
     
     float hpAtacante = getHPAtual(atacante); 
     float hpDefensor = getHPAtual(defensor);
@@ -323,10 +323,10 @@ int fogeOuNao(){
     return 0;
 }  
 
-void gameOver(Lista* listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar){
+void gameOver(Lista* listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar, char* fileNameLog){
     destroiLista(listaPC);
     fclose(f);
-    menuInicial(listaComJogadores, placar);
+    menuInicial(listaComJogadores, placar, fileNameLog);
 }
 
 Lista* criaListaPokemonsTela(){

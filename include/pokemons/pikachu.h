@@ -16,21 +16,24 @@ Pokemon* criaPikachu();
  * @brief Aplica o ataque Choque do Trovão.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+* @param f Ponteiro para arquivo.
  **/
-void choqueDoTrovao(Pokemon *pikachu, Pokemon *defensor);
+void choqueDoTrovao(Pokemon *pikachu, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Aplica o ataque Onda de Choque.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void ondaDeChoque(Pokemon *pikachu, Pokemon *defensor);
+void ondaDeChoque(Pokemon *pikachu, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Aplica o ataque bater. Como outros pokemons também possuem esse ataque, estamos implementando esse daqui apenas nessa biblioteca.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+* @param f Ponteiro para arquivo.
  **/
-void baterPikachu(Pokemon *atacante, Pokemon *defensor);
+void baterPikachu(Pokemon *atacante, Pokemon *defensor, FILE *f);
 
 #endif

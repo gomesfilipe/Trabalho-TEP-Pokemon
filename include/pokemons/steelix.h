@@ -16,21 +16,24 @@ Pokemon* criaSteelix();
  * @brief Aplica o ataque Rabo de Ferro.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void raboDeFerro(Pokemon *steelix, Pokemon *defensor);
+void raboDeFerro(Pokemon *steelix, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Aplica o ataque Dormir.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void dormirSteelix(Pokemon *steelix, Pokemon *defensor);
+void dormirSteelix(Pokemon *steelix, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Aplica o ataque Cavar.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+* @param f Ponteiro para arquivo.
  **/
-void cavar(Pokemon *steelix, Pokemon *defensor);
+void cavar(Pokemon *steelix, Pokemon *defensor, FILE *f);
 
 #endif

@@ -9,7 +9,7 @@ Pokemon* criaBlastoise(){
     return blastoise;
 }
 
-void armaDeAgua(Pokemon *blastoise, Pokemon *defensor){
+void armaDeAgua(Pokemon *blastoise, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
@@ -37,13 +37,13 @@ void armaDeAgua(Pokemon *blastoise, Pokemon *defensor){
     }
 }
 
-void proteger(Pokemon *blastoise, Pokemon *defensor){
+void proteger(Pokemon *blastoise, Pokemon *defensor, FILE *f){
     blastoise = setEstado(blastoise, PROTEGIDO, 1); 
     blastoise = setTurnosNumEstado(blastoise, PROTEGIDO , 2);
     blastoise = setEstado(blastoise, NORMAL, 0);
 }
 
-void baterBlastoise(Pokemon *blastoise, Pokemon *defensor){
+void baterBlastoise(Pokemon *blastoise, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0) {
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);

@@ -1,6 +1,6 @@
 #include "../include/telas.h"
 
-void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar){
+void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar, char *fileNameLog){
     char escolheAtaqueDoJogadorChar[TAM];
     int escolheAtaqueDoJogador;
     char* nomeJogador = getNomeJogador(jogador);
@@ -8,9 +8,11 @@ void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogado
     int direciona1;
     int direciona2;
     int qtdPokebolas; 
+    int hpAtual;
     Pokemon *pokemonJogador = getPrimeiroPokemonDoJogador(jogador);
-    int qtdVitorias = getQtdVitorias(jogador);
     Pokemon *pokemonDoPC = getPokemonLista(listaPC, 1);
+    int qtdPartidas = getTamanhoListaJogadores(listaComJogadores);
+    int qtdVitorias = getQtdVitorias(jogador);
     if(qtdVitorias > 0){
         pokemonDoPC = sorteiaPokemon();
         listaPC = adicicionaFinalLista(listaPC, pokemonDoPC);
@@ -23,8 +25,7 @@ void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogado
     imprimeNomePokemon(pokemonDoPC, stdout);
     printf(" selvagem aparece!\n\n");
 
-    //! COLOCAR NUMERO DA BATALHA E PARTIDA COM FPRINTF AQUI DEPOIS DE FAZER A LISTA ENCADEADA DE JOGADORES
-    fprintf(f, "x.x- %s vs %s\n", nomePokemonJogador , nomePokemonPC); //log de batalhas
+    fprintf(f, "%d.%d- %s vs %s\n", qtdPartidas, qtdVitorias + 1, nomePokemonJogador , nomePokemonPC); //log de batalhas
     sleep(TIME);
     
     while(1){
@@ -32,6 +33,11 @@ void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogado
         pokemonJogador = getPrimeiroPokemonDoJogador(jogador);
         if(podeJogar(pokemonJogador) == 1 || vezJogador == 0){
             if(vezJogador == 1){
+                // hpAtual = getHPAtual(pokemonJogador);
+                // if(hpAtual <= 0){
+
+                // }
+                
                 printf("\tVez do jogador:\n\n");
                 imprimeMenuAtaque(jogador, pokemonDoPC);
                 
@@ -56,7 +62,7 @@ void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogado
                 }
             
                 limpaTela();
-                direciona1 = jogadorAtaca(pokemonDoPC, escolheAtaqueDoJogador, jogador);          
+                direciona1 = jogadorAtaca(pokemonDoPC, escolheAtaqueDoJogador, jogador, f);          
                 pokemonDoPC = sofreQueimar(pokemonDoPC);
                 imprimeAtaqueJogador(pokemonJogador, pokemonDoPC, escolheAtaqueDoJogador, f);
                 imprimeAtaqueJogador(pokemonJogador, pokemonDoPC, escolheAtaqueDoJogador, stdout); 
@@ -104,13 +110,13 @@ void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogado
                         continue;
                     }
                     else if(direciona2 == GAMEOVER){
-                        printf("\tFim do jogo <numero_da_partida> %s sobreviveu %d batalhas\n\n", nomeJogador, qtdVitorias);
-                        fprintf(f,"\tFim do jogo <numero_da_partida> %s sobreviveu %d batalhas\n\n", nomeJogador, qtdVitorias);
+                        printf("\tFim do jogo %d %s sobreviveu %d batalhas\n\n", qtdPartidas, nomeJogador, qtdVitorias);
+                        fprintf(f,"\tFim do jogo %d %s sobreviveu %d batalhas\n\n", qtdPartidas, nomeJogador, qtdVitorias);
                         //! fazer o numero da partida.
                         
                         jogador = morrePokemon(jogador);
                         getchar();
-                        gameOver(listaPC, f, listaComJogadores, placar);
+                        gameOver(listaPC, f, listaComJogadores, placar, fileNameLog);
 
                     }else if(direciona2 == ATKMATOUMORREU){
                         limpaTela();
@@ -119,30 +125,30 @@ void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogado
                         jogador = morrePokemon(jogador);
                         //destroiPokemon(pokemonDoPC);
                         getchar();
-                        batalha(jogador, listaPC, f, listaComJogadores, placar);
+                        batalha(jogador, listaPC, f, listaComJogadores, placar, fileNameLog);
                     }
                     else if(direciona2 == ATKMORREU){
                         limpaTela();
                         fprintf(f, "\t%s vence!\n\n", nomeJogador);
                         fprintf(stdout, "\t%s vence!\n\n", nomeJogador);
                         getchar();
-                        batalha(jogador, listaPC, f, listaComJogadores, placar);
+                        batalha(jogador, listaPC, f, listaComJogadores, placar, fileNameLog);
                     }
                 }else{
                     limpaTela();
                     printf("\tComputador nao pode atacar!\n");
-                    imprimeEstadoQuandoNaoPodeJogar(pokemonDoPC, pokemonJogador);
+                    imprimeEstadoQuandoNaoPodeJogar(pokemonDoPC, pokemonJogador, f);
                     pokemonJogador = sofreQueimar(pokemonJogador);
                     transicaoEntreTurnos(pokemonDoPC);
                     getchar();
                 }
 
             } else if(direciona1 == GAMEOVER){
-                fprintf(stdout,"\tFim do jogo <numero_da_partida> %s sobreviveu %d batalhas\n\n", nomeJogador, qtdVitorias);
-                fprintf(f,"\tFim do jogo <numero_da_partida> %s sobreviveu %d batalhas\n\n", nomeJogador, qtdVitorias);
+                fprintf(stdout,"\tFim do jogo %d %s sobreviveu %d batalhas\n\n", qtdPartidas, nomeJogador, qtdVitorias);
+                fprintf(f,"\tFim do jogo %d %s sobreviveu %d batalhas\n\n", qtdPartidas, nomeJogador, qtdVitorias);
                 jogador = morrePokemon(jogador);
                 getchar();
-                gameOver(listaPC, f, listaComJogadores, placar);
+                gameOver(listaPC, f, listaComJogadores, placar, fileNameLog);
 
             } else if(direciona1 == FUGIU || direciona1 == CAPTUROU || direciona1 == ATKMATOU){
                 if(direciona1 == CAPTUROU  || direciona1 == FUGIU){
@@ -155,7 +161,7 @@ void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogado
                 }
                 
                 getchar();
-                batalha(jogador, listaPC, f, listaComJogadores, placar); 
+                batalha(jogador, listaPC, f, listaComJogadores, placar, fileNameLog); 
                 
             }
             else if(direciona1 == ATKMATOUMORREU){
@@ -164,12 +170,12 @@ void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogado
                 printf("\tO proximo pokemon de sua lista ira iniciar a proxima batalha.\n\n");
                 jogador = morrePokemon(jogador);
                 getchar();
-                batalha(jogador, listaPC, f, listaComJogadores, placar); 
+                batalha(jogador, listaPC, f, listaComJogadores, placar, fileNameLog); 
             }
         }else{
             limpaTela();
             printf("\tVoce nao pode atacar!\n");
-            imprimeEstadoQuandoNaoPodeJogar(pokemonJogador, pokemonDoPC);
+            imprimeEstadoQuandoNaoPodeJogar(pokemonJogador, pokemonDoPC, f);
             pokemonDoPC = sofreQueimar(pokemonDoPC);
             transicaoEntreTurnos(pokemonJogador);
             if(vezJogador == 1){
@@ -181,12 +187,13 @@ void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogado
     } 
 }
 
-void melhoresPontuacoes(listaJog *listaComJogadores, FILE *placar){
+void melhoresPontuacoes(listaJog *listaComJogadores, FILE *placar, char *fileNameLog){
+    limpaTela();
     ordenaListaJogadores(listaComJogadores);
     imprimeListaJogadoresTerminal(listaComJogadores);
     getchar(); // Pega o \n do input anterior.
     getchar();
-    menuInicial(listaComJogadores, placar);
+    menuInicial(listaComJogadores, placar, fileNameLog);
 }
 
 void sair(listaJog *listaComJogadores, FILE *placar){
@@ -197,16 +204,14 @@ void sair(listaJog *listaComJogadores, FILE *placar){
     exit(0);
 }
 
-void jogar(listaJog *listaComJogadores, FILE *placar){
+void jogar(listaJog *listaComJogadores, FILE *placar, char *fileNameLog){
     char nome[TAM];
     char botao[TAM];
     int botaoint, tamListaOpcoes = QTDPOKEMONS, tamListaJogador = 0;
     Lista *listaPokemons = criaListaPokemonsTela();
     Lista *listaJogador; // Lista de pokemons do jogador
     Jogador* jogador;
-
-   
-    char *fileNameLog = "arquivos_de_saida/logs.txt";
+  
     FILE *log = fopen(fileNameLog, "a"); // Abrindo arquivo do log de batalhas.
     if(log == NULL){
        printf("Erro na abertura do arquivo\n");
@@ -268,7 +273,7 @@ void jogar(listaJog *listaComJogadores, FILE *placar){
                         Pokemon *pokemonDoPC = sorteiaPokemon();
                         Lista *listaPC = criaLista(pokemonDoPC);
                         destroiLista(listaPokemons);
-                        batalha(jogador, listaPC, log, listaComJogadores, placar);
+                        batalha(jogador, listaPC, log, listaComJogadores, placar, fileNameLog);
                     }
                 }  
             }
@@ -276,7 +281,7 @@ void jogar(listaJog *listaComJogadores, FILE *placar){
     }
 }
 
-void menuInicial(listaJog *listaComJogadores, FILE *placar){
+void menuInicial(listaJog *listaComJogadores, FILE *placar, char *fileNameLog){
     char botao[TAM];
     int botaoint;
     
@@ -299,10 +304,10 @@ void menuInicial(listaJog *listaComJogadores, FILE *placar){
         botaoint = atoi(botao);
         
         if(botaoint == 1){
-            jogar(listaComJogadores, placar);
+            jogar(listaComJogadores, placar, fileNameLog);
 
         } else if(botaoint == 2){
-            melhoresPontuacoes(listaComJogadores, placar);
+            melhoresPontuacoes(listaComJogadores, placar, fileNameLog);
 
         } else if(botaoint == 3){
             sair(listaComJogadores, placar);
@@ -319,7 +324,7 @@ void limpaTela(){
     system("clear"); // clear pra linux, cls pra windows.
 }
 
-void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon, Pokemon *defensor){
+void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon, Pokemon *defensor, FILE *f){
     int dormir = getEstado(pokemon, DORMIR);
     int paralisar = getEstado(pokemon, PARALISAR);
     int esconder = getEstado(pokemon, ESCONDER);
@@ -337,7 +342,7 @@ void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon, Pokemon *defensor){
     
     if(esconder == 1){
         printf("\tSegundo turno do ataque cavar!\n\n"); 
-        cavar(pokemon,defensor);
+        cavar(pokemon,defensor, f);
     }
 
     imprimeHPs(pokemon, defensor, stdout);  //olhar dnv steelix vs steelix
@@ -411,23 +416,64 @@ void imprimeHPs(Pokemon *pokemonJogador, Pokemon *pokemonDoPC , FILE *f){
     fprintf(f, "\n\n");
 }
 
-int ImprimeAtaqueMetronomo(){
+int ImprimeAtaqueMetronomo(FILE *f){
     int aleatorio = rand() % 13;
     printf("\tMetronomo sorteou ");
+    //fprintf(f, "\tMew usa Metronomo ");
+    fprintf(f, "\n\t");
     switch(aleatorio){
-        case  0: printf("Choque do trovao"); break;
-        case  1: printf("Onda de choque"); break;
-        case  2: printf("Bater"); break;
-        case  3: printf("Lanca chamas"); break;
-        case  4: printf("Dormir"); break;
-        case  5: printf("Arma de agua"); break;
-        case  6: printf("Proteger"); break;
-        case  7: printf("Po de sono"); break;
-        case  8: printf("Bomba de semente"); break;
-        case  9: printf("Dois gumes"); break;
-        case 10: printf("Rabo de ferro"); break;
-        case 11: printf("Cavar"); break;
-        case 12: printf("Auto-destruir"); break;
+        case  0: 
+            fprintf(f,"(Choque do trovao)"); 
+            printf("Choque do trovao");
+            break;
+        case  1:
+            fprintf(f,"(Onda de choque)");
+            printf("Onda de choque");
+            break;
+        case  2:
+            fprintf(f,"(Bater)"); 
+            printf("Bater"); 
+            break;
+        case  3:
+            fprintf(f,"(Lanca chamas)"); 
+            printf("Lanca chamas"); 
+            break;
+        case  4:
+            fprintf(f,"(Dormir)"); 
+            printf("Dormir"); 
+            break;
+        case  5:
+            fprintf(f,"(Arma de agua)");
+            printf("Arma de agua"); 
+            break;
+        case  6:
+            fprintf(f,"(Proteger)");
+            printf("Proteger"); 
+            break;
+        case  7: 
+            fprintf(f,"(Po de sono)"); 
+            printf("Po de sono"); 
+            break;
+        case  8: 
+            fprintf(f,"(Bomba de semente)"); 
+            printf("Bomba de semente"); 
+            break;
+        case  9: 
+            fprintf(f,"(Dois gumes)"); 
+            printf("Dois gumes"); 
+            break;
+        case 10: 
+            fprintf(f,"(Rabo de ferro)"); 
+            printf("Rabo de ferro"); 
+            break;
+        case 11: 
+            fprintf(f,"(Cavar)"); 
+            printf("Cavar"); 
+            break;
+        case 12: 
+            fprintf(f,"(Auto-destruir)"); 
+            printf("Auto-destruir"); 
+            break;
     } 
     printf("!\n");
     return aleatorio;
@@ -463,14 +509,10 @@ void imprimeEstadosLog(Pokemon *p, FILE *f){
     }
 }
 
-void jogoPokemon(char *fileNamePlacar){
+void jogoPokemon(char *fileNamePlacar, char *fileNameLog){
     listaJog *listaComJogadores = criaListaJogadores();
     FILE *placar = fopen(fileNamePlacar, "a");
-    menuInicial(listaComJogadores, placar);
+    menuInicial(listaComJogadores, placar, fileNameLog);
 }
 
-//readme
-//// fazer lista encadeada de jogadores
-// imprimir algo do tipo "voce esta na sua batalha x, partida y"
-// argc e argv
-// makefile
+

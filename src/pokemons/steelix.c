@@ -9,7 +9,7 @@ Pokemon* criaSteelix(){
     return steelix;
 }
 
-void raboDeFerro(Pokemon *steelix, Pokemon *defensor){
+void raboDeFerro(Pokemon *steelix, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
@@ -38,7 +38,7 @@ void raboDeFerro(Pokemon *steelix, Pokemon *defensor){
     }
 }
 
-void dormirSteelix(Pokemon *steelix, Pokemon *defensor){
+void dormirSteelix(Pokemon *steelix, Pokemon *defensor, FILE *f){
     steelix = setEstado(steelix, DORMIR, 1);
     steelix = setEstado(steelix, NORMAL, 0);
     steelix = setEstado(steelix, FULLHP, 1);
@@ -46,7 +46,7 @@ void dormirSteelix(Pokemon *steelix, Pokemon *defensor){
     steelix = setTurnosNumEstado(steelix, FULLHP, 3);
 }
 
-void cavar(Pokemon *steelix, Pokemon *defensor){ 
+void cavar(Pokemon *steelix, Pokemon *defensor, FILE *f){ 
     int estado = getEstado(steelix, ESCONDER);
     if(estado == 1 && estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];

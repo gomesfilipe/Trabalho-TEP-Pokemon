@@ -9,7 +9,7 @@ Pokemon* criaCharizard(){
     return charizard;
 }
 
-void lancaChamas(Pokemon *charizard, Pokemon *defensor){
+void lancaChamas(Pokemon *charizard, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
@@ -45,7 +45,7 @@ void lancaChamas(Pokemon *charizard, Pokemon *defensor){
 }
 
 //Full HP é um estado parecido com o de paralizar, mas a diferença é que ao final recupera todo o HP.
-void dormirCharizard(Pokemon *charizard, Pokemon *defensor){
+void dormirCharizard(Pokemon *charizard, Pokemon *defensor, FILE *f){
     charizard = setEstado(charizard, NORMAL, 0); 
     charizard = setEstado(charizard, FULLHP, 1); 
     charizard = setEstado(charizard, DORMIR, 1);
@@ -53,7 +53,7 @@ void dormirCharizard(Pokemon *charizard, Pokemon *defensor){
     charizard = setTurnosNumEstado(charizard, FULLHP, 3);
 }
 
-void baterCharizard(Pokemon *charizard, Pokemon *defensor){
+void baterCharizard(Pokemon *charizard, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);

@@ -16,21 +16,24 @@ Pokemon* criaBlastoise();
  * @brief Aplica o ataque Arma de Água.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void armaDeAgua(Pokemon *blastoise, Pokemon *defensor);
+void armaDeAgua(Pokemon *blastoise, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Aplica o ataque Proteger.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void proteger(Pokemon *blastoise, Pokemon *defensor);
+void proteger(Pokemon *blastoise, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Aplica o ataque Bater.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void baterBlastoise(Pokemon *blastoise, Pokemon *defensor);
+void baterBlastoise(Pokemon *blastoise, Pokemon *defensor, FILE *f);
 
 #endif

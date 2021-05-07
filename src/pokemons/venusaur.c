@@ -9,7 +9,7 @@ Pokemon* criaVenusaur(){
     return venusaur;
 }
 
-void poDeSono(Pokemon *venusaur, Pokemon *defensor){
+void poDeSono(Pokemon *venusaur, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         int turnosDormindo = rand() % 3;
         defensor = setEstado(defensor, DORMIR, 1);
@@ -18,7 +18,7 @@ void poDeSono(Pokemon *venusaur, Pokemon *defensor){
     }
 }
 
-void bombaDeSemente(Pokemon *venusaur, Pokemon *defensor){
+void bombaDeSemente(Pokemon *venusaur, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
@@ -46,7 +46,7 @@ void bombaDeSemente(Pokemon *venusaur, Pokemon *defensor){
     }   
 }
 
-void doisGumes(Pokemon *venusaur, Pokemon *defensor){
+void doisGumes(Pokemon *venusaur, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);

@@ -19,7 +19,7 @@ typedef struct pokemon Pokemon;
 
 typedef struct listaPokemon Lista;
 
-typedef void (*fptrAtaque) (Pokemon*, Pokemon*);
+typedef void (*fptrAtaque) (Pokemon*, Pokemon*, FILE*);
 
 /**
  * @brief Aloca memória para um pokemon e inicializa um pokemon genérico.
@@ -240,8 +240,9 @@ Pokemon* restauraHPAposDormir(Pokemon* p);
  * @param code Numero do ataque do pokemon. Por exemplo, o choque do trovão do pikachu seria 1, e assim por diante.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void ataque(int code, Pokemon *atacante, Pokemon *defensor);
+void ataqueGenerico(int code, Pokemon *atacante, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Pega o primeiro pokemon de uma lista de pokemons.

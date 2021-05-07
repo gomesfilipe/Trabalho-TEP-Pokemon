@@ -4,12 +4,24 @@
 #include "../include/telas.h"
 #include <time.h>
 
-int main(){
+int main(int argc, char** argv){
+    // char fileNamePlacar[TAM];
+    // strcpy(fileNamePlacar, argv[1]);
+    
+    // char fileNameLog[TAM];
+    // strcpy(fileNameLog, argv[2]);
+    
+    int semente = atoi(argv[3]); 
+    srand(semente);
+ 
+    char *fileNameLog = "arquivos_de_saida/logs.txt";
     char *fileNamePlacar = "arquivos_de_saida/placares.txt";
+    
     srand(time(NULL));
     iniciaTabelaCriacaoPokemons();
     inicializaVetorComTodosAtaques();
-    jogoPokemon(fileNamePlacar);
+    jogoPokemon(fileNamePlacar, fileNameLog);
     
     return 0;
 }
+

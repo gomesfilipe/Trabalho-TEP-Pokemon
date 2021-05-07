@@ -50,31 +50,6 @@ Pokemon* criaPokemon(char *nome, float hpMax, float ataque, float defesa, int ti
 
 void imprimeNomePokemon(Pokemon *p, FILE* f){
     fprintf(f, "%s", p->nome);
-    // printf("hp max [%.2f]\n", p->hpMax);
-    // printf("hp Atual [%.2f]\n", p->hpAtual);
-    //printf("ataque [%.2f]\n", p->ataque);
-    //printf("defesa [%.2f]\n", p->defesa);
-    //printf("tipo [%d]\n", p->tipo);
-    
-    // printf("normal    [%d] turnos num estado [%d]\n", p->estados[NORMAL], p->turnosNumEstado[NORMAL]);
-    // printf("dormir    [%d] turnos num estado [%d]\n", p->estados[DORMIR], p->turnosNumEstado[DORMIR]);
-    // printf("queimar   [%d] turnos num estado [%d]\n", p->estados[QUEIMAR], p->turnosNumEstado[QUEIMAR]);
-    // printf("paralisar [%d] turnos num estado [%d]\n", p->estados[PARALISAR], p->turnosNumEstado[PARALISAR]);
-    // printf("protegido [%d] turnos num estado [%d]\n", p->estados[PROTEGIDO], p->turnosNumEstado[PROTEGIDO]);
-    // printf("esconder  [%d] turnos num estado [%d]\n", p->estados[ESCONDER], p->turnosNumEstado[ESCONDER]);
-    // printf("fullhp    [%d] turnos num estado [%d]\n", p->estados[FULLHP], p->turnosNumEstado[FULLHP]);
-
-    // printf("%s\n", p->nomeAtaques[0]);
-    // printf("%s\n", p->nomeAtaques[1]);
-    // printf("%s\n", p->nomeAtaques[2]);
-
-    // for(int i = 0; i < QTDESTADOS; i++){
-    //     printf("estado [%d] turnos num estado [%d]\n", p->estados[i], p->turnosNumEstado[i]);
-    // }
-
-    //printf("ponteiro de funcao atk1 [%p]\n", p->ataques[0]);
-    //printf("ponteiro de funcao atk2 [%p]\n", p->ataques[1]);
-    //printf("ponteiro de funcao atk3 [%p]\n\n", p->ataques[2]);
 }
 
 void imprimeAtaquesPokemon(Pokemon *p){  
@@ -145,9 +120,9 @@ void destroiPokemon(Pokemon *p){
     free(p);
 }
 
-void ataque(int code, Pokemon *atacante, Pokemon *defensor){
+void ataqueGenerico(int code, Pokemon *atacante, Pokemon *defensor, FILE *f){
     fptrAtaque ataque  =  atacante->ataques[code - 1];
-    ataque(atacante, defensor);
+    ataque(atacante, defensor, f);
 }
 
 Lista* criaLista(Pokemon *pokemon){

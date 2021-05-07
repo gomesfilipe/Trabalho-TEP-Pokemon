@@ -174,4 +174,10 @@ void imprimeListaJogadores(listaJog *lista, FILE *f);
 **/
 void imprimeListaJogadoresTerminal( listaJog *lista);
 
+/**
+*@brief Ordena uma lista de jogadores alfaticamente
+*@param lista É a lista que será ordenada.
+**/
+void OrdenaListaJogadoresNome(listaJog *lista);
+
 #endif

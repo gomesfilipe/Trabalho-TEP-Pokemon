@@ -9,13 +9,13 @@ Pokemon* criaMew(){
     return mew; 
 }
 
-void metronomo(Pokemon *mew, Pokemon *defensor){
-    int aleatorio = ImprimeAtaqueMetronomo();
+void metronomo(Pokemon *mew, Pokemon *defensor, FILE *f){
+    int aleatorio = ImprimeAtaqueMetronomo(f);
     fptrAtaque ataqueMew = todosAtaques[aleatorio];
-    ataqueMew(mew, defensor);   
+    ataqueMew(mew, defensor, f);   
 }
 
-void baterMew(Pokemon *mew, Pokemon *defensor){
+void baterMew(Pokemon *mew, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
@@ -43,7 +43,7 @@ void baterMew(Pokemon *mew, Pokemon *defensor){
     }
 }
 
-void autoDestruir(Pokemon *mew, Pokemon *defensor){  
+void autoDestruir(Pokemon *mew, Pokemon *defensor, FILE *f){  
     if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);

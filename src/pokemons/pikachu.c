@@ -8,7 +8,7 @@ Pokemon* criaPikachu(){
     return pikachu;
 }
 
-void choqueDoTrovao(Pokemon *pikachu, Pokemon *defensor){
+void choqueDoTrovao(Pokemon *pikachu, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0 ){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
@@ -44,7 +44,7 @@ void choqueDoTrovao(Pokemon *pikachu, Pokemon *defensor){
     }    
 }
 
-void ondaDeChoque(Pokemon *pikachu, Pokemon *defensor){
+void ondaDeChoque(Pokemon *pikachu, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         defensor = setEstado(defensor, PARALISAR, 1);
         defensor = setEstado(defensor, NORMAL, 0);
@@ -52,7 +52,7 @@ void ondaDeChoque(Pokemon *pikachu, Pokemon *defensor){
     }
 }
 
-void baterPikachu(Pokemon *pikachu, Pokemon *defensor){
+void baterPikachu(Pokemon *pikachu, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);

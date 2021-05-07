@@ -18,15 +18,17 @@
  * @param listaComJogadores Ponteiro para uma lista de jogadores.
  * @param f Ponteiro que apontará para o arquivo de log de batalhas.
  * @param placar Ponteiro para o arquivo dos placar dos jogadores.
+ * @param fileNameLog Ponteiro para o arquivo de log de batalhas.
 **/
-void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar);
+void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar, char *fileNameLog);
 
 /**
  * @brief Imprime na tela o ranking dos jogadores em ordem decrescente de número de vitórias.
  * @param listaComJogadores Ponteiro que aponta para uma lista de jogadores.
  * @param placar Ponteiro para o arquivo dos placar dos jogadores.
+ * @param fileNameLog Ponteiro para o arquivo de log de batalhas.
  **/
-void melhoresPontuacoes(listaJog *listaComJogadores, FILE *placar); 
+void melhoresPontuacoes(listaJog *listaComJogadores, FILE *placar, char *fileNameLog); 
 
 
 /**
@@ -41,15 +43,17 @@ void sair( listaJog *listaComJogadores, FILE *placar);
  * como ler o nome do jogador, os pokemons que ele quer adicionar em sua lista, etc.
  * @param listaComJogadores Ponteiro para lista de jogadores.
  * @param placar Ponteiro para o arquivo dos placar dos jogadores.
+ * @param fileNameLog String que representa o caminho para o arquivo de impressão do log de batalhas.
 **/
-void jogar(listaJog *listaComJogadores, FILE *placar);
+void jogar(listaJog *listaComJogadores, FILE *placar, char *fileNameLog);
 
 /**
  * @brief Controla o menu inicial do programa, direcionando o usuário para o início de uma partida, ver a classificação ou encerrar o programa.
  * Essa função faz tratamento de entradas de entradas inválidas do usuário.
  * @param listaComJogadores Ponteiro para inicio da lista de jogadores.
+ * @param fileNameLog String que representa o caminho para o arquivo de impressão do log de batalhas.
  **/
-void menuInicial(listaJog *listaComJogadores, FILE *placar);
+void menuInicial(listaJog *listaComJogadores, FILE *placar, char *fileNameLog);
 
 /**
  * @brief Limpa o terminal. Essa função servirá para deixar os menus do programa mais amigáveis.
@@ -61,8 +65,9 @@ void limpaTela();
  * @param pokemon Pokemon que terá seus motivos impressos.
  * @param defensor Pokemon que defenderá no ataque cavar do steelix. Foi necessário colocar essa parametro para fazer o controle correto
  * de quando steelix não pode jogar, mas mesmo assim aplica o dano do seu ataque cavar.
+ * @param f Ponteiro para arquivo.
  **/
-void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon, Pokemon *defensor);
+void imprimeEstadoQuandoNaoPodeJogar(Pokemon *pokemon, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Imprime o menu de ataque, mostrando ao usuário o HP dos pokemons e suas opções de movimentos para jogar.
@@ -90,9 +95,10 @@ void imprimeHPs(Pokemon *pokemonJogador, Pokemon *pokemonDoPC,  FILE *f);
 
 /**
  *@brief Imprime o nome de um ataque que o metronomo sorteou.
+ *@param f Ponteiro para arquivo.
  *@return Retorna o numero de qual ataque o metronomo sorteou. 
 **/
-int ImprimeAtaqueMetronomo();
+int ImprimeAtaqueMetronomo(FILE *f);
 
 /**
 *@brief Imprime os estados(paralizado, dormindo e/ou queimando) de um pokemon no log de batalhas.
@@ -104,6 +110,7 @@ void imprimeEstadosLog(Pokemon *p, FILE *f);
 /**
  * @brief Executa o jogo pokemon. É a função que será chamada no programa cliente.
  * @param fileNamePlacar String que representa o caminho para o arquivo de impressão do placar de jogadores.
+ * @param fileNameLog String que representa o caminho para o arquivo de impressão do log de batalhas.
  **/
-void jogoPokemon(char *fileNamePlacar);
+void jogoPokemon(char *fileNamePlacar, char *fileNameLog);
 #endif

@@ -23,22 +23,25 @@ Pokemon* criaMew();
  * @brief Aplica o ataque Metronomo.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void metronomo(Pokemon *mew, Pokemon *defensor);
+void metronomo(Pokemon *mew, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Aplica o ataque Bater.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void baterMew(Pokemon *mew, Pokemon *defensor);
+void baterMew(Pokemon *mew, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Aplica o ataque Auto-Destruir.
  * @param atacante Pokemon que aplica o ataque.
  * @param defensor Pokemon que sofre o ataque.
+ * @param f Ponteiro para arquivo.
  **/
-void autoDestruir(Pokemon *mew, Pokemon *defensor);
+void autoDestruir(Pokemon *mew, Pokemon *defensor, FILE *f);
 
 /**
  * @brief Inicializa o vetor de ponteiros de função que possui as funções de todos os ataques disponíveis do jogo.

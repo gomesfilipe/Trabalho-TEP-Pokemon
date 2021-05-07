@@ -142,11 +142,12 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador,  FILE* f);
 /**
  * @brief Decreta o final de uma partida. Essa função libera da memória a lista de pokemons do computador, o arquivo do log de batalhas
  * e direciona para o menu principal do jogo.
- * @param jogador Jogador da partida que será liberado da memória.
  * @param listaPC É a lista de pokemons do computador que será liberada da memória.
  * @param f Ponteiro para o arquivo que será liberado da memória.
+ * @param listaComJogadores Ponteiro para uma lista de jogadores.
+ * @param placar Ponteiro para o arquivo de placar dos jogadores.
  **/
-void gameOver(Jogador* jogador, Lista* listaPC, FILE *f);
+void gameOver(Lista* listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar);
 
 /**
  * @brief Cria a lista de pokemons que possui todos que foram implementados. Essa função servirá de auxílio

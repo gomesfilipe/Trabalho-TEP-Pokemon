@@ -8,9 +8,15 @@ struct jogador{
     Lista *pokemons; //vetor de pokemons // usar lista encadeada nessa parte
 };
 
-struct listaJogadores{
+struct celulajogador{
     Jogador *jogador;
-    struct listaJogadores *prox;
+    struct celulajogador *prox;   
+};
+
+struct listaJogadores{
+    struct celulajogador *primeiro; 
+    struct celulajogador *ultimo;  
+    int tamanho;
 };
 
 Jogador* criaJogador(char *nome, Lista *pokemons){
@@ -112,4 +118,89 @@ Jogador* capturaPokemon(Jogador* jogador, Pokemon *p){
     Pokemon* aux = criaPokemon(nomePokemon, hpMax, ataque, defesa, tipo, atk1, atk2, atk3, nomeAtk1, nomeAtk2, nomeAtk3);
     jogador->pokemons = adicicionaFinalLista(jogador->pokemons , aux);
     return jogador;
+}
+
+int listaVazia(listaJog *lista){
+    if(lista->primeiro == NULL && lista->ultimo == NULL){
+        return 1;
+    }
+    return 0;
+}
+
+listaJog* criaListaJogadores(){
+    listaJog *lista = (listaJog*) malloc(sizeof(listaJog));
+    lista->primeiro = NULL;
+    lista->ultimo = NULL;
+    lista->tamanho = 0;
+    return lista;
+}
+
+listaJog* adicionaJogadorNaLista(listaJog* lista,  Jogador* jogador){
+    celulaJogador *novo = (celulaJogador*) malloc (sizeof(celulaJogador));
+    novo->jogador = jogador;
+    novo->prox = NULL;
+
+    if(listaVazia(lista)) {
+        lista->primeiro = novo;
+        lista->ultimo = novo;
+    } else {
+        lista->ultimo->prox = novo;
+    }
+
+    lista->tamanho++;
+
+    return lista;
+}
+
+void destroiListaJogadores(listaJog *lista){
+    celulaJogador *aux = lista->primeiro;
+    celulaJogador *anterior;
+   
+    while(aux != NULL){
+        anterior = aux;
+        aux = aux->prox;
+        destroiJogador(anterior->jogador);
+        free(anterior);
+    }
+
+    free(lista);
+}
+
+int getTamanhoListaJogadores(listaJog *lista){
+    return lista->tamanho;
+}
+
+void ordenaListaJogadores(listaJog *lista){
+    celulaJogador *i, *j;
+    celulaJogador *aux;
+    for(i = lista->primeiro; i != NULL;  i=  i->prox){
+        for(j = i->prox; j != NULL   ; j = j->prox){
+            if(i->jogador->qtdVitorias < j->jogador->qtdVitorias){
+                aux = i;
+                i->jogador = j->jogador;
+                j->jogador = aux->jogador;
+            }
+        }
+    }
+}
+
+void imprimeListaJogadores(listaJog *lista, FILE *f){ // Imprime no arquivo de pontuações.
+    celulaJogador *aux;
+    for(aux = lista->primeiro; aux != NULL; aux = aux->prox){
+        fprintf(f, "%s %d\n", aux->jogador->nome, aux->jogador->qtdVitorias);
+    }
+}
+
+void imprimeListaJogadoresTerminal(listaJog *lista){
+    celulaJogador *aux;
+    int i;
+    if(listaVazia(lista)){
+        printf("\tNenhuma partida foi jogada ainda!\n");
+
+    } else{
+        for(i = 1, aux = lista->primeiro; aux != NULL; i++, aux = aux->prox){
+            printf("\t%d- %s: %d\n", i, aux->jogador->nome, aux->jogador->qtdVitorias);
+        }
+    }
+    
 }

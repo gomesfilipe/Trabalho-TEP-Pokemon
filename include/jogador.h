@@ -10,7 +10,9 @@
 
 typedef struct jogador Jogador;
 
-//typedef struct 
+typedef struct celulajogador celulaJogador;
+
+typedef struct listaJogadores listaJog;
 
 /**
  * @brief Cria um jogador
@@ -118,5 +120,58 @@ Pokemon* getPrimeiroPokemonDoJogador(Jogador *jogador);
  * @return Retorna o jogador que teve sua quantidade de pokebolas atualizada.
 **/
 Jogador* setQtdPokebolas(Jogador* jogador , int qtdPokebolas);
+
+/**
+ * @brief Verifica se uma lista de jogadores é vazia.
+ * @param lista Lista de jogadores.
+ * @return 1 caso a lista seja varia e 0, caso contrário.
+ **/
+int listaVazia(listaJog *lista);
+
+/**
+ * @brief Adiciona um jogador no final de uma lista encadeada de jogadores.
+ * @param lista Ponteiro para a lista de jogadores.
+ * @param jogador Jogador que será inserido no final da lista.
+ * @return Ponteito para início da lista de jogadores atualizada.
+ **/
+listaJog* adicionaJogadorNaLista(listaJog* lista,  Jogador* jogador);
+
+/**
+ * @brief Libera da memória uma lista de jogadores.
+ * @param inicio Ponteiro que faz referência ao início da lista de jogadores.
+ **/
+void destroiListaJogadores(listaJog *lista);
+
+/**
+ * @brief Inicializa uma lista encadeada de jogadores.
+ * @return Lista de jogadores inicializada.
+ **/
+listaJog* criaListaJogadores();
+
+/**
+ * @brief Captura a quantidade de elementos que uma lista de jogadores possui.
+ * @param inicio Ponteiro que faz referência ao início da lista de jogadores.
+ * @return Tamanho da lista de jogadores.
+ **/
+int getTamanhoListaJogadores(listaJog *lista);
+
+/**
+ * @brief Ordena uma lista de jogadores em ordem decrescente de vitórias.
+ * @param lista Ponteiro que faz referência a lista de jogadores.
+ **/
+void ordenaListaJogadores(listaJog *lista);
+
+/**
+ * @brief Imprime uma lista de jogadores num arquivo, mostrando na o nome de cada um e sua quantidade de vitórias.
+ * @param lista Ponteiro que faz referência ao início da lista de jogadores.
+ * @param f Ponteiro para arquivo cuja lista será impressa. Caso seja necessário imprimí-la no terminal, basta considerar f == stdout. 
+ **/
+void imprimeListaJogadores(listaJog *lista, FILE *f);
+
+/**
+* @brief  Imprime uma lista de jogadores, mostrando na tela o nome de cada um e sua quantidade de vitórias.
+* @param lista Ponteiro que faz referência ao início da lista de jogadores.
+**/
+void imprimeListaJogadoresTerminal( listaJog *lista);
 
 #endif

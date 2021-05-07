@@ -323,11 +323,10 @@ int fogeOuNao(){
     return 0;
 }  
 
-void gameOver(Jogador* jogador, Lista* listaPC, FILE *f){
-    destroiJogador(jogador); //TODO TIRAR DEPOIS
+void gameOver(Lista* listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar){
     destroiLista(listaPC);
     fclose(f);
-    menuInicial();
+    menuInicial(listaComJogadores, placar);
 }
 
 Lista* criaListaPokemonsTela(){

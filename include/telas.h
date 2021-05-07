@@ -11,37 +11,45 @@
 #define TIME 2
 
 /**
- *@brief Função que realiza a batalha, chama o ataque do jogador e o ataque do computador. Caso o jogador vença a batalha,
+ * @brief Função que realiza a batalha, chama o ataque do jogador e o ataque do computador. Caso o jogador vença a batalha,
  essa função é chamada novamente. Esse ciclo só encerra quando o último  pokemon do jogador está com 0 de HP e chamamos a função GAMEOVER.
- @param jogador É jogador que batalhará com o computador.
- @param listaPC Lista de pokemons do computador.
- @param f Ponteiro que apontará para o arquivo de log de batalhas.
+ * @param jogador É jogador que batalhará com o computador.
+ * @param listaPC Lista de pokemons do computador.
+ * @param listaComJogadores Ponteiro para uma lista de jogadores.
+ * @param f Ponteiro que apontará para o arquivo de log de batalhas.
+ * @param placar Ponteiro para o arquivo dos placar dos jogadores.
 **/
-
-void batalha(Jogador* jogador, Lista *listaPC, FILE *f);
-
-/**
- * 
- **/
-void melhoresPontuacoes(); //! DOCUMENTAR
-
+void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar);
 
 /**
- * 
+ * @brief Imprime na tela o ranking dos jogadores em ordem decrescente de número de vitórias.
+ * @param listaComJogadores Ponteiro que aponta para uma lista de jogadores.
+ * @param placar Ponteiro para o arquivo dos placar dos jogadores.
  **/
-void sair(); //! DOCUMENTAR
+void melhoresPontuacoes(listaJog *listaComJogadores, FILE *placar); 
+
+
+/**
+ * @brief Função que sai do programa.
+ * @param listaComJogadores Ponteiro que aponta para uma lista de jogadores.
+ * @param placar Ponteiro que aponta para o arquivo de pontuações dos jogadores.
+ **/
+void sair( listaJog *listaComJogadores, FILE *placar); 
 
 /**
  * @brief É função que é chamada quando o usúario digita 1 no menuInicial. Essa função trata dos aspectos de quando um usúario quer jogar,
  * como ler o nome do jogador, os pokemons que ele quer adicionar em sua lista, etc.
+ * @param listaComJogadores Ponteiro para lista de jogadores.
+ * @param placar Ponteiro para o arquivo dos placar dos jogadores.
 **/
-void jogar();
+void jogar(listaJog *listaComJogadores, FILE *placar);
 
 /**
  * @brief Controla o menu inicial do programa, direcionando o usuário para o início de uma partida, ver a classificação ou encerrar o programa.
- * Essa função faz tratamento de entradas inválidas do usuário.
+ * Essa função faz tratamento de entradas de entradas inválidas do usuário.
+ * @param listaComJogadores Ponteiro para inicio da lista de jogadores.
  **/
-void menuInicial();
+void menuInicial(listaJog *listaComJogadores, FILE *placar);
 
 /**
  * @brief Limpa o terminal. Essa função servirá para deixar os menus do programa mais amigáveis.
@@ -93,4 +101,9 @@ int ImprimeAtaqueMetronomo();
 **/
 void imprimeEstadosLog(Pokemon *p, FILE *f);
 
+/**
+ * @brief Executa o jogo pokemon. É a função que será chamada no programa cliente.
+ * @param fileNamePlacar String que representa o caminho para o arquivo de impressão do placar de jogadores.
+ **/
+void jogoPokemon(char *fileNamePlacar);
 #endif

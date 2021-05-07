@@ -1,0 +1,102 @@
+x.x- Pikachu vs Charizard
+	Pikachu usa Choque do Trovao
+	Charizard: 94.11% HP 
+	Pikachu: 100.00% HP 
+
+	Charizard usa Lanca Chamas
+	Charizard: 94.11% HP 
+	Pikachu: 68.26% HP 
+
+	Pikachu usa Choque do Trovao
+	Charizard: 88.22% HP 
+	Pikachu: 68.26% HP 
+
+	Charizard usa Lanca Chamas
+	Charizard: 88.22% HP 
+	Pikachu: 36.52% HP 
+
+	Pikachu usa Choque do Trovao
+	Charizard: 82.32% HP (paralisado)
+	Pikachu: 36.52% HP 
+
+	Pikachu usa Choque do Trovao
+	Charizard: 76.43% HP 
+	Pikachu: 36.52% HP 
+
+	Charizard usa Bater
+	Charizard: 76.43% HP 
+	Pikachu: 26.56% HP 
+
+	Pikachu usa Choque do Trovao
+	Charizard: 70.54% HP 
+	Pikachu: 26.56% HP 
+
+	Charizard usa Dormir
+	Charizard: 70.54% HP (dormindo)
+	Pikachu: 26.56% HP 
+
+	Pikachu usa Choque do Trovao
+	Charizard: 64.65% HP (dormindo)
+	Pikachu: 26.56% HP 
+
+	Pikachu usa Choque do Trovao
+	Charizard: 52.86% HP (dormindo)
+	Pikachu: 26.56% HP 
+
+	Pikachu usa Choque do Trovao
+	Charizard: 94.11% HP 
+	Pikachu: 26.56% HP 
+
+	Charizard usa Lanca Chamas
+	Charizard: 94.11% HP 
+	Pikachu: 0.00% HP 
+
+	filipe perde!
+
+	Mew usa Auto-destruir
+	Charizard: 64.62% HP 
+	Mew: 0.00% HP 
+
+	filipe perde!
+
+	Charizard usa Lanca Chamas
+	Charizard: 64.62% HP 
+	Venusaur: 72.80% HP 
+
+	Venusaur usa Dois gumes
+	Charizard: 53.71% HP 
+	Venusaur: 69.65% HP 
+
+	Charizard usa Lanca Chamas
+	Charizard: 53.71% HP 
+	Venusaur: 42.45% HP 
+
+	Venusaur usa Dois gumes
+	Charizard: 42.79% HP 
+	Venusaur: 39.29% HP 
+
+	Charizard usa Bater
+	Charizard: 42.79% HP 
+	Venusaur: 30.49% HP 
+
+	Venusaur usa Dois gumes
+	Charizard: 31.87% HP 
+	Venusaur: 27.34% HP 
+
+	Charizard usa Lanca Chamas
+	Charizard: 31.87% HP 
+	Venusaur: 0.14% HP 
+
+	Tentativa de fuga
+	Fracasso
+
+	Charizard usa Dormir
+	Charizard: 31.87% HP (dormindo)
+	Venusaur: 0.14% HP 
+
+	Venusaur usa Dois gumes
+	Charizard: 20.96% HP (dormindo)
+	Venusaur: 0.00% HP 
+
+	Fim do jogo <numero_da_partida> filipe sobreviveu 0 batalhas
+

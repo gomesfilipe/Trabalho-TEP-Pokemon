@@ -77,5 +77,3 @@ void doisGumes(Pokemon *venusaur, Pokemon *defensor, FILE *f){
         venusaur = setHPAtual(venusaur, novoHP);
     }    
 }
-
-

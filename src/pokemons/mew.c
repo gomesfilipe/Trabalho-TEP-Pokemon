@@ -88,4 +88,3 @@ void inicializaVetorComTodosAtaques(){
     todosAtaques[11] = cavar;
     todosAtaques[12] = autoDestruir;
 }
-

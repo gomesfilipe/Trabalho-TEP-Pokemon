@@ -113,4 +113,5 @@ void imprimeEstadosLog(Pokemon *p, FILE *f);
  * @param fileNameLog String que representa o caminho para o arquivo de impressão do log de batalhas.
  **/
 void jogoPokemon(char *fileNamePlacar, char *fileNameLog);
+
 #endif

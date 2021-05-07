@@ -172,14 +172,10 @@ Lista* removePokemonQualquerLista(Lista *inicio, int pos, int tamLista){
             destroiPokemon(centro->pokemon);
             free(centro);
             return inicio;  
-        
         }
 
         antecessor = centro;
-        //antecessor->prox = centro ->prox;
     }
-
-  
 }
 
 Pokemon* getPokemonLista(Lista* inicio, int pos){
@@ -246,7 +242,6 @@ int estaImune(Pokemon *defensor){
     return 0;
 }
 
-
 void imprimeAtaque(Pokemon* pokemon, int pos, FILE *f){
     fprintf(f,"%s\n", pokemon->nomeAtaques[pos - 1]);
 }
@@ -254,14 +249,11 @@ void imprimeAtaque(Pokemon* pokemon, int pos, FILE *f){
 char* getNomePokemon(Pokemon* pokemon){
     char* nome;
     nome = pokemon->nome;
-    //nome = strdup(pokemon->nome);
-    return nome;
-   
+    return nome; 
 }
 
 char* getNomeAtaque(Pokemon* pokemon, int posVetor){
     char* nomeAtaque = pokemon->nomeAtaques[posVetor];
-    //char* nomeAtaque = strdup(pokemon->nomeAtaques[posVetor]);
     return nomeAtaque;
 }
 

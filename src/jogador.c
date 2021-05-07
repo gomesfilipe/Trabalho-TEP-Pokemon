@@ -5,7 +5,7 @@ struct jogador{
     int qtdPokemons;
     int qtdPokebolas;
     int qtdVitorias;
-    Lista *pokemons; //vetor de pokemons // usar lista encadeada nessa parte
+    Lista *pokemons; // Lista encadeada simples de pokemons.
 };
 
 struct celulajogador{
@@ -42,7 +42,7 @@ void imprimeJogador(Jogador *jogador){
     imprimeListaDePokemons(jogador->pokemons);
 }
 
-Jogador* capturaPokebola(Jogador *jogador, int C){  //ver se ta certa, testar
+Jogador* capturaPokebola(Jogador *jogador, int C){
     float probabilidade = C/12.0;
     float aleatorio = (float)rand()/(float)(RAND_MAX);
 
@@ -101,8 +101,6 @@ Jogador* morrePokemon(Jogador* jogador){
 }
 
 Jogador* capturaPokemon(Jogador* jogador, Pokemon *p){ 
-    //float hpMax = getHPMaximo(p);
-    //p = setHPAtual(p, hpMax); //Quando captura um pokemon, seu HpAtual esta no máximo
     char *nomePokemon = getNomePokemon(p);
     float hpMax = getHPMaximo(p);
     float ataque = getAtaque(p);
@@ -179,7 +177,6 @@ void ordenaListaJogadores(listaJog *lista){
     for(i = lista->primeiro; i != NULL;  i =  i->prox){
         for(j = i->prox; j != NULL   ; j = j->prox){
             if(i->jogador->qtdVitorias < j->jogador->qtdVitorias){
-                //aux->jogador = i->jogador;
                 aux = i->jogador;
                 i->jogador = j->jogador;
                 j->jogador = aux;
@@ -196,8 +193,8 @@ void OrdenaListaJogadoresNome(listaJog *lista){
  
     for(i = lista->primeiro; i != NULL;  i =  i->prox){
         for(j = i->prox; j != NULL   ; j = j->prox){
-            if(i->jogador->qtdVitorias ==  j->jogador->qtdVitorias){ //vamos ordenar por nome depois de ja ter ordenado por pontuacao
-                if(strcmp(i->jogador->nome , j->jogador->nome) < 0){ //nome de j é menor alfabeticamente
+            if(i->jogador->qtdVitorias ==  j->jogador->qtdVitorias){ // Vamos ordenar por nome depois de ja ter ordenado por pontuação.
+                if(strcmp(i->jogador->nome , j->jogador->nome) < 0){ //Nome de j é menor alfabeticamente.
                     aux = j->jogador;
                     j->jogador = i->jogador;
                     i->jogador = aux;
@@ -206,7 +203,6 @@ void OrdenaListaJogadoresNome(listaJog *lista){
         }
     }
 }
-
 
 void imprimeListaJogadores(listaJog *lista, FILE *f){ // Imprime no arquivo de pontuações.
     celulaJogador *aux;
@@ -225,6 +221,5 @@ void imprimeListaJogadoresTerminal(listaJog *lista){
         for(i = 1, aux = lista->primeiro; aux != NULL; i++, aux = aux->prox){
             printf("\t%d- %s: %d\n", i, aux->jogador->nome, aux->jogador->qtdVitorias);
         }
-    }
-    
+    } 
 }

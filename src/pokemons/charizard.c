@@ -44,7 +44,6 @@ void lancaChamas(Pokemon *charizard, Pokemon *defensor, FILE *f){
     }    
 }
 
-//Full HP é um estado parecido com o de paralizar, mas a diferença é que ao final recupera todo o HP.
 void dormirCharizard(Pokemon *charizard, Pokemon *defensor, FILE *f){
     charizard = setEstado(charizard, NORMAL, 0); 
     charizard = setEstado(charizard, FULLHP, 1); 
@@ -80,8 +79,3 @@ void baterCharizard(Pokemon *charizard, Pokemon *defensor, FILE *f){
         defensor = setHPAtual(defensor, novoHP);
     }
 }
-
-
-
-
-

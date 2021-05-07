@@ -83,6 +83,3 @@ void cavar(Pokemon *steelix, Pokemon *defensor, FILE *f){
         steelix = setEstado(steelix, NORMAL, 0);
     }
 }
-
-
-

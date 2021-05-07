@@ -80,5 +80,3 @@ void baterPikachu(Pokemon *pikachu, Pokemon *defensor, FILE *f){
         defensor = setHPAtual(defensor, novoHP);
     }
 }
-
-//! ACRESCENTAR PARAMETROS DA CRIAPOKEMON NO POKEMON.H

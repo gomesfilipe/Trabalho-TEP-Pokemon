@@ -1,24 +1,23 @@
-#include "../../include/pokemons/charizard.h"
+#include "../include/pikachu.h"
 
-Pokemon* criaCharizard(){
-    fptrAtaque atk1 = lancaChamas;
-    fptrAtaque atk2 = dormirCharizard;
-    fptrAtaque atk3 = baterCharizard;
-    
-    Pokemon *charizard = criaPokemon("Charizard", 260, 160, 150, FOGO, atk1, atk2, atk3, "Lanca Chamas", "Dormir", "Bater");
-    return charizard;
+Pokemon* criaPikachu(){
+    fptrAtaque atk1 = choqueDoTrovao;
+    fptrAtaque atk2 = ondaDeChoque;
+    fptrAtaque atk3 = baterPikachu;
+    Pokemon *pikachu = criaPokemon("Pikachu", 200, 110, 100,  ELETRICO, atk1, atk2, atk3, "Choque do Trovao", "Onda de Choque", "Bater");
+    return pikachu;
 }
 
-void lancaChamas(Pokemon *charizard, Pokemon *defensor, FILE *f){
-    if(estaImune(defensor) == 0){
+void choqueDoTrovao(Pokemon *pikachu, Pokemon *defensor, FILE *f){
+    if(estaImune(defensor) == 0 ){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
         
-        float A = getAtaque(charizard);
+        float A = getAtaque(pikachu);
         float D = getDefesa(defensor);
-        float poder = 90;  
+        float poder = 40;  
         float MT = 1.5;
-        int tipoPokemonAtk = getTipo(charizard);
+        int tipoPokemonAtk = getTipo(pikachu);
         int tipoPokemonDef = getTipo(defensor);
         float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
 
@@ -37,30 +36,32 @@ void lancaChamas(Pokemon *charizard, Pokemon *defensor, FILE *f){
         defensor = setHPAtual(defensor, novoHP);
 
         aleatorio = rand() % 10;
-        if(aleatorio == 0 && tipoPokemonDef != FOGO){
+        if(aleatorio == 0){
+            defensor = setEstado(defensor, PARALISAR, 1);
             defensor = setEstado(defensor, NORMAL, 0);
-            defensor = setEstado(defensor, QUEIMAR, 1);
+            defensor = setTurnosNumEstado(defensor, PARALISAR , 1);
         }
     }    
 }
 
-void dormirCharizard(Pokemon *charizard, Pokemon *defensor, FILE *f){
-    charizard = setEstado(charizard, NORMAL, 0); 
-    charizard = setEstado(charizard, FULLHP, 1); 
-    charizard = setEstado(charizard, DORMIR, 1);
-    charizard = setTurnosNumEstado(charizard, DORMIR, 3);
-    charizard = setTurnosNumEstado(charizard, FULLHP, 3);
+void ondaDeChoque(Pokemon *pikachu, Pokemon *defensor, FILE *f){
+    if(estaImune(defensor) == 0){
+        defensor = setEstado(defensor, PARALISAR, 1);
+        defensor = setEstado(defensor, NORMAL, 0);
+        defensor = setTurnosNumEstado(defensor, PARALISAR , 1);
+    }
 }
 
-void baterCharizard(Pokemon *charizard, Pokemon *defensor, FILE *f){
+void baterPikachu(Pokemon *pikachu, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
-        float A = getAtaque(charizard);
+        
+        float A = getAtaque(pikachu);
         float D = getDefesa(defensor);
         float poder = 40;  
         float MT = 1;
-        int tipoPokemonAtk = getTipo(charizard);
+        int tipoPokemonAtk = getTipo(pikachu);
         int tipoPokemonDef = getTipo(defensor);
         float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
 

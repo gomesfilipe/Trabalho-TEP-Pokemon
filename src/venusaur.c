@@ -1,57 +1,32 @@
-#include "../../include/pokemons/blastoise.h"
+#include "../include/venusaur.h"
 
-Pokemon* criaBlastoise(){
-    fptrAtaque atk1 = armaDeAgua;
-    fptrAtaque atk2 = proteger;
-    fptrAtaque atk3 = baterBlastoise;
+Pokemon* criaVenusaur(){
+    fptrAtaque atk1 = poDeSono;
+    fptrAtaque atk2 = bombaDeSemente;
+    fptrAtaque atk3 = doisGumes;
     
-    Pokemon *blastoise = criaPokemon("Blastoise", 280, 180, 200, AGUA, atk1, atk2, atk3, "Arma de agua", "Proteger", "Bater");
-    return blastoise;
+    Pokemon *venusaur = criaPokemon("Venusaur", 300, 160, 160,  PLANTA, atk1, atk2, atk3, "Po de sono", "Bomba de semente", "Dois gumes");
+    return venusaur;
 }
 
-void armaDeAgua(Pokemon *blastoise, Pokemon *defensor, FILE *f){
+void poDeSono(Pokemon *venusaur, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
-        float matriz[QTDTIPOS][QTDTIPOS];
-        inicializaMatrizRelacaoTipos(matriz);
-        float A = getAtaque(blastoise);
-        float D = getDefesa(defensor);
-        float poder = 40;  
-        float MT = 1.5;
-        int tipoPokemonAtk = getTipo(blastoise);
-        int tipoPokemonDef = getTipo(defensor);
-        float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
-
-        float critico;
-        int aleatorio = rand() % 24;
-        if(aleatorio == 2){
-            critico = 2;
-        } else{
-            critico = 1;
-        }
-
-        float dano = calculaDano(A, D, poder, critico, MT, relacaoTipo);
-        float hpAtualDefensor = getHPAtual(defensor);
-        float novoHP = hpAtualDefensor - dano;
-        
-        defensor = setHPAtual(defensor, novoHP);
+        int turnosDormindo = rand() % 3;
+        defensor = setEstado(defensor, DORMIR, 1);
+        defensor = setEstado(defensor, NORMAL, 0);
+        defensor = setTurnosNumEstado(defensor, DORMIR, turnosDormindo + 1);
     }
 }
 
-void proteger(Pokemon *blastoise, Pokemon *defensor, FILE *f){
-    blastoise = setEstado(blastoise, PROTEGIDO, 1); 
-    blastoise = setTurnosNumEstado(blastoise, PROTEGIDO , 2);
-    blastoise = setEstado(blastoise, NORMAL, 0);
-}
-
-void baterBlastoise(Pokemon *blastoise, Pokemon *defensor, FILE *f){
-    if(estaImune(defensor) == 0) {
+void bombaDeSemente(Pokemon *venusaur, Pokemon *defensor, FILE *f){
+    if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
-        float A = getAtaque(blastoise);
+        float A = getAtaque(venusaur);
         float D = getDefesa(defensor);
-        float poder = 40;  
-        float MT = 1;
-        int tipoPokemonAtk = getTipo(blastoise);
+        float poder = 80;  
+        float MT = 1.5;
+        int tipoPokemonAtk = getTipo(venusaur);
         int tipoPokemonDef = getTipo(defensor);
         float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
 
@@ -68,5 +43,37 @@ void baterBlastoise(Pokemon *blastoise, Pokemon *defensor, FILE *f){
         float novoHP = hpAtualDefensor - dano;
         
         defensor = setHPAtual(defensor, novoHP);
+    }   
+}
+
+void doisGumes(Pokemon *venusaur, Pokemon *defensor, FILE *f){
+    if(estaImune(defensor) == 0){
+        float matriz[QTDTIPOS][QTDTIPOS];
+        inicializaMatrizRelacaoTipos(matriz);
+        float A = getAtaque(venusaur);
+        float D = getDefesa(defensor);
+        float poder = 120;  
+        float MT = 1.5;
+        int tipoPokemonAtk = getTipo(venusaur);
+        int tipoPokemonDef = getTipo(defensor);
+        float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
+
+        float critico;
+        int aleatorio = rand() % 24;
+        if(aleatorio == 2){
+            critico = 2;
+        } else{
+            critico = 1;
+        }
+
+        float dano = calculaDano(A, D, poder, critico, MT, relacaoTipo);
+        float hpAtualDefensor = getHPAtual(defensor);
+        float novoHP = hpAtualDefensor - dano;
+        
+        defensor = setHPAtual(defensor, novoHP);
+        
+        float hpAtualAtacante = getHPAtual(venusaur);
+        novoHP = hpAtualAtacante - dano / 3.0;
+        venusaur = setHPAtual(venusaur, novoHP);
     }    
 }

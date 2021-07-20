@@ -145,6 +145,7 @@ listaJog* adicionaJogadorNaLista(listaJog* lista,  Jogador* jogador){
         lista->ultimo = novo;
     } else {
         lista->ultimo->prox = novo;
+        lista->ultimo = novo;
     }
 
     lista->tamanho++;
@@ -194,7 +195,7 @@ void OrdenaListaJogadoresNome(listaJog *lista){
     for(i = lista->primeiro; i != NULL;  i =  i->prox){
         for(j = i->prox; j != NULL   ; j = j->prox){
             if(i->jogador->qtdVitorias ==  j->jogador->qtdVitorias){ // Vamos ordenar por nome depois de ja ter ordenado por pontuação.
-                if(strcmp(i->jogador->nome , j->jogador->nome) < 0){ //Nome de j é menor alfabeticamente.
+                if(strcmp(i->jogador->nome, j->jogador->nome) > 0){ //Nome de j é menor alfabeticamente.
                     aux = j->jogador;
                     j->jogador = i->jogador;
                     i->jogador = aux;

@@ -3,13 +3,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../pokemon.h"
+#include "pokemon.h"
 #include "blastoise.h"
 #include "charizard.h"
 #include "pikachu.h"
 #include "steelix.h"
 #include "venusaur.h"
-#include "../jogo.h"
+#include "jogo.h"
 
 fptrAtaque todosAtaques[13];
 

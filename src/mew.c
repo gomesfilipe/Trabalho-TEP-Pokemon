@@ -1,4 +1,4 @@
-#include "../../include/pokemons/mew.h"
+#include "../include/mew.h"
 
 Pokemon* criaMew(){
     fptrAtaque atk1 = metronomo;

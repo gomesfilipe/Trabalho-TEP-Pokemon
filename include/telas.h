@@ -18,42 +18,43 @@
  * @param listaComJogadores Ponteiro para uma lista de jogadores.
  * @param f Ponteiro que apontará para o arquivo de log de batalhas.
  * @param placar Ponteiro para o arquivo dos placar dos jogadores.
- * @param fileNameLog Ponteiro para o arquivo de log de batalhas.
 **/
-void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar, char *fileNameLog);
+void batalha(Jogador* jogador, Lista *listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar);
 
 /**
  * @brief Imprime na tela o ranking dos jogadores em ordem decrescente de número de vitórias.
  * @param listaComJogadores Ponteiro que aponta para uma lista de jogadores.
  * @param placar Ponteiro para o arquivo dos placar dos jogadores.
- * @param fileNameLog Ponteiro para o arquivo de log de batalhas.
+ * @param log  Ponteiro para arquivo de impressão do log de batalhas.
  **/
-void melhoresPontuacoes(listaJog *listaComJogadores, FILE *placar, char *fileNameLog); 
+void melhoresPontuacoes(listaJog *listaComJogadores, FILE *placar, FILE *log); 
 
 
 /**
  * @brief Função que sai do programa.
  * @param listaComJogadores Ponteiro que aponta para uma lista de jogadores.
  * @param placar Ponteiro que aponta para o arquivo de pontuações dos jogadores.
+ * @param log Ponteiro que aponta para o arquivo de log de batalhas.
  **/
-void sair( listaJog *listaComJogadores, FILE *placar); 
+void sair( listaJog *listaComJogadores, FILE *placar, FILE *log); 
 
 /**
  * @brief É função que é chamada quando o usúario digita 1 no menuInicial. Essa função trata dos aspectos de quando um usúario quer jogar,
  * como ler o nome do jogador, os pokemons que ele quer adicionar em sua lista, etc.
  * @param listaComJogadores Ponteiro para lista de jogadores.
  * @param placar Ponteiro para o arquivo dos placar dos jogadores.
- * @param fileNameLog String que representa o caminho para o arquivo de impressão do log de batalhas.
+ * @param log  Ponteiro para arquivo de impressão do log de batalhas.
 **/
-void jogar(listaJog *listaComJogadores, FILE *placar, char *fileNameLog);
+void jogar(listaJog *listaComJogadores, FILE *placar, FILE *log);
 
 /**
  * @brief Controla o menu inicial do programa, direcionando o usuário para o início de uma partida, ver a classificação ou encerrar o programa.
  * Essa função faz tratamento de entradas de entradas inválidas do usuário.
  * @param listaComJogadores Ponteiro para inicio da lista de jogadores.
- * @param fileNameLog String que representa o caminho para o arquivo de impressão do log de batalhas.
+ * @param placar Ponteiro para arquivo do placar do jogadores
+ * @param log  Ponteiro para arquivo de impressão do log de batalhas.
  **/
-void menuInicial(listaJog *listaComJogadores, FILE *placar, char *fileNameLog);
+void menuInicial(listaJog *listaComJogadores, FILE *placar, FILE *log);
 
 /**
  * @brief Limpa o terminal. Essa função servirá para deixar os menus do programa mais amigáveis.

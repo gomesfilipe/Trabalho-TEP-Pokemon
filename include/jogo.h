@@ -4,12 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "pokemon.h"
-#include "pokemons/blastoise.h"
-#include "pokemons/charizard.h"
-#include "pokemons/mew.h"
-#include "pokemons/pikachu.h"
-#include "pokemons/steelix.h"
-#include "pokemons/venusaur.h"
+#include "blastoise.h"
+#include "charizard.h"
+#include "mew.h"
+#include "pikachu.h"
+#include "steelix.h"
+#include "venusaur.h"
 #include "jogador.h"
 #include "telas.h"
 
@@ -144,12 +144,11 @@ int computadorAtaca(Pokemon *atacante, Jogador *jogador,  FILE* f);
  * @brief Decreta o final de uma partida. Essa função libera da memória a lista de pokemons do computador, o arquivo do log de batalhas
  * e direciona para o menu principal do jogo.
  * @param listaPC É a lista de pokemons do computador que será liberada da memória.
- * @param f Ponteiro para o arquivo que será liberado da memória.
+ * @param f Ponteiro para o arquivo de log de batalha.
  * @param listaComJogadores Ponteiro para uma lista de jogadores.
  * @param placar Ponteiro para o arquivo de placar dos jogadores.
- * @param fileNameLog String que recebe o caminho para o arquivo de log de batalhas.
  **/
-void gameOver(Lista* listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar, char* fileNameLog);
+void gameOver(Lista* listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar);
 
 /**
  * @brief Cria a lista de pokemons que possui todos que foram implementados. Essa função servirá de auxílio

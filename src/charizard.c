@@ -1,32 +1,24 @@
-#include "../../include/pokemons/venusaur.h"
+#include "../include/charizard.h"
 
-Pokemon* criaVenusaur(){
-    fptrAtaque atk1 = poDeSono;
-    fptrAtaque atk2 = bombaDeSemente;
-    fptrAtaque atk3 = doisGumes;
+Pokemon* criaCharizard(){
+    fptrAtaque atk1 = lancaChamas;
+    fptrAtaque atk2 = dormirCharizard;
+    fptrAtaque atk3 = baterCharizard;
     
-    Pokemon *venusaur = criaPokemon("Venusaur", 300, 160, 160,  PLANTA, atk1, atk2, atk3, "Po de sono", "Bomba de semente", "Dois gumes");
-    return venusaur;
+    Pokemon *charizard = criaPokemon("Charizard", 260, 160, 150, FOGO, atk1, atk2, atk3, "Lanca Chamas", "Dormir", "Bater");
+    return charizard;
 }
 
-void poDeSono(Pokemon *venusaur, Pokemon *defensor, FILE *f){
-    if(estaImune(defensor) == 0){
-        int turnosDormindo = rand() % 3;
-        defensor = setEstado(defensor, DORMIR, 1);
-        defensor = setEstado(defensor, NORMAL, 0);
-        defensor = setTurnosNumEstado(defensor, DORMIR, turnosDormindo + 1);
-    }
-}
-
-void bombaDeSemente(Pokemon *venusaur, Pokemon *defensor, FILE *f){
+void lancaChamas(Pokemon *charizard, Pokemon *defensor, FILE *f){
     if(estaImune(defensor) == 0){
         float matriz[QTDTIPOS][QTDTIPOS];
         inicializaMatrizRelacaoTipos(matriz);
-        float A = getAtaque(venusaur);
+        
+        float A = getAtaque(charizard);
         float D = getDefesa(defensor);
-        float poder = 80;  
+        float poder = 90;  
         float MT = 1.5;
-        int tipoPokemonAtk = getTipo(venusaur);
+        int tipoPokemonAtk = getTipo(charizard);
         int tipoPokemonDef = getTipo(defensor);
         float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
 
@@ -37,43 +29,53 @@ void bombaDeSemente(Pokemon *venusaur, Pokemon *defensor, FILE *f){
         } else{
             critico = 1;
         }
-
         float dano = calculaDano(A, D, poder, critico, MT, relacaoTipo);
+
         float hpAtualDefensor = getHPAtual(defensor);
         float novoHP = hpAtualDefensor - dano;
         
         defensor = setHPAtual(defensor, novoHP);
-    }   
-}
 
-void doisGumes(Pokemon *venusaur, Pokemon *defensor, FILE *f){
-    if(estaImune(defensor) == 0){
-        float matriz[QTDTIPOS][QTDTIPOS];
-        inicializaMatrizRelacaoTipos(matriz);
-        float A = getAtaque(venusaur);
-        float D = getDefesa(defensor);
-        float poder = 120;  
-        float MT = 1.5;
-        int tipoPokemonAtk = getTipo(venusaur);
-        int tipoPokemonDef = getTipo(defensor);
-        float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
-
-        float critico;
-        int aleatorio = rand() % 24;
-        if(aleatorio == 2){
-            critico = 2;
-        } else{
-            critico = 1;
+        aleatorio = rand() % 10;
+        if(aleatorio == 0 && tipoPokemonDef != FOGO){
+            defensor = setEstado(defensor, NORMAL, 0);
+            defensor = setEstado(defensor, QUEIMAR, 1);
         }
-
-        float dano = calculaDano(A, D, poder, critico, MT, relacaoTipo);
-        float hpAtualDefensor = getHPAtual(defensor);
-        float novoHP = hpAtualDefensor - dano;
-        
-        defensor = setHPAtual(defensor, novoHP);
-        
-        float hpAtualAtacante = getHPAtual(venusaur);
-        novoHP = hpAtualAtacante - dano / 3.0;
-        venusaur = setHPAtual(venusaur, novoHP);
     }    
+}
+
+void dormirCharizard(Pokemon *charizard, Pokemon *defensor, FILE *f){
+    charizard = setEstado(charizard, NORMAL, 0); 
+    charizard = setEstado(charizard, FULLHP, 1); 
+    charizard = setEstado(charizard, DORMIR, 1);
+    charizard = setTurnosNumEstado(charizard, DORMIR, 3);
+    charizard = setTurnosNumEstado(charizard, FULLHP, 3);
+}
+
+void baterCharizard(Pokemon *charizard, Pokemon *defensor, FILE *f){
+    if(estaImune(defensor) == 0){
+        float matriz[QTDTIPOS][QTDTIPOS];
+        inicializaMatrizRelacaoTipos(matriz);
+        float A = getAtaque(charizard);
+        float D = getDefesa(defensor);
+        float poder = 40;  
+        float MT = 1;
+        int tipoPokemonAtk = getTipo(charizard);
+        int tipoPokemonDef = getTipo(defensor);
+        float relacaoTipo = matriz[tipoPokemonAtk][tipoPokemonDef];
+
+        float critico;
+        int aleatorio = rand() % 24;
+        if(aleatorio == 2){
+            critico = 2;
+        } else{
+            critico = 1;
+        }
+
+        float dano = calculaDano(A, D, poder, critico, MT, relacaoTipo);
+        float hpAtualDefensor = getHPAtual(defensor);
+        float novoHP = hpAtualDefensor - dano;
+        
+        defensor = setHPAtual(defensor, novoHP);
+    }
 }

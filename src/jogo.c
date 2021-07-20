@@ -306,10 +306,9 @@ int fogeOuNao(){
     return 0;
 }  
 
-void gameOver(Lista* listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar, char* fileNameLog){
+void gameOver(Lista* listaPC, FILE *f, listaJog *listaComJogadores, FILE *placar){
     destroiLista(listaPC);
-    fclose(f);
-    menuInicial(listaComJogadores, placar, fileNameLog);
+    menuInicial(listaComJogadores, placar, f);//f será o arquivo de log de batalhas
 }
 
 Lista* criaListaPokemonsTela(){

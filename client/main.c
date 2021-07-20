@@ -5,19 +5,26 @@
 #include <time.h>
 
 int main(int argc, char** argv){
-    // char fileNamePlacar[TAM];
-    // strcpy(fileNamePlacar, argv[1]);
+
+    if ( argc < 4 ) {
+        printf("Numero de argumentos incorreto");
+        return 0;
+    }
+
+    char fileNamePlacar[TAM];
+    strcpy(fileNamePlacar, argv[1]);
     
-    // char fileNameLog[TAM];
-    // strcpy(fileNameLog, argv[2]);
+    char fileNameLog[TAM];
+    strcpy(fileNameLog, argv[2]);
     
     int semente = atoi(argv[3]); 
     srand(semente);
  
-    char *fileNameLog = "arquivos_de_saida/logs.txt";
-    char *fileNamePlacar = "arquivos_de_saida/placares.txt";
+    // char *fileNameLog = "arquivos_de_saida/logs.txt";
+    // char *fileNamePlacar = "arquivos_de_saida/placares.txt";
     
-    srand(time(NULL));
+    //srand(time(NULL));
+
     iniciaTabelaCriacaoPokemons();
     inicializaVetorComTodosAtaques();
     jogoPokemon(fileNamePlacar, fileNameLog);

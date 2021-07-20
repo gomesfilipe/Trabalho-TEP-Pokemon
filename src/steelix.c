@@ -1,4 +1,4 @@
-#include "../../include/pokemons/steelix.h"
+#include "../include/steelix.h"
 
 Pokemon* criaSteelix(){
     fptrAtaque atk1 = raboDeFerro;

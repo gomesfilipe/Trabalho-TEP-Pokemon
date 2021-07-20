@@ -1,320 +1,218 @@
-1.1- Mew vs Charizard
- Mew usa Auto-destruir
-	Charizard: 70.51% HP 
-	Mew: 0.00% HP 
-
-	filipe perde!
-
-	Charizard usa Dormir
-	Charizard: 70.51% HP (dormindo)
+1.1- Pikachu vs Steelix
+	Pikachu usa Choque do Trovao
+	Steelix: 97.28% HP 
 	Pikachu: 100.00% HP 
 
- Pikachu usa Choque do Trovao
-	Charizard: 64.62% HP (dormindo)
-	Pikachu: 100.00% HP 
+	Steelix usa Rabo de Ferro
+	Steelix: 97.28% HP 
+	Pikachu: 81.40% HP 
 
- Pikachu usa Choque do Trovao
-	Charizard: 58.73% HP (dormindo)
-	Pikachu: 100.00% HP 
+	Pikachu usa Choque do Trovao
+	Steelix: 94.56% HP 
+	Pikachu: 81.40% HP 
 
- Pikachu usa Choque do Trovao
-	Charizard: 88.22% HP 
-	Pikachu: 100.00% HP 
+	Steelix usa Rabo de Ferro
+	Steelix: 94.56% HP 
+	Pikachu: 62.80% HP 
 
-	Charizard usa Bater
-	Charizard: 88.22% HP 
-	Pikachu: 90.04% HP 
+	Pikachu usa Choque do Trovao
+	Steelix: 91.84% HP 
+	Pikachu: 62.80% HP 
 
- Pikachu usa Choque do Trovao
-	Charizard: 82.32% HP 
-	Pikachu: 90.04% HP 
+	Steelix usa Dormir
+	Steelix: 91.84% HP (dormindo)
+	Pikachu: 62.80% HP 
 
-	Charizard usa Lanca Chamas
-	Charizard: 82.32% HP 
-	Pikachu: 58.30% HP 
+	Pikachu usa Choque do Trovao
+	Steelix: 89.11% HP (paralisado, dormindo)
+	Pikachu: 62.80% HP 
 
- Pikachu usa Choque do Trovao
-	Charizard: 76.43% HP 
-	Pikachu: 58.30% HP 
+	Pikachu usa Choque do Trovao
+	Steelix: 86.39% HP (dormindo)
+	Pikachu: 62.80% HP 
 
-	Charizard usa Bater
-	Charizard: 76.43% HP 
-	Pikachu: 48.34% HP 
+	Pikachu usa Choque do Trovao
+	Steelix: 97.28% HP 
+	Pikachu: 62.80% HP 
 
- Pikachu usa Choque do Trovao
-	Charizard: 70.54% HP 
-	Pikachu: 48.34% HP 
+	Steelix usa Cavar
+	Steelix: 97.28% HP 
+	Pikachu: 62.80% HP 
 
-	Charizard usa Lanca Chamas
-	Charizard: 70.54% HP 
-	Pikachu: 16.60% HP 
+	Pikachu usa Choque do Trovao
+	Steelix: 97.28% HP 
+	Pikachu: 62.80% HP 
 
- Pikachu usa Choque do Trovao
-	Charizard: 64.65% HP 
-	Pikachu: 16.60% HP 
+	Pikachu usa Choque do Trovao
+	Steelix: 91.84% HP 
+	Pikachu: 52.78% HP 
 
-	Charizard usa Bater
-	Charizard: 64.65% HP 
-	Pikachu: 6.64% HP 
+	Steelix usa Dormir
+	Steelix: 91.84% HP (dormindo)
+	Pikachu: 52.78% HP 
 
- Pikachu usa Choque do Trovao
-	Charizard: 58.75% HP 
-	Pikachu: 6.64% HP 
+	Pikachu usa Choque do Trovao
+	Steelix: 89.11% HP (dormindo)
+	Pikachu: 52.78% HP 
 
-	Charizard usa Bater
-	Charizard: 58.75% HP 
+	Pikachu usa Choque do Trovao
+	Steelix: 86.39% HP (dormindo)
+	Pikachu: 52.78% HP 
+
+	Pikachu usa Choque do Trovao
+	Steelix: 97.28% HP 
+	Pikachu: 52.78% HP 
+
+	Steelix usa Rabo de Ferro
+	Steelix: 97.28% HP 
+	Pikachu: 34.18% HP 
+
+	Pikachu usa Choque do Trovao
+	Steelix: 94.56% HP 
+	Pikachu: 34.18% HP 
+
+	Steelix usa Cavar
+	Steelix: 94.56% HP 
+	Pikachu: 34.18% HP 
+
+	Pikachu usa Choque do Trovao
+	Steelix: 94.56% HP 
+	Pikachu: 34.18% HP 
+
+	Pikachu usa Choque do Trovao
+	Steelix: 91.84% HP 
+	Pikachu: 24.16% HP 
+
+	Steelix usa Rabo de Ferro
+	Steelix: 91.84% HP 
+	Pikachu: 5.56% HP 
+
+	Pikachu usa Choque do Trovao
+	Steelix: 89.11% HP 
+	Pikachu: 5.56% HP 
+
+	Steelix usa Cavar
+	Steelix: 89.11% HP 
+	Pikachu: 5.56% HP 
+
+	Pikachu usa Choque do Trovao
+	Steelix: 89.11% HP 
+	Pikachu: 5.56% HP 
+
+	Pikachu usa Choque do Trovao
+	Steelix: 86.39% HP 
 	Pikachu: 0.00% HP 
 
 	filipe perde!
 
-	Tentativa de fuga
-	Fracasso
+	Steelix usa Cavar
+	Steelix: 86.39% HP 
+	Mew: 100.00% HP 
 
-	Charizard usa Bater
-	Charizard: 58.75% HP 
-	Charizard: 97.32% HP 
 
-	Tentativa de fuga
-	Fracasso
+	(Bater)	Mew usa Metronomo
+	Steelix: 86.39% HP 
+	Mew: 100.00% HP 
 
-	Charizard usa Bater
-	Charizard: 58.75% HP 
-	Charizard: 94.64% HP 
+	Mew usa Auto-destruir
+	Steelix: 81.04% HP 
+	Mew: 0.00% HP 
 
-	Tentativa de fuga
-	Fracasso
+	filipe perde!
 
-	Charizard usa Lanca Chamas
-	Charizard: 58.75% HP 
-	Charizard: 86.31% HP 
+	Steelix usa Cavar
+	Steelix: 81.04% HP 
+	Venusaur: 100.00% HP 
 
-	Tentativa de fuga
-	Fracasso
+	Venusaur usa Dois gumes
+	Steelix: 81.04% HP 
+	Venusaur: 100.00% HP 
 
-	Charizard usa Lanca Chamas
-	Charizard: 58.75% HP 
-	Charizard: 69.64% HP 
+	Venusaur usa Dois gumes
+	Steelix: 76.90% HP 
+	Venusaur: 90.11% HP 
 
-	Tentativa de fuga
-	Fracasso
+	Steelix usa Rabo de Ferro
+	Steelix: 76.90% HP 
+	Venusaur: 74.24% HP 
 
-	Charizard usa Lanca Chamas
-	Charizard: 58.75% HP 
-	Charizard: 61.31% HP 
+	Venusaur usa Dois gumes
+	Steelix: 68.63% HP 
+	Venusaur: 71.67% HP 
 
-	Tentativa de fuga
-	Fracasso
+	Steelix usa Dormir
+	Steelix: 68.63% HP (dormindo)
+	Venusaur: 71.67% HP 
 
-	Charizard usa Bater
-	Charizard: 58.75% HP 
-	Charizard: 58.63% HP 
+	Venusaur usa Dois gumes
+	Steelix: 64.49% HP (dormindo)
+	Venusaur: 70.38% HP 
 
-	Tentativa de fuga
-	Fracasso
-
-	Charizard usa Bater
-	Charizard: 58.75% HP 
-	Charizard: 55.95% HP 
-
-	Tentativa de fuga
-	Fracasso
-
-	Charizard usa Dormir
-	Charizard: 58.75% HP (dormindo)
-	Charizard: 55.95% HP 
-
-	Tentativa de fuga
+	Tentativa de captura
 	Fracasso
 
 	Tentativa de fuga
 	Fracasso
 
-	Tentativa de fuga
-	Fracasso
+	Steelix usa Dormir
+	Steelix: 100.00% HP (dormindo)
+	Venusaur: 70.38% HP 
 
-	Charizard usa Dormir
-	Charizard: 100.00% HP (dormindo)
-	Charizard: 55.95% HP 
+	Venusaur usa Dois gumes
+	Steelix: 95.86% HP (dormindo)
+	Venusaur: 69.09% HP 
 
-	Tentativa de fuga
-	Fracasso
+	Venusaur usa Dois gumes
+	Steelix: 87.59% HP (dormindo)
+	Venusaur: 66.52% HP 
 
- Charizard usa Lanca Chamas
-	Charizard: 83.34% HP (dormindo)
-	Charizard: 55.95% HP 
+	Venusaur usa Dois gumes
+	Steelix: 95.86% HP 
+	Venusaur: 65.23% HP 
 
- Charizard usa Lanca Chamas
-	Charizard: 91.67% HP 
-	Charizard: 55.95% HP 
+	Steelix usa Cavar
+	Steelix: 95.86% HP 
+	Venusaur: 65.23% HP 
 
-	Charizard usa Bater
-	Charizard: 91.67% HP 
-	Charizard: 53.27% HP 
+	Venusaur usa Dois gumes
+	Steelix: 95.86% HP 
+	Venusaur: 65.23% HP 
 
- Charizard usa Lanca Chamas
-	Charizard: 83.34% HP 
-	Charizard: 53.27% HP 
+	Venusaur usa Dois gumes
+	Steelix: 91.73% HP 
+	Venusaur: 46.75% HP 
 
-	Charizard usa Bater
-	Charizard: 83.34% HP 
-	Charizard: 50.58% HP 
+	Steelix usa Rabo de Ferro
+	Steelix: 91.73% HP 
+	Venusaur: 15.00% HP 
 
- Charizard usa Lanca Chamas
-	Charizard: 75.01% HP 
-	Charizard: 50.58% HP 
+	Venusaur usa Dois gumes
+	Steelix: 87.59% HP 
+	Venusaur: 13.71% HP 
 
-	Charizard usa Lanca Chamas
-	Charizard: 75.01% HP 
-	Charizard: 42.25% HP 
+	Steelix usa Cavar
+	Steelix: 87.59% HP 
+	Venusaur: 13.71% HP 
 
- Charizard usa Lanca Chamas
-	Charizard: 66.68% HP 
-	Charizard: 42.25% HP 
+	Venusaur usa Dois gumes
+	Steelix: 87.59% HP 
+	Venusaur: 13.71% HP 
 
-	Charizard usa Bater
-	Charizard: 66.68% HP 
-	Charizard: 39.57% HP 
+	Venusaur usa Dois gumes
+	Steelix: 83.46% HP 
+	Venusaur: 3.82% HP 
 
- Charizard usa Lanca Chamas
-	Charizard: 58.35% HP 
-	Charizard: 39.57% HP 
+	Steelix usa Cavar
+	Steelix: 83.46% HP 
+	Venusaur: 3.82% HP 
 
-	Charizard usa Dormir
-	Charizard: 58.35% HP (dormindo)
-	Charizard: 39.57% HP 
+	Venusaur usa Dois gumes
+	Steelix: 83.46% HP 
+	Venusaur: 3.82% HP 
 
- Charizard usa Lanca Chamas
-	Charizard: 50.02% HP (dormindo)
-	Charizard: 39.57% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 41.68% HP (dormindo)
-	Charizard: 39.57% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 91.67% HP 
-	Charizard: 39.57% HP 
-
-	Charizard usa Lanca Chamas
-	Charizard: 91.67% HP 
-	Charizard: 31.24% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 83.34% HP 
-	Charizard: 31.24% HP 
-
-	Charizard usa Dormir
-	Charizard: 83.34% HP (dormindo)
-	Charizard: 31.24% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 75.01% HP (dormindo)
-	Charizard: 31.24% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 66.68% HP (dormindo)
-	Charizard: 31.24% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 91.67% HP 
-	Charizard: 31.24% HP 
-
-	Charizard usa Bater
-	Charizard: 91.67% HP 
-	Charizard: 25.88% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 83.34% HP 
-	Charizard: 25.88% HP 
-
-	Charizard usa Bater
-	Charizard: 83.34% HP 
-	Charizard: 23.19% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 75.01% HP 
-	Charizard: 23.19% HP 
-
-	Charizard usa Bater
-	Charizard: 75.01% HP 
-	Charizard: 20.51% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 66.68% HP 
-	Charizard: 20.51% HP 
-
-	Charizard usa Lanca Chamas
-	Charizard: 66.68% HP 
-	Charizard: 12.18% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 58.35% HP 
-	Charizard: 12.18% HP 
-
-	Charizard usa Lanca Chamas
-	Charizard: 58.35% HP 
-	Charizard: 3.85% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 50.02% HP 
-	Charizard: 3.85% HP 
-
-	Charizard usa Dormir
-	Charizard: 50.02% HP (dormindo)
-	Charizard: 3.85% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 41.68% HP (dormindo)
-	Charizard: 3.85% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 33.35% HP (dormindo)
-	Charizard: 3.85% HP 
-
- Charizard usa Lanca Chamas
-	Charizard: 83.34% HP 
-	Charizard: 3.85% HP 
-
-	Charizard usa Bater
-	Charizard: 83.34% HP 
-	Charizard: 1.17% HP 
-
- Charizard usa Bater
-	Charizard: 80.66% HP 
-	Charizard: 1.17% HP 
-
-	Charizard usa Bater
-	Charizard: 80.66% HP 
-	Charizard: 0.00% HP 
+	Venusaur usa Dois gumes
+	Steelix: 79.32% HP 
+	Venusaur: 0.00% HP 
 
 	Fim do jogo 1 filipe sobreviveu 0 batalhas
-
-1.1- Pikachu vs Charizard
-	Pikachu usa Choque do Trovao
-	Charizard: 94.11% HP 
-	Pikachu: 100.00% HP 
-
-	Charizard usa Dormir
-	Charizard: 94.11% HP (dormindo)
-	Pikachu: 100.00% HP 
-
-	Pikachu usa Choque do Trovao
-	Charizard: 88.22% HP (dormindo)
-	Pikachu: 100.00% HP 
-
-	Pikachu usa Choque do Trovao
-	Charizard: 82.32% HP (dormindo)
-	Pikachu: 100.00% HP 
-
-	Pikachu usa Choque do Trovao
-	Charizard: 94.11% HP 
-	Pikachu: 100.00% HP 
-
-	Charizard usa Dormir
-	Charizard: 94.11% HP (dormindo)
-	Pikachu: 100.00% HP 
-
-	Pikachu usa Choque do Trovao
-	Charizard: 88.22% HP (dormindo)
-	Pikachu: 100.00% HP 
 
